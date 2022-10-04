@@ -1,10 +1,10 @@
 import { RecentEventsCard } from '../RecentEventsCard/index';
-declare module './styles.module.css';
+import styles from './styles.module.css';
 
 export function RecentEventsFeed () {
 
   return (
-    <div className="recent-events-feed-container">
+    <div className={styles.recent_events_feed_container}>
       <RecentEventsCard />
     </div>
   )

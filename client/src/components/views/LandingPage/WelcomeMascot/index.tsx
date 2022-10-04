@@ -1,10 +1,10 @@
-declare module './styles.module.css';
+import styles from './styles.module.css';
 
 export function WelcomeMascot () {
 
   return (
-    <div className="welcome-mascot-container">
-
+    <div className={styles.welcome_mascot_container}>
+      <p>Welcome Mascot Filler Text</p>
     </div>
   )
 }
