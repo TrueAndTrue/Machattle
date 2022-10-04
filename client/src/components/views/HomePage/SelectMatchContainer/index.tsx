@@ -1,0 +1,10 @@
+declare module './styles.module.css';
+
+export function SelectMatchContainer () {
+
+  return (
+    <div className="select-match-container">
+
+    </div>
+  )
+}
