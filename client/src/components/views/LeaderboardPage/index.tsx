@@ -1,10 +1,10 @@
 import { LeaderboardFeed } from './LeaderboardFeed';
-declare module './styles.module.css';
+import styles from './styles.module.css';
 
 export function LeaderboardPage () {
 
   return (
-    <div className="leaderboard-page-container">
+    <div className={styles.leaderboard_page_container}>
       <LeaderboardFeed />
     </div>
   )
