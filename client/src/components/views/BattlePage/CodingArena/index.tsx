@@ -4,7 +4,7 @@ export function CodingArena () {
 
   return (
     <div className="coding-arena-container">
-
+      <p>Coding Arena Filler Text</p>
     </div>
   )
 }
