@@ -1,10 +1,10 @@
 import { MatchCard } from '../MatchCard/index';
-declare module './styles.module.css';
+import styles from './styles.module.css';
 
 export function SelectMatchContainer () {
 
   return (
-    <div className="select-match-container">
+    <div className={styles.select_match_container}>
       <MatchCard />
       <MatchCard />
     </div>
