@@ -10,3 +10,4 @@ exports.router = router;
 router.get('/', (req, res) => {
     res.send("Hello Heroku");
 });
+router.get('/exercsises', (req, res) => res.send('exercises'));
