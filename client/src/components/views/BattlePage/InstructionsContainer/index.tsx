@@ -1,11 +1,13 @@
 import { InstructionsCard } from '../InstructionsCard/index';
 import { SubmitButton } from '../SubmitButton/index';
+
 declare module './styles.module.css';
+
 
 export function InstructionsContainer () {
 
   return (
-    <div className="instructions-container">
+    <div className={styles.instructions_container}>
       <InstructionsCard />
       <SubmitButton />
     </div>

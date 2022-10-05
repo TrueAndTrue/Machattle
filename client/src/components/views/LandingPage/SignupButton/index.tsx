@@ -1,9 +1,9 @@
-declare module './styles.module.css';
+import styles from './styles.module.css';
 
 export function SignupButton () {
 
   return (
-    <div className="signup-button-container">
+    <div className={styles.signup_button_container}>
       <p>Signup Button Filler Text</p>
     </div>
   )

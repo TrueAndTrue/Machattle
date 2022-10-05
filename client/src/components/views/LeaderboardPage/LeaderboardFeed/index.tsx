@@ -1,11 +1,10 @@
 import { LeaderboardCard } from '../LeaderboardCard';
-
-declare module './styles.module.css';
+import styles from './styles.module.css';
 
 export function LeaderboardFeed () {
 
   return (
-    <div className="leaderboard-feed-container">
+    <div className={styles.leaderboard_feed_container}>
       <LeaderboardCard />
     </div>
   )

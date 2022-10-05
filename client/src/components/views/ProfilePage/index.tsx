@@ -1,12 +1,11 @@
 import { AvatarContainer } from './AvatarContainer/index';
 import { ProfileInfoContainer } from './ProfileInfoContainer';
-
-declare module './styles.module.css';
+import styles from './styles.module.css';
 
 export function ProfilePage () {
 
   return (
-    <div className="profile-page-container">
+    <div className={styles.profile_page_container}>
       <AvatarContainer />
       <ProfileInfoContainer />
     </div>
