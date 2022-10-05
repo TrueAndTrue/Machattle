@@ -1,6 +1,8 @@
 import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv';
 
+import { router } from './router/router'
+
 dotenv.config({
   path: '.env'
 });
