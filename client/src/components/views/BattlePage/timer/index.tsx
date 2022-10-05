@@ -1,6 +1,6 @@
 declare module './styles.module.css';
 
-export function Timer () {
+export default function Timer () {
 
   return (
     <div className="timer-container">
