@@ -22,7 +22,7 @@ const getAllExercises = (req, res) => __awaiter(void 0, void 0, void 0, function
 });
 exports.getAllExercises = getAllExercises;
 const addExercise = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.status(200).send({ h: 'heelo' });
+    res.status(200).send({ h: req });
     // try{
     //   const response = await Question.create(question)
     //   res.status(201).send(response)

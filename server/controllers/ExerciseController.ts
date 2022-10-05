@@ -11,7 +11,7 @@ export const getAllExercises = async (req :Request, res :Response) => {
 }
 
 export const addExercise = async (req :Request, res :Response) => {
-   res.status(200).send({ h : 'heelo'})
+   res.status(200).send({ h : req})
   // try{
   //   const response = await Question.create(question)
   //   res.status(201).send(response)
