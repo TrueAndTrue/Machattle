@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsc && node dist/index.js"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
