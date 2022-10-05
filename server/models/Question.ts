@@ -19,7 +19,7 @@ Question.init({
     primaryKey: true,
   },
   question: {
-    type: DataTypes.CHAR(500),
+    type: DataTypes.TEXT,
     allowNull: false
   },
   tests :{

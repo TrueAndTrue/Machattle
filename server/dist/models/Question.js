@@ -13,7 +13,7 @@ Question.init({
         primaryKey: true,
     },
     question: {
-        type: sequelize_1.DataTypes.CHAR(500),
+        type: sequelize_1.DataTypes.TEXT,
         allowNull: false
     },
     tests: {

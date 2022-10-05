@@ -22,11 +22,8 @@ const getAllExercises = (req, res) => __awaiter(void 0, void 0, void 0, function
 });
 exports.getAllExercises = getAllExercises;
 const addExercise = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const reqQuest = req.body.question;
     try {
-        console.log(reqQuest.question.slice(0, 99).length);
-        const question = { question: reqQuest.question.slice(0, 99), difficulty: reqQuest.difficulty, tests: reqQuest.tests };
-        const response = yield Question_1.Question.create(question);
+        const response = yield Question_1.Question.create(req.body.question);
         res.status(201).send({ question: response });
     }
     catch (e) {
