@@ -9,9 +9,7 @@ router.get('/', (req :Request, res :Response ) => {
 );
 
 router.get('/exercises', getAllExercises)
-router.post('/create/exercise', async (req : Request, res :Response) => {
-  console.log(req.body.question);
-  res.send({req : req.body.question})
-});
+router.post('/create/exercise',addExercise);
+
 
 export { router };
