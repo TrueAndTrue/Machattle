@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node server/dist/index.js",
+    "build": "npm install",
+    "start": "node server/dist/index.js",
     "push": "git add .; git commit -m Heroku; git push origin build "
   },
   "repository": {
