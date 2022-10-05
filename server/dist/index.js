@@ -10,7 +10,6 @@ dotenv_1.default.config({
 });
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3030;
-
 app.get('/', (req, res) => {
     res.send('Hello Heroku');
 });

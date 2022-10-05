@@ -9,7 +9,7 @@ const app: Express = express();
 const PORT = process.env.PORT || 3030;
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Hello Heroku');
+  res.send('Hello Heroku');
 });
 
 app.listen(PORT, () => {
