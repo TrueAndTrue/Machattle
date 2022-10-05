@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from 'express'
 
 const router = express.Router();
 
-router.get('/', (res :Response , req :Request) => {
+router.get('/', (req :Request, res :Response ) => {
   res.send("Hello Heroku")}
 );
 
