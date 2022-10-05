@@ -22,12 +22,13 @@ const getAllExercises = (req, res) => __awaiter(void 0, void 0, void 0, function
 });
 exports.getAllExercises = getAllExercises;
 const addExercise = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.status(200).send({ h: req });
-    // try{
-    //   const response = await Question.create(question)
-    //   res.status(201).send(response)
-    // } catch (e) {
-    //   res.status(500).send({error :e , message :'error creating new Exercise', q :question})
-    // }
+    try {
+        const { question } = req.body;
+        const response = yield Question_1.Question.create(question);
+        res.status(201).send(response);
+    }
+    catch (e) {
+        res.status(500).send({ error: e, message: 'error creating new Exercise' });
+    }
 });
 exports.addExercise = addExercise;
