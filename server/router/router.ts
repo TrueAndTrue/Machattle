@@ -9,6 +9,6 @@ router.get('/', (req :Request, res :Response ) => {
 );
 
 router.get('/exercises', getAllExercises)
-router.post('/create/exercise', addExercise)
+router.post('/create/exercise', (req : Request, res :Response) => res.send(req))
 
 export { router };
