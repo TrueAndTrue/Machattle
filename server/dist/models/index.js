@@ -16,7 +16,7 @@ if (process.env.HEROKU_POSTGRESQL_JADE_URL) {
 }
 else {
     // the application is executed on the local machine ... use mysql
-    exports.sequelize = sequelize = new sequelize_1.Sequelize("postgres://postgres:password@localhost:5432/codewars", {
+    exports.sequelize = sequelize = new sequelize_1.Sequelize("codewars", 'postgres', 'password', {
         dialect: "postgres"
     });
 }

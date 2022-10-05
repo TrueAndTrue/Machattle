@@ -11,10 +11,12 @@ export const getAllExercises = async (req :Request, res :Response) => {
 }
 
 export const addExercise = async (req :Request, res :Response) => {
+  const reqQuest = req.body.question
   try{
-    const { question } = req.body
+    console.log(reqQuest.question.slice(0,99).length)
+    const question = {question :reqQuest.question.slice(0,99), difficulty: reqQuest.difficulty , tests : reqQuest.tests}
     const response = await Question.create(question)
-    res.status(201).send(response)
+    res.status(201).send({question : response})
   } catch (e) {
     res.status(500).send({error :e , message :'error creating new Exercise'})
   }

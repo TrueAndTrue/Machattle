@@ -2,10 +2,10 @@ import { DataTypes, Deferrable, Model, Optional } from 'sequelize'
 import { sequelize }  from './index'
 import { IQuestion } from './modelTypes'
 
-interface QuestionInput extends Optional<IQuestion, 'id'> {}
-interface QuestionOuput extends Required<IQuestion> {}
 
-class Question extends Model<QuestionInput, QuestionOuput> {
+type QuestionCreationAttributes = Optional<IQuestion, 'id'>;
+
+class Question extends Model<IQuestion, QuestionCreationAttributes> {
   declare id: number;
   declare question :string;
   declare tests : string[];
@@ -19,7 +19,7 @@ Question.init({
     primaryKey: true,
   },
   question: {
-    type: DataTypes.STRING,
+    type: DataTypes.CHAR(500),
     allowNull: false
   },
   tests :{
