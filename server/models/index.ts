@@ -13,13 +13,12 @@ dotenv.config({
 
 const config = allConfig['stage'];
 
-const DB_USER = "dsxhyebzxdqdfc"
-const DB_PASS = "44e1a24702e6da77052894644edbc15b2b3837dd930082962cb398aef4bae2a6"
-
 const dbConfig = {
   dialect: 'postgres' as Dialect,
   logging: false
 };
+
+console.log(config.use_env_variable)
 
 let sequelize :Sequelize;
 const { DATABASE_URL } = process.env;
