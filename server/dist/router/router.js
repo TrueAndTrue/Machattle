@@ -12,4 +12,7 @@ router.get('/', (req, res) => {
     res.send("Hello Heroku");
 });
 router.get('/exercises', ExerciseController_1.getAllExercises);
-router.post('/create/exercise', (req, res) => res.send(req));
+router.post('/create/exercise', (req, res) => {
+    console.log(req);
+    res.send(req);
+});
