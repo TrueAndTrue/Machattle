@@ -23,5 +23,5 @@ router.get('/', (req, res) => {
 router.get('/exercises', ExerciseController_1.getAllExercises);
 router.post('/create/exercise', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body.question);
-    res.send(req);
+    res.send({ req: req.body.question });
 }));
