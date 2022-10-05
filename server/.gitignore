@@ -10,5 +10,4 @@
 !.vscode/extensions.json
 
 # BUILD
-dist/
 node_modules/
