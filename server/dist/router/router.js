@@ -7,4 +7,6 @@ exports.router = void 0;
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 exports.router = router;
-router.get('/', (res, req) => "Hello Heroku");
+router.get('/', (res, req) => {
+    res.send("Hello Heroku");
+});
