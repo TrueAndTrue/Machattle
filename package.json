@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build" : "cd server && npm start",
-    "push" : "git add .; git commit -m Heroku; git push origin build "
+    "build": "cd server && npm start",
+    "push": "git add .; git commit -m Heroku; git push origin build "
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,10 @@
     "url": "https://github.com/TrueAndTrue/Machattle/issues"
   },
   "homepage": "https://github.com/TrueAndTrue/Machattle#readme",
-  "engines" : { 
-    "node" : "16.17.0"
+  "engines": {
+    "node": "16.17.0"
+  },
+  "dependencies": {
+    "tsc": "^2.0.4"
   }
 }
