@@ -1,10 +1,14 @@
-declare module './styles.module.css';
+import { ProfileCard } from '../ProfileCard/index';
+import { ProfileUpdateForm } from '../ProfileUpdateForm/index';
+import styles from './styles.module.css';
 
 export function ProfileInfoContainer () {
 
   return (
-    <div className="profile-info-container">
-
+    <div className={styles.profile_info_container}>
+      <ProfileCard />
+      {/* on button press, open profile update form */}
+      <ProfileUpdateForm />
     </div>
   )
 }
