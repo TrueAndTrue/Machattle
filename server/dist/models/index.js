@@ -11,7 +11,7 @@ if (process.env.HEROKU_POSTGRESQL_JADE_URL) {
         protocol: "postgres",
         port: 5432,
         host: "<heroku host>",
-        logging: true //false
+        logging: false
     });
 }
 else {

@@ -1,6 +1,5 @@
 import { Sequelize } from "sequelize";
 
-
 let sequelize :Sequelize;
 if (process.env.HEROKU_POSTGRESQL_JADE_URL) {
   // the application is executed on Heroku ... use the postgres database
