@@ -21,6 +21,7 @@ dotenv_1.default.config({
 });
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3030;
+app.use(express_1.default.json());
 app.use(router_1.router);
 (function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
