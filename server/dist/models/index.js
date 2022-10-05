@@ -9,11 +9,11 @@ const sequelize_1 = require("sequelize");
 dotenv_1.default.config({
     path: '.env'
 });
-const DB_USER = process.env.DB_USER || 'postgres';
-const DB_PASS = process.env.DB_PASS || 'password';
+const DB_USER = "dsxhyebzxdqdfc";
+const DB_PASS = "44e1a24702e6da77052894644edbc15b2b3837dd930082962cb398aef4bae2a6";
 const sequelizeConfig = {
     dialect: 'postgres',
     logging: false
 };
-const sequelize = new sequelize_1.Sequelize('codewars', DB_USER, DB_PASS, sequelizeConfig);
+const sequelize = new sequelize_1.Sequelize('d918l45mrulfio', DB_USER, DB_PASS, sequelizeConfig);
 exports.sequelize = sequelize;
