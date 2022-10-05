@@ -1,14 +1,24 @@
-'use strict';
+import { Sequelize } from "sequelize";
 
-import { Dialect, Sequelize, Model } from 'sequelize';
 
-import { Question } from './Question'
+let sequelize :Sequelize;
+if (process.env.HEROKU_POSTGRESQL_JADE_URL) {
+  // the application is executed on Heroku ... use the postgres database
+  sequelize =new Sequelize(process.env.HEROKU_POSTGRESQL_JADE_URL,
+  {
+    dialect: "postgres",
+    protocol: "postgres",
+    port: 5432,
+    host: "<heroku host>",
+    logging: false
+  });
+} else {
+// the application is executed on the local machine ... use mysql
+  sequelize =new Sequelize("postgres://postgres:password@localhost:5432/codewars",
+  {
+    dialect: "postgres"
+  }
+ );
+}
 
-const dbConfig = {
-  dialect: 'postgres' as Dialect,
-  logging: false
-};
-
-const sequelize = new Sequelize("d918l45mrulfio", "dsxhyebzxdqdfc", "44e1a24702e6da77052894644edbc15b2b3837dd930082962cb398aef4bae2a6", dbConfig);
-
-export { sequelize } 
+export { sequelize }
