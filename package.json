@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "tsc" : "./node_modules/typescript/bin/tsc",
-    "build": "tsc",
+    "build": "npm i typescript && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run server",
     "server": "node dist/index.js",
