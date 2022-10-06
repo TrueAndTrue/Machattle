@@ -26,7 +26,7 @@ app.use(express_1.default.static(path_1.default.join(__dirname, 'build')));
 if (NODE_ENV == 'development')
     app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-app.use(router_1.router);
+app.use('/api', router_1.router);
 app.get('/*', (req, res) => {
     res.sendFile(path_1.default.join(__dirname, 'build', 'index.html'));
 });

@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 if (NODE_ENV == 'development') app.use(cors());
 
 app.use(express.json())
-app.use(router);
+app.use('/api',router);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
