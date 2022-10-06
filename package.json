@@ -9,7 +9,7 @@
     "push": "git add .; git commit -m Heroku; git push origin build && rm -r dist",
     "supdate" : "tsc" ,
     "cupdate" :"cd client && npm run build",
-    "update" : "supdate && cupdate",
+    "update" : "npm run supdate && npm run cupdate",
     "server": "tsc && npm run server"
   },
   "repository": {
