@@ -10,6 +10,7 @@
 !.vscode/extensions.json
 
 # BUILD
+node_modules/
 dist/
 
 #enviornemnt 
