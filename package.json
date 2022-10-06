@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx -p typescript tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run server",
+    "postinstall": "tsc",
     "server": "node dist/index.js",
     "push": "git add .; git commit -m Heroku; git push origin build",
-    "dev": "cd server && npm run dev",
-    "postinstall": "tsc"
+    "dev": "cd server && npm run dev"
   },
   "repository": {
     "type": "git",
