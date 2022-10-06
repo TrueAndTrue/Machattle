@@ -11,4 +11,8 @@
 
 # BUILD
 node_modules/
-server/dist
+dist/
+
+#enviornemnt 
+server/.env
+client/.env
