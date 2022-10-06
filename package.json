@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/dist/index.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server/dist/index.js",
+    "client" : "cd client && npm start",
     "push": "git add .; git commit -m Heroku; git push origin build",
     "dev": "cd server && npm run dev"
   },
