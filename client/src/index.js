@@ -16,7 +16,7 @@ root.render(
     clientId={clientId}
     redirectUri={window.location.origin}
   >
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} sx={{fontFamily: 'Quantico'}}>
       <App />
     </ThemeProvider>
   </Auth0Provider>
