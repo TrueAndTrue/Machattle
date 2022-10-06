@@ -8,8 +8,5 @@ const express_1 = __importDefault(require("express"));
 const ExerciseController_1 = require("../controllers/ExerciseController");
 const router = express_1.default.Router();
 exports.router = router;
-router.get('/', (req, res) => {
-    res.send("Hello Heroku");
-});
 router.get('/exercises', ExerciseController_1.getAllExercises);
 router.post('/create/exercise', ExerciseController_1.addExercise);

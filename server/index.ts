@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv';
 import cors from 'cors'
+import path from 'path'
 
 import { router } from './router/router'
 import { sequelize } from './models/index';
@@ -11,6 +12,14 @@ dotenv.config({
 
 const app: Express = express();
 const PORT = process.env.PORT || 3030;
+
+console.log(path.join(__dirname, '../client/build'));
+
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
 app.use(cors());
 app.use(express.json())
