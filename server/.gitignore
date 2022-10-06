@@ -11,3 +11,4 @@
 
 # BUILD
 node_modules/
+server/dist
