@@ -10,7 +10,7 @@
     "supdate" : "tsc" ,
     "cupdate" :"cd client && npm run build",
     "update" : "npm run supdate && npm run cupdate",
-    "server": "tsc && npm run server"
+    "server": "tsc && node dist/index.js"
   },
   "repository": {
     "type": "git",

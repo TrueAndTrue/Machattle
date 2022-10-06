@@ -7,11 +7,14 @@ import { router } from './router/router'
 import { sequelize } from './models/index';
 
 dotenv.config({
-  path: '.env'
+  path: 'my.env'
 });
 
-const app: Express = express();
+const app = express();
 const PORT = process.env.PORT || 3030;
+const NODE_ENV = process.env.NODE_ENV || 'development'
+
+console.log(process.env.PORT)
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -19,7 +22,8 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.use(cors());
+if (NODE_ENV == 'development') app.use(cors());
+
 app.use(express.json())
 app.use(router);
 

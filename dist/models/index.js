@@ -1,9 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sequelize = void 0;
+exports.models = exports.sequelize = void 0;
 const sequelize_1 = require("sequelize");
+const Question_1 = require("./Question");
 let sequelize;
 exports.sequelize = sequelize;
+let models = [Question_1.Question];
+exports.models = models;
 if (process.env.HEROKU_POSTGRESQL_COBALT_URL) {
     // the application is executed on Heroku ... use the postgres database
     exports.sequelize = sequelize = new sequelize_1.Sequelize(process.env.HEROKU_POSTGRESQL_COBALT_URL, {
@@ -15,8 +18,11 @@ if (process.env.HEROKU_POSTGRESQL_COBALT_URL) {
     });
 }
 else {
-    // the application is executed on the local machine ... use mysql
-    exports.sequelize = sequelize = new sequelize_1.Sequelize("codewars", 'postgres', 'password', {
+    const DB_NAME = process.env.DB_NAME || 'codewars';
+    const DB_USER = process.env.DB_USER || 'postgres';
+    const DB_PASS = process.env.DB_PASS || 'password';
+    // the application is executed on the local machine
+    exports.sequelize = sequelize = new sequelize_1.Sequelize(DB_NAME, DB_USER, DB_PASS, {
         dialect: "postgres",
         logging: false
     });
