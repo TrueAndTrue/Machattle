@@ -2,7 +2,6 @@ import { DataTypes, Deferrable, Model, Optional } from 'sequelize'
 import { sequelize }  from './index'
 import { IQuestion } from './modelTypes'
 
-
 type QuestionCreationAttributes = Optional<IQuestion, 'id'>;
 
 class Question extends Model<IQuestion, QuestionCreationAttributes> {
