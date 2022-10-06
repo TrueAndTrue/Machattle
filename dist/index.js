@@ -23,13 +23,13 @@ const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3030;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 app.use(express_1.default.static(path_1.default.join(__dirname, 'build')));
-app.get('/*', (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, 'build', 'index.html'));
-});
 if (NODE_ENV == 'development')
     app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(router_1.router);
+app.get('/*', (req, res) => {
+    res.sendFile(path_1.default.join(__dirname, 'build', 'index.html'));
+});
 (function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
         yield index_1.sequelize.sync();

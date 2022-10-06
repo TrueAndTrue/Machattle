@@ -14,14 +14,14 @@ const NODE_ENV = process.env.NODE_ENV || 'development'
 
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 if (NODE_ENV == 'development') app.use(cors());
 
 app.use(express.json())
 app.use(router);
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 (async function bootstrap () {
   await sequelize.sync();
