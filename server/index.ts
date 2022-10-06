@@ -6,15 +6,11 @@ import path from 'path'
 import { router } from './router/router'
 import { sequelize } from './models/index';
 
-dotenv.config({
-  path: 'my.env'
-});
+dotenv.config({ path: __dirname+'/.env' });
 
 const app = express();
 const PORT = process.env.PORT || 3030;
 const NODE_ENV = process.env.NODE_ENV || 'development'
-
-console.log(process.env.PORT)
 
 app.use(express.static(path.join(__dirname, 'build')));
 

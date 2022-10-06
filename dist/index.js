@@ -18,13 +18,10 @@ const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
 const router_1 = require("./router/router");
 const index_1 = require("./models/index");
-dotenv_1.default.config({
-    path: 'my.env'
-});
+dotenv_1.default.config({ path: __dirname + '/.env' });
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3030;
 const NODE_ENV = process.env.NODE_ENV || 'development';
-console.log(process.env.PORT);
 app.use(express_1.default.static(path_1.default.join(__dirname, 'build')));
 app.get('/', (req, res) => {
     res.sendFile(path_1.default.join(__dirname, 'build', 'index.html'));
