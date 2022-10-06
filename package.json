@@ -9,8 +9,8 @@
     "start": "npm run server",
 
     "server": "node dist/index.js",
-    
-    "push": "git add .; git commit -m Heroku; git push origin build",
+
+    "push": "git add .; git commit -m Heroku; git push origin build && rm -r dist",
     "dev": "tsc && npm run server"
   },
   "repository": {
