@@ -23,10 +23,9 @@ dotenv_1.default.config({
 });
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3030;
-const app_path = 'app/dist/build';
-app.use(express_1.default.static(app_path));
+app.use(express_1.default.static(path_1.default.join(__dirname, 'build')));
 app.get('/*', (req, res) => {
-    res.sendFile(path_1.default.join('app_path', 'index.html'));
+    res.sendFile(path_1.default.join(__dirname, 'build', 'index.html'));
 });
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());

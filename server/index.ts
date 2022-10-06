@@ -13,12 +13,10 @@ dotenv.config({
 const app: Express = express();
 const PORT = process.env.PORT || 3030;
 
-const app_path = 'app/dist/build'
-
-app.use(express.static(app_path));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join('app_path', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.use(cors());
