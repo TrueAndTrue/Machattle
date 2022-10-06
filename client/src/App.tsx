@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import NavBar from '../src/components/Navbar/index'
+import NavBar from './components/Navbar/index'
 import { BattlePage } from './components/views/BattlePage';
 import { HomePage } from './components/views/HomePage';
 import { LeaderboardPage } from './components/views/LeaderboardPage';
