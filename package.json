@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run server",
     "server": "node server/dist/index.js",
+    "heroku-postbuild": "cd client && npm i && npm start",
     "push": "git add .; git commit -m Heroku; git push origin build",
     "dev": "cd server && npm run dev"
   },
