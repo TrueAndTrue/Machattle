@@ -1,9 +1,9 @@
 import { Sequelize } from "sequelize";
 
 let sequelize :Sequelize;
-if (process.env.HEROKU_POSTGRESQL_JADE_URL) {
+if (process.env.HEROKU_POSTGRESQL_COBALT_URL) {
   // the application is executed on Heroku ... use the postgres database
-  sequelize =new Sequelize(process.env.HEROKU_POSTGRESQL_JADE_URL,
+  sequelize =new Sequelize(process.env.HEROKU_POSTGRESQL_COBALT_URL,
   {
     dialect: "postgres",
     protocol: "postgres",
@@ -15,7 +15,8 @@ if (process.env.HEROKU_POSTGRESQL_JADE_URL) {
 // the application is executed on the local machine ... use mysql
   sequelize =new Sequelize("codewars",'postgres','password', 
   {
-    dialect: "postgres"
+    dialect: "postgres",
+    logging:false
   }
  );
 }
