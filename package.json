@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run server",
     "server": "node server/dist/index.js",
-    "heroku-postbuild": "cd client && npm i && npm start",
     "push": "git add .; git commit -m Heroku; git push origin build",
-    "dev": "cd server && npm run dev"
+    "dev": "cd server && npm run dev",
+    "postinstall": "tsc"
   },
   "repository": {
     "type": "git",
@@ -26,8 +26,11 @@
     "node": "16.17.0",
     "npm": ">= 6.11.3"
   },
-  "dependencies": {
+  "devDependencies": {
     "@types/cors": "^2.8.12",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
