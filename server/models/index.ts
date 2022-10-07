@@ -1,11 +1,8 @@
 import dotenv from 'dotenv'
 import path from 'path'
-import { Sequelize } from "sequelize";
-
-import { Question } from './Question'
+import { Sequelize } from 'sequelize'
 
 let sequelize :Sequelize;
-let models  = [Question];
 
 dotenv.config({ path: path.join(__dirname,'../.env')});
 console.log(path.join(__dirname,'../.env'))
@@ -17,7 +14,7 @@ if (process.env.HEROKU_POSTGRESQL_COBALT_URL) {
     protocol: "postgres",
     port: 5432,
     host: "<heroku host>",
-    logging: false
+    logging: false,
   });
 } else {
 
@@ -29,9 +26,10 @@ if (process.env.HEROKU_POSTGRESQL_COBALT_URL) {
   sequelize =new Sequelize(DB_NAME, DB_USER, DB_PASS, 
   {
     dialect: "postgres",
-    logging:false
+    logging:false,
   }
  );
+
 }
 
-export { sequelize, models }
+export { sequelize }
