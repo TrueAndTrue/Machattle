@@ -72,7 +72,7 @@ export function DropdownMenu() {
   );
 
   return (
-    <div>
+    <div className={styles.dropdown_btn_container}>
       {(['left'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button className={styles.dropdown_btn} onClick={toggleDrawer(anchor, true)}>- - -</Button>

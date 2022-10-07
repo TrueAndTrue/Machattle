@@ -14,7 +14,7 @@ console.log(domain ,clientId)
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <SocketContextComponent>
-    <Auth0Provider 
+    <Auth0Provider
       domain={domain}
       clientId={clientId}
       redirectUri={window.location.origin}
