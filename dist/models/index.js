@@ -13,6 +13,7 @@ exports.sequelize = sequelize;
 let models = [Question_1.Question];
 exports.models = models;
 dotenv_1.default.config({ path: path_1.default.join(__dirname, '../.env') });
+console.log(path_1.default.join(__dirname, '../.env'));
 if (process.env.HEROKU_POSTGRESQL_COBALT_URL) {
     // the application is executed on Heroku ... use the postgres database
     exports.sequelize = sequelize = new sequelize_1.Sequelize(process.env.HEROKU_POSTGRESQL_COBALT_URL, {
@@ -24,7 +25,7 @@ if (process.env.HEROKU_POSTGRESQL_COBALT_URL) {
     });
 }
 else {
-    const DB_NAME = process.env.DB_NAME || 'mechattle';
+    const DB_NAME = process.env.DB_NAME || 'codewars';
     const DB_USER = process.env.DB_USER || 'postgres';
     const DB_PASS = process.env.DB_PASS || 'password';
     // the application is executed on the local machine

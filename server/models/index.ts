@@ -8,7 +8,7 @@ let sequelize :Sequelize;
 let models  = [Question];
 
 dotenv.config({ path: path.join(__dirname,'../.env')});
-
+console.log(path.join(__dirname,'../.env'))
 if (process.env.HEROKU_POSTGRESQL_COBALT_URL) {
   // the application is executed on Heroku ... use the postgres database
   sequelize =new Sequelize(process.env.HEROKU_POSTGRESQL_COBALT_URL,
@@ -21,7 +21,7 @@ if (process.env.HEROKU_POSTGRESQL_COBALT_URL) {
   });
 } else {
 
-  const DB_NAME = process.env.DB_NAME || 'mechattle'
+  const DB_NAME = process.env.DB_NAME || 'codewars'
   const DB_USER = process.env.DB_USER || 'postgres'
   const DB_PASS = process.env.DB_PASS || 'password'
 
