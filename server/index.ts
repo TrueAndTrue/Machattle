@@ -18,7 +18,7 @@ new ServerSocket(server);
 
 app.use(express.static(path.join(__dirname, 'build')));
 
-if (NODE_ENV == 'development') app.use(cors());
+app.use(cors());
 
 app.use(express.json())
 app.use('/api',router);
