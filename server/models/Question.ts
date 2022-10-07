@@ -1,14 +1,30 @@
-import { DataTypes, Deferrable, Model, Optional } from 'sequelize'
+import { DataTypes, Optional } from 'sequelize'
+import { Table, Column, Model, BelongsToMany } from 'sequelize-typescript'
+
+import { User } from './User'
+import { UserQuestion } from './UserQuestion'
 import { sequelize }  from './index'
 import { IQuestion } from './modelTypes'
 
 type QuestionCreationAttributes = Optional<IQuestion, 'id'>;
 
+@Table
 class Question extends Model<IQuestion, QuestionCreationAttributes> {
+  @Column
   declare id: number;
+
+  @Column
   declare question :string;
+  
+  @Column
   declare tests : string[];
+
+  @Column
   declare difficulty :string;
+
+  @BelongsToMany(() => User, ()=> UserQuestion)
+  declare completedQuestions : Question[]
+  
 } 
 
 Question.init({

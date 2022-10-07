@@ -32,6 +32,7 @@ if (process.env.HEROKU_POSTGRESQL_COBALT_URL) {
     logging:false
   }
  );
+
 }
 
 export { sequelize, models }
