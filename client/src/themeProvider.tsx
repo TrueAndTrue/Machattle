@@ -12,4 +12,7 @@ export const theme = createTheme({
       light : '#393E46',
     }
   },
+  typography: {
+    fontFamily: 'Quantico',
+  },
 });
