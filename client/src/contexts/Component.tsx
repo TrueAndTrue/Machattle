@@ -14,7 +14,7 @@ const SocketContextComponent: React.FunctionComponent<ISocketContextComponentPro
   const socket = useSocket('ws://machattle.herokuapp.com/', {
     reconnectionAttempts: 5,
     reconnectionDelay: 5000,
-    autoConnect: false
+    autoConnect: true
   })
 
 
