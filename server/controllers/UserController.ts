@@ -12,9 +12,29 @@ export const getAllUsers = async (req :Request, res :Response) => {
 
 export const addUser = async (req :Request, res :Response) => {
   try{
-    const response = await User.create(req.body.user)
-    res.status(201).send({user : response})
+    const newUser = req.body.user
+    const userExists = await User.findOne({where: { username: newUser.username } })
+    if(!userExists){
+      const response = await User.create(newUser)
+      res.status(201).send({user : response})
+    } else {
+      res.status(409).send({message : 'Username Already Exists!'})
+    }
   } catch (e) {
-    res.status(500).send({error :e , message :'error creating new Exercise'})
+    res.status(500).send({error :e , message :'error creating new user'})
+  }
+}
+
+export const getUser = async(req:Request, res :Response) =>{
+  try{
+    const username = req.body.user.username
+    const user = await User.findOne({where: { username } })
+    if (user) {
+      res.status(200).send(user)
+    } else {
+      res.status(404).send('User Does Not Exist')
+    }
+  } catch(e) {
+    res.status(500).send('Error is getting user')
   }
 }
