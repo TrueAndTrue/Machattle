@@ -73,11 +73,11 @@ export class ServerSocket {
     })
   }
 
-  GetUidFromSocketId = (id: string) => Object.keys(this.users).find((uid) => this.users[uid] === uid);
+  GetUidFromSocketId = (id: string) => Object.keys(this.users).find((uid) => this.users[uid] === id);
   
   SendMessage = (name: string, users: string[], payload?: Object) => {
     console.log('emmitting event: ' + name + ' to ' + users);
-    users.forEach((id) => (payload ? this.io.to(id).emit(name, payload) : this.io.to(id).emit(name)));
+    users.forEach(id => payload ? this.io.to(id).emit(name, payload) : this.io.to(id).emit(name));
   }
 }
 
