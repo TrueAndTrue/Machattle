@@ -1,3 +1,14 @@
 .instructions_card_container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #4ecca3;
+  width: 80%;
+  height: 45vh;
+  border-radius: 25px;
+  border-color: #eeeeee;
+  border-style: inset;
+  border-width: 10px;
+  margin-top: 18px;
 }
