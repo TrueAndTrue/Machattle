@@ -1,4 +1,6 @@
 .select_match_container {
   display: flex;
-  width: 75vh;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 75vw;
 }

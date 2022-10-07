@@ -6,8 +6,12 @@
   background-color: #232931;
   margin-top: 15px;
   margin-right: 15px;
-  border-radius: 20px;
-  height: 15vh;
+  border-radius: 25px;
+  border-color: #eeeeee;
+  border-style: inset;
+  border-width: 10px;
+  height: 12.5vh;
+  width: 75%;
 }
 
 .winner_text {

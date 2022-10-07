@@ -28,4 +28,32 @@ export const mockEvents = [
     questionDifficulty: 'easy',
     when: '4 hours ago',
   },
+  {
+    challenger1: 'Jacob',
+    challenger2: 'Matt',
+    winner: 'Jacob',
+    questionDifficulty: 'medium',
+    when: '2 hours ago',
+  },
+  {
+    challenger1: 'Digimon Trainer',
+    challenger2: 'Pokemon',
+    winner: 'Pokemon',
+    questionDifficulty: 'easy',
+    when: '4 hours ago',
+  },
+  {
+    challenger1: 'Jacob',
+    challenger2: 'Matt',
+    winner: 'Jacob',
+    questionDifficulty: 'medium',
+    when: '2 hours ago',
+  },
+  {
+    challenger1: 'Digimon Trainer',
+    challenger2: 'Pokemon',
+    winner: 'Pokemon',
+    questionDifficulty: 'easy',
+    when: '4 hours ago',
+  },
 ];
