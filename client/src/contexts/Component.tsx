@@ -11,7 +11,7 @@ const SocketContextComponent: React.FunctionComponent<ISocketContextComponentPro
   const [SocketState, SocketDispatch] = useReducer(SocketReducer, defaultSocketContextState);
   const [loading, setLoading] = useState(true);
 
-  const socket = useSocket('ws://localhost:3030', {
+  const socket = useSocket('https://machattle.herokuapp.com/', {
     reconnectionAttempts: 5,
     reconnectionDelay: 5000,
     autoConnect: false
