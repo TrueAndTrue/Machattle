@@ -18,10 +18,13 @@ const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
 const router_1 = require("./router/router");
 const index_1 = require("./models/index");
+const socket_1 = require("./socket");
 dotenv_1.default.config({ path: __dirname + '/.env' });
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3030;
 const NODE_ENV = process.env.NODE_ENV || 'development';
+const server = require('http').createServer(app);
+new socket_1.ServerSocket(server);
 app.use(express_1.default.static(path_1.default.join(__dirname, 'build')));
 if (NODE_ENV == 'development')
     app.use((0, cors_1.default)());
@@ -33,7 +36,7 @@ app.get('/*', (req, res) => {
 (function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
         yield index_1.sequelize.sync();
-        app.listen(PORT, () => {
+        server.listen(PORT, () => {
             console.log(`App is listening on port ${PORT}`);
         });
     });
