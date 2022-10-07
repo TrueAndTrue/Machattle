@@ -1,6 +1,5 @@
 import { Server as HTTPServer} from 'http';
 import { Socket, Server} from 'socket.io';
-import { v4 } from 'uuid';
 
 export class ServerSocket {
   public static instance: ServerSocket;
@@ -44,7 +43,7 @@ export class ServerSocket {
         }
       }
 
-      const uid = v4();
+      const uid = JSON.stringify(Math.floor(Math.random() * 100000));
       this.users[uid] = socket.id;
       const users = Object.values(this.users);
 

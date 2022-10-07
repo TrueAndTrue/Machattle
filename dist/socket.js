@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ServerSocket = void 0;
 const socket_io_1 = require("socket.io");
-const uuid_1 = require("uuid");
 class ServerSocket {
     constructor(server) {
         this.StartListeners = (socket) => {
@@ -20,7 +19,7 @@ class ServerSocket {
                         return;
                     }
                 }
-                const uid = (0, uuid_1.v4)();
+                const uid = JSON.stringify(Math.floor(Math.random() * 100000));
                 this.users[uid] = socket.id;
                 const users = Object.values(this.users);
                 console.log('Sending callback for handshake');
