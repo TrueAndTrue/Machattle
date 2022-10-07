@@ -10,7 +10,5 @@ export interface IUser{
   rank :string;
   rating : number;
   username : string;
-  friends : IUser[];
   image : string;
-  completedChallanges : IQuestion[];
 }

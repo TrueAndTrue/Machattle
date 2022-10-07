@@ -1,31 +1,18 @@
-import { DataTypes, Optional } from 'sequelize'
-import { Table, Column, Model, BelongsToMany } from 'sequelize-typescript'
-
-import { User } from './User'
-import { UserQuestion } from './UserQuestion'
+import { Model, Optional, DataTypes } from "sequelize";
 import { sequelize }  from './index'
-import { IQuestion } from './modelTypes'
+import { IQuestion } from './types'
 
 type QuestionCreationAttributes = Optional<IQuestion, 'id'>;
 
-@Table
-class Question extends Model<IQuestion, QuestionCreationAttributes> {
-  @Column
-  declare id: number;
+export class Question extends Model<IQuestion, QuestionCreationAttributes> {
+  public id!: number;
+  public question! :string;
+  public tests! : string[];
+  public difficulty! :string;
 
-  @Column
-  declare question :string;
-  
-  @Column
-  declare tests : string[];
-
-  @Column
-  declare difficulty :string;
-
-  @BelongsToMany(() => User, ()=> UserQuestion)
-  declare completedQuestions : Question[]
-  
-} 
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+}
 
 Question.init({
   id: {
@@ -46,9 +33,6 @@ Question.init({
     allowNull: false
   }
 } , {
-  timestamps: false,
-  sequelize: sequelize,
-  paranoid: true
+  sequelize,
+  tableName : 'questions'
 });
-
-export { Question }; 
