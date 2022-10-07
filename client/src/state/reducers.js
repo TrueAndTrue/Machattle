@@ -4,14 +4,16 @@ import { combineReducers } from 'redux';
 //user actions
 //question actions
 
-const loggedIn = (loggedIn = {
-  status: false,
+const status = (status = {
+  loggedIn: false,
+  inQueue: false,
+  inMatch: false,
   },
   action
 ) => {
   switch (action.type) {
     default:
-      return loggedIn;
+      return status;
   }
 };
 const currentUser = (currentUser = {
@@ -44,4 +46,4 @@ const currentQuestion = (currentQuestion = {
   }
 };
 
-export default combineReducers({ loggedIn, currentUser, currentQuestion });
+export default combineReducers({ status, currentUser, currentQuestion });
