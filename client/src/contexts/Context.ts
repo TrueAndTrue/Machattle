@@ -6,17 +6,19 @@ export interface ISocketContextState {
   socket: Socket | undefined;
   uid: string;
   users: string[];
+  inQueue: string[];
 }
 
 export const defaultSocketContextState = {
   socket: undefined,
   uid: '',
-  users: []
+  users: [],
+  inQueue: [],
 }
 
-export type TSocketContextActions = 'update_socket' | 'update_uid' | 'update_users' | 'remove_user';
+export type TSocketContextActions = 'update_socket' | 'update_uid' | 'update_users' | 'remove_user' | 'queue_user';
 
-export type TSocketContextPayload = string | string[] | Socket;
+export type TSocketContextPayload = string | string[] | Socket | boolean;
 
 export interface ISocketContextActions {
   type: TSocketContextActions;
@@ -26,6 +28,7 @@ export interface ISocketContextActions {
 export const SocketReducer = (state: ISocketContextState, action: ISocketContextActions) => {
   console.log(`Message Received - Action: ${action.type} - Payload: ${action.payload}`);
   console.log(state.users);
+  console.log(state.inQueue);
 
   switch(action.type) {
     case 'update_socket':
@@ -36,6 +39,10 @@ export const SocketReducer = (state: ISocketContextState, action: ISocketContext
       return {...state, users: action.payload as string[]}
     case 'remove_user':
       return {...state, users: state.users.filter((uid) => uid !== (action.payload as string))}
+    case 'queue_user':
+      return {
+        ...state, 
+        inQueue: [...state.inQueue, action.payload as string]}
     default:
       return {...state}
   }

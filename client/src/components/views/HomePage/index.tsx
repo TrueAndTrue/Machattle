@@ -7,16 +7,17 @@ import styles from './styles.module.css';
 
 export function HomePage () {
 
-  const { uid, users } = useContext(SocketContext).SocketState
+  const { uid, users, inQueue } = useContext(SocketContext).SocketState
 
-  console.log(users);
+  console.log(inQueue);
 
   return (
     <div className={styles.home_page_container}>
-      <MatchButton />
       <h2>Socket IO Information</h2>
       <div>Your user ID: {uid}</div>
       <div>Users Online: {users.length}</div>
+      <div>Queue Status: {JSON.stringify(inQueue)}</div>
+      <MatchButton />
     </div>
   )
 }

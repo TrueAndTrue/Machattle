@@ -4,3 +4,8 @@ export interface IQuestion{
   tests : string[];
   difficulty :string;
 }
+
+export interface IQueue{
+  uid: string;
+  roomId: string;
+}
