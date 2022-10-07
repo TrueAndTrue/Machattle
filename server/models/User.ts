@@ -25,8 +25,10 @@ export class User extends Model<IUser, UserCreationAttributes> {
   public readonly Questions?: Question[];
 
   public static associations: {
-    messages: Association<User, Question>;
+    questions: Association<User, Question>;
+    friends: Association<User, User>;
   }; 
+
 }
 
 User.init(
@@ -59,6 +61,7 @@ User.init(
   }
 );
 
+User.belongsToMany(User, { as: 'Friends', through: 'UserFriends' })
 
 User.hasMany(Question, {
   sourceKey: "id",

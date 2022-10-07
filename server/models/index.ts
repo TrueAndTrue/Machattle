@@ -5,7 +5,7 @@ import { Sequelize } from 'sequelize'
 let sequelize :Sequelize;
 
 dotenv.config({ path: path.join(__dirname,'../.env')});
-console.log(path.join(__dirname,'../.env'))
+
 if (process.env.HEROKU_POSTGRESQL_COBALT_URL) {
   // the application is executed on Heroku ... use the postgres database
   sequelize =new Sequelize(process.env.HEROKU_POSTGRESQL_COBALT_URL,
@@ -31,5 +31,4 @@ if (process.env.HEROKU_POSTGRESQL_COBALT_URL) {
  );
 
 }
-
 export { sequelize }

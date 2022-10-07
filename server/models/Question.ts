@@ -9,6 +9,7 @@ export class Question extends Model<IQuestion, QuestionCreationAttributes> {
   public question! :string;
   public tests! : string[];
   public difficulty! :string;
+  public ownerId?: number;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -19,6 +20,9 @@ Question.init({
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
+  },
+  ownerId: {
+    type: DataTypes.INTEGER
   },
   question: {
     type: DataTypes.TEXT,

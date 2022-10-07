@@ -3,6 +3,7 @@ export interface IQuestion{
   question :string;
   tests : string[];
   difficulty :string;
+  ownerId?: number;
 }
 
 export interface IUser{
