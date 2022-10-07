@@ -5,8 +5,8 @@ export function SelectMatchContainer () {
 
   return (
     <div className={styles.select_match_container}>
-      <MatchCard />
-      <MatchCard />
+      <MatchCard mode='ranked'/>
+      <MatchCard mode='unranked'/>
     </div>
   )
 }

@@ -1,4 +1,6 @@
+import { FunctionComponent } from 'react';
 import styles from './styles.module.css';
+
 import Button from '@mui/material/Button';
 import { useContext, useEffect, useState } from 'react';
 import SocketContext from '../../../../contexts/Context';
@@ -6,8 +8,11 @@ import { useSocket } from '../../../../hooks/useSocket';
 import { useReducer } from 'react';
 import { defaultSocketContextState, SocketContextProvider, SocketReducer } from '../../../../contexts/Context';
 
+interface IProps {
+  data: string,
+}
 
-export function MatchButton () {
+export const MatchButton: FunctionComponent = () => {
 
   const { uid, users, inQueue } = useContext(SocketContext).SocketState
   

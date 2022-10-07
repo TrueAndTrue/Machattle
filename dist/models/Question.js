@@ -12,6 +12,9 @@ Question.init({
         autoIncrement: true,
         primaryKey: true,
     },
+    ownerId: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
     question: {
         type: sequelize_1.DataTypes.TEXT,
         allowNull: false
@@ -25,7 +28,6 @@ Question.init({
         allowNull: false
     }
 }, {
-    timestamps: false,
     sequelize: index_1.sequelize,
-    paranoid: true
+    tableName: 'questions'
 });

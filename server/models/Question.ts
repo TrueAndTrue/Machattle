@@ -1,21 +1,28 @@
-import { DataTypes, Deferrable, Model, Optional } from 'sequelize'
+import { Model, Optional, DataTypes } from "sequelize";
 import { sequelize }  from './index'
-import { IQuestion } from './modelTypes'
+import { IQuestion } from './types'
 
 type QuestionCreationAttributes = Optional<IQuestion, 'id'>;
 
-class Question extends Model<IQuestion, QuestionCreationAttributes> {
-  declare id: number;
-  declare question :string;
-  declare tests : string[];
-  declare difficulty :string;
-} 
+export class Question extends Model<IQuestion, QuestionCreationAttributes> {
+  public id!: number;
+  public question! :string;
+  public tests! : string[];
+  public difficulty! :string;
+  public ownerId?: number;
+
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+}
 
 Question.init({
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
+  },
+  ownerId: {
+    type: DataTypes.INTEGER
   },
   question: {
     type: DataTypes.TEXT,
@@ -30,9 +37,6 @@ Question.init({
     allowNull: false
   }
 } , {
-  timestamps: false,
-  sequelize: sequelize,
-  paranoid: true
+  sequelize,
+  tableName : 'questions'
 });
-
-export { Question }; 

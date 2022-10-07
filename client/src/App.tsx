@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import styles from './styles.module.css';
 
 import NavBar from './components/Navbar/index'
 import { BattlePage } from './components/views/BattlePage';
@@ -9,6 +10,8 @@ import { ProfilePage } from './components/views/ProfilePage';
 import { QueuePage } from './components/views/QueuePage';
 
 function App() {
+  console.log('in app');
+
   return (
     <BrowserRouter>
       <div className='navbar-outer-container'>

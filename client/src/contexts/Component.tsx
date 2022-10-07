@@ -12,7 +12,7 @@ const SocketContextComponent: React.FunctionComponent<ISocketContextComponentPro
   const [loading, setLoading] = useState(true);
   const serverPort = process.env.REACT_APP_SERVER_PORT || '/';
 
-  console.log(serverPort)
+
   const socket = useSocket(serverPort, {
     reconnectionAttempts: 5,
     reconnectionDelay: 5000,

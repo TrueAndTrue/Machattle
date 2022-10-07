@@ -9,25 +9,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addExercise = exports.getAllExercises = void 0;
-const Question_1 = require("../models/Question");
-const getAllExercises = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.addUser = exports.getAllUsers = void 0;
+const User_1 = require("../models/User");
+const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const questions = yield Question_1.Question.findAll();
-        res.status(200).send(questions);
+        const users = yield User_1.User.findAll();
+        res.status(200).send(users);
     }
     catch (e) {
         res.status(500).send({ error: e, message: 'error getting exercises' });
     }
 });
-exports.getAllExercises = getAllExercises;
-const addExercise = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getAllUsers = getAllUsers;
+const addUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const response = yield Question_1.Question.create(req.body.question);
-        res.status(201).send({ question: response });
+        const response = yield User_1.User.create(req.body.user);
+        res.status(201).send({ user: response });
     }
     catch (e) {
         res.status(500).send({ error: e, message: 'error creating new Exercise' });
     }
 });
-exports.addExercise = addExercise;
+exports.addUser = addUser;
