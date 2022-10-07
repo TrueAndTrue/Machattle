@@ -1,3 +1,4 @@
 .select_match_container {
   display: flex;
+  width: 75vh;
 }
