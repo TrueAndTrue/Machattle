@@ -29,5 +29,5 @@ Challenge.init({
     tableName: "challenges",
     sequelize: index_1.sequelize,
 });
-Challenge.belongsTo(Question_1.Question);
+Challenge.belongsTo(Question_1.Question, { foreignKey: 'questionId' });
 Question_1.Question.hasMany(Challenge, { foreignKey: 'questionId' });

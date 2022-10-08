@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const sequelize_1 = require("sequelize");
+const Challenge_1 = require("./Challenge");
 const index_1 = require("./index");
 const Question_1 = require("./Question");
 class User extends sequelize_1.Model {
@@ -38,24 +39,19 @@ User.init({
     tableName: "users",
     sequelize: index_1.sequelize,
 });
-User.belongsToMany(User, { as: 'Friends', through: 'UserFriends' });
-User.hasMany(Question_1.Question, {
-    sourceKey: "id",
-    foreignKey: "ownerId",
-    as: "completedQuestions",
+User.belongsToMany(User, { as: 'friends', through: 'UserFriends' });
+//two 1-to-many associations between user and challanges
+User.hasMany(Challenge_1.Challenge, {
+    sourceKey: "uid",
+    foreignKey: "winnerId",
+    as: "WonChallenges",
 });
-// //two 1-to-many associations between user and challanges
-// User.hasMany(Challenge, {
-//   sourceKey: "uid",
-//   foreignKey: "winnerId",
-//   as: "WonChallanges",
-// });
-// User.hasMany(Challenge, {
-//   sourceKey: "uid",
-//   foreignKey: "loserId",
-//   as: "LostChallanges",
-// });
-// Challenge.belongsToMany(User, {through : 'UserChallenge'});
-// Challenge.belongsTo(User, { foreignKey: "winner"});
-// Challenge.belongsTo(User, { foreignKey: "loser"});
-Question_1.Question.belongsTo(User, { foreignKey: "ownerId" });
+User.hasMany(Challenge_1.Challenge, {
+    sourceKey: "uid",
+    foreignKey: "loserId",
+    as: "LostChallenges"
+});
+Challenge_1.Challenge.belongsTo(User, { foreignKey: "winnerId" });
+Challenge_1.Challenge.belongsTo(User, { foreignKey: "loserId" });
+User.belongsToMany(Question_1.Question, { through: 'userQuestions' });
+Question_1.Question.belongsToMany(User, { through: 'userQuestions' });

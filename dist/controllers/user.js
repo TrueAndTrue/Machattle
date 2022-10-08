@@ -77,13 +77,7 @@ const addFriend = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { uid, friendUID } = req.body;
         const user = yield User_1.User.findOne({
             where: { uid },
-            include: {
-                model: User_1.User, as: 'friends',
-                attributes: ['uid'],
-                through: {
-                    attributes: []
-                }
-            }
+            include: { model: User_1.User, as: 'friends' }
         });
         const friend = yield User_1.User.findOne({ where: { uid: friendUID } });
         if (user && friend) {
@@ -92,7 +86,7 @@ const addFriend = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             }).length;
             if (!hasFriend) {
                 user.addFriend(friend);
-                res.status(200).send({ message: 'friend added successfully' });
+                res.status(200).send({ error: false, res: 'Friend added successfully' });
             }
             else
                 res.status(409).send({ error: true, res: "Error, User Already Has Friend" });

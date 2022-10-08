@@ -40,6 +40,7 @@ const getExerciseById = (req, res) => __awaiter(void 0, void 0, void 0, function
 exports.getExerciseById = getExerciseById;
 const addExercise = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        console.log(req.body.question);
         const response = yield Question_1.Question.create(req.body.question);
         res.status(201).send({ question: response });
     }
