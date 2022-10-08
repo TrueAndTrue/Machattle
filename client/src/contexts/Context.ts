@@ -9,7 +9,7 @@ export interface ISocketContextState {
   inQueue: string[];
 }
 
-export const defaultSocketContextState = {
+export const defaultSocketContextState: ISocketContextState = {
   socket: undefined,
   uid: '',
   users: [],

@@ -13,6 +13,8 @@ export class ServerSocket {
     this.users = {};
     this.io = new Server(server, {
       serveClient: false,
+      pingInterval: 10000,
+      pingTimeout: 5000,
       cors: {
         origin: '*'
       }
@@ -53,7 +55,7 @@ export class ServerSocket {
 
       this.SendMessage(
         'user_connected',
-        users.filter(id => id !== socket.id),
+        users.filter((id) => id !== socket.id),
         users
       )
 

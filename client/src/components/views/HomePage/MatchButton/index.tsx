@@ -14,21 +14,14 @@ interface IProps {
 
 export const MatchButton: FunctionComponent<IProps> = (data) => {
 
-  const { uid, users, inQueue } = useContext(SocketContext).SocketState
+  const { socket, uid, users, inQueue } = useContext(SocketContext).SocketState
   
   const [matchFound, setMatchFound] = useState(false);
   const [SocketState, SocketDispatch] = useReducer(SocketReducer, defaultSocketContextState);
-  const serverPort = process.env.REACT_APP_SERVER_PORT || '/';
 
-  const socket = useSocket(serverPort, {
-    reconnectionAttempts: 5,
-    reconnectionDelay: 5000,
-    autoConnect: true
-  })
+  socket?.connect();
 
-  socket.connect();
-
-  socket.on('match_found', () => {
+  socket?.on('match_found', () => {
     setMatchFound(true);
   })
 
@@ -36,7 +29,7 @@ export const MatchButton: FunctionComponent<IProps> = (data) => {
   const QueueHandler = () => {
     console.log(uid)
     SocketDispatch({type: 'queue_user', payload: uid})
-    socket.emit('queue_user', (uid))
+    socket?.emit('queue_user', (uid))
     console.log(inQueue)
   }
 
