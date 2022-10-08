@@ -10,11 +10,13 @@ const SocketContextComponent: React.FunctionComponent<ISocketContextComponentPro
 
   const [SocketState, SocketDispatch] = useReducer(SocketReducer, defaultSocketContextState);
   const [loading, setLoading] = useState(true);
+  const serverPort =  '/';
+  
+  const socket = useSocket(serverPort, {
 
-  const socket = useSocket("ws://localhost:3030", {
     reconnectionAttempts: 5,
     reconnectionDelay: 5000,
-    autoConnect: true
+    autoConnect: false
   })
 
 
@@ -32,12 +34,12 @@ const SocketContextComponent: React.FunctionComponent<ISocketContextComponentPro
   const StartListeners = () => {
     socket.on('user_connected', (users: string[]) => {
       console.log('user connected. new user list received');
+      console.log(users)
       SocketDispatch({ type: 'update_users', payload: users});
     })
 
     socket.on('user_disconnected', (uid: string[]) => {
       console.log('user disconnected.');
-      console.log('b4')
       SocketDispatch({ type: 'remove_user', payload: uid});
       console.log('after')
     })
