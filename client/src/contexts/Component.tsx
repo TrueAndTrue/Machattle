@@ -10,7 +10,7 @@ const SocketContextComponent: React.FunctionComponent<ISocketContextComponentPro
 
   const [SocketState, SocketDispatch] = useReducer(SocketReducer, defaultSocketContextState);
   const [loading, setLoading] = useState(true);
-  const serverPort =  '/';
+  const serverPort =  '/home';
   
   const socket = useSocket(serverPort, {
     reconnectionAttempts: 5,

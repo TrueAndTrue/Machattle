@@ -7,4 +7,4 @@ const router = (0, express_1.Router)();
 exports.challengeRoutes = router;
 router.get('/', challenge_1.getRecentChallenges);
 router.get('/:id', challenge_1.getChallengeById);
-router.post('/create', challenge_1.addChallenge);
+router.post('/create', challenge_1.createChallenge);

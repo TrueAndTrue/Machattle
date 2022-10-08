@@ -7,7 +7,7 @@ import { exerciseRoutes } from './exerciseRoutes';
 const rootRouter = Router();
 
 rootRouter.use("/users", userRoutes);
-rootRouter.use("/challanges", challengeRoutes);
+rootRouter.use("/challenges", challengeRoutes);
 rootRouter.use("/exercises", exerciseRoutes);
 
 export { rootRouter };

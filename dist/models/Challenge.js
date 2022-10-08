@@ -13,10 +13,21 @@ Challenge.init({
         autoIncrement: true,
         primaryKey: true,
     },
+    tie: {
+        type: sequelize_1.DataTypes.BOOLEAN
+    },
+    winnerId: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    loserId: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    questionId: {
+        type: sequelize_1.DataTypes.INTEGER
+    }
 }, {
     tableName: "challenges",
     sequelize: index_1.sequelize,
 });
-Challenge.hasOne(Question_1.Question, { as: 'winner' });
-Challenge.hasOne(Question_1.Question, { as: 'loser' });
-Question_1.Question.belongsTo(Challenge);
+Challenge.belongsTo(Question_1.Question);
+Question_1.Question.hasMany(Challenge, { foreignKey: 'questionId' });

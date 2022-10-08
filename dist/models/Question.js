@@ -12,12 +12,12 @@ Question.init({
         autoIncrement: true,
         primaryKey: true,
     },
-    ownerId: {
-        type: sequelize_1.DataTypes.INTEGER
-    },
     question: {
         type: sequelize_1.DataTypes.TEXT,
         allowNull: false
+    },
+    timeComplexity: {
+        type: sequelize_1.DataTypes.STRING
     },
     tests: {
         type: sequelize_1.DataTypes.ARRAY(sequelize_1.DataTypes.STRING),
@@ -26,6 +26,9 @@ Question.init({
     difficulty: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
+    },
+    timeElapsed: {
+        type: sequelize_1.DataTypes.STRING
     }
 }, {
     sequelize: index_1.sequelize,

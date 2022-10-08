@@ -9,31 +9,37 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRecentChallenges = exports.getChallengeById = exports.addChallenge = void 0;
+exports.getRecentChallenges = exports.getChallengeById = exports.createChallenge = void 0;
 const Challenge_1 = require("../models/Challenge");
-const addChallenge = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const User_1 = require("../models/User");
+const createChallenge = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const response = yield Challenge_1.Challenge.create(req.body.challenge);
-        res.status(201).send({ challenge: response });
+        const { winnerId, loserId, questionId, tie } = req.body.challenge;
+        const challenge = yield Challenge_1.Challenge.create({ tie, winnerId, loserId, questionId });
+        const winner = yield User_1.User.findOne({ where: { uid: winnerId } });
+        const loser = yield User_1.User.findOne({ where: { uid: winnerId } });
+        winner === null || winner === void 0 ? void 0 : winner.addChallenge(challenge);
+        loser === null || loser === void 0 ? void 0 : loser.addChallenge(challenge);
+        res.status(201).send({ error: false, res: challenge });
     }
     catch (e) {
-        res.status(500).send({ error: e, message: 'error creating new Challenge' });
+        res.status(500).send({ error: true, res: 'error creating new Challenge' });
     }
 });
-exports.addChallenge = addChallenge;
+exports.createChallenge = createChallenge;
 const getChallengeById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
         const challenge = yield Challenge_1.Challenge.findByPk(id);
         if (challenge) {
-            res.status(200).send(challenge);
+            res.status(200).send({ error: false, res: challenge });
         }
         else {
-            res.status(404).send({ message: 'Challenge Does Not Exist' });
+            res.status(404).send({ error: true, res: 'Challenge Does Not Exist' });
         }
     }
     catch (e) {
-        res.status(500).send({ error: e, message: 'Error Getting Challenge' });
+        res.status(500).send({ error: true, res: 'Error Getting Challenge' });
     }
 });
 exports.getChallengeById = getChallengeById;
