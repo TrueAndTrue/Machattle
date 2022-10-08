@@ -1,3 +1,11 @@
 .submit_button_container {
   display: flex;
+  background-color: #232931;
+  color: #4ecca3;
+  width: 80%;
+  margin-top: 18px;
+  border-radius: 25px;
+  border-style: inset;
+  border-width: 10px;
+  justify-content: center;
 }
