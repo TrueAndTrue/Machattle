@@ -9,10 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addChallenge = exports.addExercise = exports.addFriend = exports.getUserById = exports.getUserByUsername = exports.addUser = exports.getAllUsers = void 0;
+exports.addExercise = exports.addFriend = exports.getUserById = exports.getUserByUsername = exports.addUser = exports.getAllUsers = void 0;
 const User_1 = require("../models/User");
 const Question_1 = require("../models/Question");
-const Challenge_1 = require("../models/Challenge");
 const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield User_1.User.findAll();
@@ -139,35 +138,3 @@ const addExercise = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.addExercise = addExercise;
-const addChallenge = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _c;
-    try {
-        const { uid, challengeId } = req.body;
-        const user = yield User_1.User.findOne({
-            where: { uid },
-            include: {
-                model: Challenge_1.Challenge,
-                attributes: ['id'],
-                through: {
-                    attributes: []
-                }
-            }
-        });
-        const challenge = yield Challenge_1.Challenge.findOne({ where: { id: challengeId } });
-        if (user && challenge) {
-            const completedChallenge = (_c = user.getDataValue('Challenges')) === null || _c === void 0 ? void 0 : _c.filter(challenge => {
-                return challengeId === challenge.id;
-            }).length;
-            if (!completedChallenge) {
-                user.addChallenge(challenge);
-                res.status(200).send({ error: false, res: "Exercise Added To Completed Exercises" });
-            }
-            else
-                res.status(409).send({ error: true, res: "Error, User Has Already Completed Exercise" });
-        }
-    }
-    catch (e) {
-        res.status(500).send({ error: true, res: 'Error Adding To Completed Exercises' });
-    }
-});
-exports.addChallenge = addChallenge;

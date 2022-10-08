@@ -91,6 +91,6 @@ User.hasMany(Question, {
 // Challenge.belongsToMany(User, {through : 'UserChallenge'});
 
 
-Challenge.belongsTo(User, { foreignKey: "winner"});
-Challenge.belongsTo(User, { foreignKey: "loser"});
+// Challenge.belongsTo(User, { foreignKey: "winner"});
+// Challenge.belongsTo(User, { foreignKey: "loser"});
 Question.belongsTo(User, {foreignKey: "ownerId"});

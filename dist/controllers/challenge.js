@@ -18,8 +18,8 @@ const createChallenge = (req, res) => __awaiter(void 0, void 0, void 0, function
         const challenge = yield Challenge_1.Challenge.create({ tie, winnerId, loserId, questionId });
         const winner = yield User_1.User.findOne({ where: { uid: winnerId } });
         const loser = yield User_1.User.findOne({ where: { uid: winnerId } });
-        winner === null || winner === void 0 ? void 0 : winner.addChallenge(challenge);
-        loser === null || loser === void 0 ? void 0 : loser.addChallenge(challenge);
+        // winner?.addChallenge(challenge);
+        // loser?.addChallenge(challenge);
         res.status(201).send({ error: false, res: challenge });
     }
     catch (e) {

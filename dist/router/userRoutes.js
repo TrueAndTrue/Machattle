@@ -9,5 +9,4 @@ router.get('/:id', user_1.getUserById);
 router.get('/', user_1.getUserByUsername);
 router.put('/addFriend', user_1.addFriend);
 router.put('/addExercise', user_1.addExercise);
-router.put('/addChallenge', user_1.addChallenge);
 router.post('/create', user_1.addUser);
