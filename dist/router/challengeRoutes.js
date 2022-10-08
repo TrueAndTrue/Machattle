@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.challengeRoutes = void 0;
+const express_1 = require("express");
+const challenge_1 = require("../controllers/challenge");
+const router = (0, express_1.Router)();
+exports.challengeRoutes = router;
+router.get('/', challenge_1.getRecentChallenges);
+router.get('/:id', challenge_1.getChallengeById);
+router.post('/create', challenge_1.addChallenge);

@@ -6,6 +6,12 @@ export interface IQuestion{
   ownerId?: number;
 }
 
+
+export interface IQueue{
+  uid:string;
+  roomId: string; 
+}
+
 export interface IUser{
   id: number;
   uid : string

@@ -61,18 +61,22 @@ export class ServerSocket {
     })
 
     socket.on('queue_user', async (uid: string) => {
+      console.log(uid);
       console.log('queued user.')
       const queued = await Inqueue.findAll();
       if (queued.length >= 1) {
         console.log('should not create room.')
         socket.join(queued[0].roomId)
         this.io.to(queued[0].roomId).emit('match_found')
+        const count = await Inqueue.destroy({where: {uid: uid}})
+        const count2 = await Inqueue.destroy({where: {uid: queued[0].uid}})
+        console.log(count + count2);
       }
 
       else {
         const room = JSON.stringify(Math.floor(Math.random() * 1000));
         socket.join(room);
-        await Inqueue.create({uid: JSON.stringify(Math.floor(Math.random() * 100000)), roomId: room})
+        await Inqueue.create({uid: uid, roomId: room})
       }
 
       
