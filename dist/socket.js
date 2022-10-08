@@ -34,7 +34,7 @@ class ServerSocket {
                 const users = Object.values(this.users);
                 console.log('Sending callback for handshake');
                 callback(uid, users);
-                this.SendMessage('user_connected', users.filter(id => id !== socket.id), users);
+                this.SendMessage('user_connected', users.filter((id) => id !== socket.id), users);
             });
             socket.on('queue_user', (uid) => __awaiter(this, void 0, void 0, function* () {
                 console.log(uid);
@@ -73,6 +73,8 @@ class ServerSocket {
         this.users = {};
         this.io = new socket_io_1.Server(server, {
             serveClient: false,
+            pingInterval: 10000,
+            pingTimeout: 5000,
             cors: {
                 origin: '*'
             }
