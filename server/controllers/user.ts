@@ -27,7 +27,7 @@ export const addUser = async (req :Request, res :Response) => {
 
 export const getUser = async(req:Request, res :Response) =>{
   try{
-    const username = req.body.user.username
+    const { username } = req.body.user
     const user = await User.findOne({where: { username } })
     if (user) {
       res.status(200).send(user)

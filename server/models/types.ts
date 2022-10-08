@@ -13,3 +13,13 @@ export interface IUser{
   username : string;
   image : string;
 }
+
+export interface IQueue{
+  uid: string;
+  roomId: string;
+}
+
+export interface IChallenge{
+  id :number;
+  question :string;
+}

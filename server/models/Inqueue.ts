@@ -1,6 +1,6 @@
 import { DataTypes, Deferrable, Model, Optional } from 'sequelize'
 import { sequelize }  from './index'
-import { IQueue } from './modelTypes'
+import { IQueue } from './types'
 
 type InqueueCreationAttributes = Optional<IQueue, 'uid'>;
 
