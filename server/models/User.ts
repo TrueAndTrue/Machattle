@@ -22,7 +22,7 @@ export class User extends Model<IUser, UserCreationAttributes> {
   public image! : string;
   
   public addQuestion!: HasManyAddAssociationMixin<Question, number>;
-  
+  public addFriend! : HasManyAddAssociationMixin<User, string>;
   public readonly questions?: Question[];
   public readonly challanges?: Challenge[];
 
@@ -43,7 +43,8 @@ User.init(
     },
     uid: {
       type: DataTypes.STRING,
-      allowNull :false
+      allowNull :false,
+      unique:true
     },
     username: {
       type: new DataTypes.STRING(128),
@@ -76,11 +77,19 @@ User.hasMany(Question, {
   as: "completedQuestions",
 });
 
-User.hasMany(Challenge, {
-  sourceKey: "id",
-  foreignKey: "ownerId",
-  as: "completedChallanges",
-});
+// //two 1-to-many associations between user and challanges
+// User.hasMany(Challenge, {
+//   sourceKey: "uid",
+//   foreignKey: "winnerId",
+//   as: "WonChallanges",
+// });
+// User.hasMany(Challenge, {
+//   sourceKey: "uid",
+//   foreignKey: "loserId",
+//   as: "LostChallanges",
+// });
+// Challenge.belongsToMany(User, {through : 'UserChallenge'});
+
 
 Challenge.belongsTo(User, { foreignKey: "winner"});
 Challenge.belongsTo(User, { foreignKey: "loser"});

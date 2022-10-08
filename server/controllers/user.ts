@@ -116,32 +116,3 @@ export const addExercise = async  (req : Request, res : Response) => {
     res.status(500).send({error : true , res :'Error Adding To Completed Exercises'})
   }
 }
-
-export const addChallenge = async (req :Request, res : Response) => {
-  try { 
-    const { uid, challengeId } = req.body
-    const user = await User.findOne({
-      where: { uid },
-      include : {
-        model : Challenge,
-        attributes: ['id'],
-        through: {
-          attributes: []
-        }
-      }
-    })
-    const challenge = await Challenge.findOne({where : {id : challengeId}})
-    if (user && challenge){
-      const completedChallenge = user.getDataValue('Challenges')?.filter(challenge =>{
-        return challengeId === challenge.id
-      }).length
-      if (!completedChallenge){
-        user.addChallenge(challenge)
-        res.status(200).send({error : false, res : "Exercise Added To Completed Exercises"})
-      }
-      else res.status(409).send({error :true, res :"Error, User Has Already Completed Exercise"})
-    }
-  } catch (e) {
-    res.status(500).send({error : true , res :'Error Adding To Completed Exercises'})
-  }
-}
