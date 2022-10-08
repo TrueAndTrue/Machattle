@@ -6,12 +6,10 @@ import {
   Optional,
   DataTypes,
 } from "sequelize";
-
 import { Challenge } from './Challenge'
 import { sequelize } from './index'
 import { Question } from './Question';
 import { IUser } from './types';
-import { UserFriend } from './UserFriend'
 
 interface UserCreationAttributes extends Optional<IUser, 'id'> {}
 
@@ -24,16 +22,14 @@ export class User extends Model<IUser, UserCreationAttributes> {
   public image! : string;
   
   public addQuestion!: HasManyAddAssociationMixin<Question, number>;
-  public addChallenge!: HasManyAddAssociationMixin<Challenge, number>;
-  public addFriend! : HasManyAddAssociationMixin<User, string>;
-
+  
   public readonly questions?: Question[];
   public readonly challanges?: Challenge[];
 
   public static associations: {
     questions: Association<User, Question>;
     friends: Association<User, User>;
-    challenges :Association<User, Challenge>
+    challange :Association<User, Challenge>
   }; 
 
 }
@@ -72,26 +68,20 @@ User.init(
   }
 );
 
-//super many-to-many + self association
-User.belongsToMany(User, { as: 'friends', through: 'userFriends' })
-User.hasMany(UserFriend);
-UserFriend.belongsTo(User);
+User.belongsToMany(User, { as: 'Friends', through: 'UserFriends' })
 
+User.hasMany(Question, {
+  sourceKey: "id",
+  foreignKey: "ownerId",
+  as: "completedQuestions",
+});
 
-//two 1-to-many associations between user and challanges
 User.hasMany(Challenge, {
   sourceKey: "id",
-  foreignKey: "winnerId",
-  as: "WonChallanges",
+  foreignKey: "ownerId",
+  as: "completedChallanges",
 });
-User.hasMany(Challenge, {
-  sourceKey: "id",
-  foreignKey: "loserId",
-  as: "LostChallanges",
-});
-Challenge.belongsTo(User, { foreignKey: "winnerId"});
-Challenge.belongsTo(User, { foreignKey: "loserId"});
 
-//many-to-many between user & friend
-User.belongsToMany(Question, {through : "userQuestion"} );
-Question.belongsToMany(User, {through: "userQuestion"});
+Challenge.belongsTo(User, { foreignKey: "winner"});
+Challenge.belongsTo(User, { foreignKey: "loser"});
+Question.belongsTo(User, {foreignKey: "ownerId"});
