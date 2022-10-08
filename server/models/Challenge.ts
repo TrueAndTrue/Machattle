@@ -14,7 +14,6 @@ interface ChallengeCreationAttributes extends Optional<IChallenge, 'id'> {}
 
 export class Challenge extends Model<IChallenge, ChallengeCreationAttributes> {
   public id! : number
-  public question! : string
   
   public addQuestion!: HasManyAddAssociationMixin<Question, number>;
   
@@ -34,10 +33,6 @@ Challenge.init(
           autoIncrement: true,
           primaryKey: true,
       },
-      question: {
-          type: new DataTypes.TEXT,
-          allowNull: false,
-      }
   },
   {
       tableName: "challenges",
