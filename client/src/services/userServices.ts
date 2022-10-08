@@ -1,0 +1,19 @@
+let BASE_URL : string;
+process.env.NODE_ENV ==  'production' ?
+  BASE_URL = 'https://machattle.herokuapp.com/api' :
+  BASE_URL = 'http://localhost:3030/api'
+
+
+export const getUserByUsername = async (username :string) => {
+  try {
+    const response = await fetch(`${BASE_URL}/user` , {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    const data = response.json()
+    return data
+  } catch (e) {
+    console.log(e)
+  }
+}

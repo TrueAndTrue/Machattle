@@ -8,18 +8,13 @@ export interface IQuestion{
 
 export interface IUser{
   id: number;
+  uid : string
   rank :string;
   rating : number;
   username : string;
   image : string;
 }
 
-export interface IQueue{
-  uid: string;
-  roomId: string;
-}
-
 export interface IChallenge{
-  id :number;
-  question :string;
+  id:number; 
 }
