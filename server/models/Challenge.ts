@@ -9,19 +9,23 @@ import {
 import { sequelize } from './index'
 import { Question } from './Question';
 import { IChallenge } from './types';
+import { User } from "./User";
 
 interface ChallengeCreationAttributes extends Optional<IChallenge, 'id'> {}
 
 export class Challenge extends Model<IChallenge, ChallengeCreationAttributes> {
   public id! : number
-  
+  public tie!: boolean
+  public winner! : User;
+  public loser! : User;
+  public readonly question?: Question;
+
   public addQuestion!: HasManyAddAssociationMixin<Question, number>;
-  
-  public readonly Questions!: Question[];
 
   public static associations: {
-    winner: Association<Challenge, Question>;
-    loser: Association<Challenge, Question>;
+    question : Association<Challenge, Question>
+    winner: Association<User,Challenge >;
+    loser: Association<User, Challenge>;
   }; 
 
 }
@@ -33,6 +37,9 @@ Challenge.init(
           autoIncrement: true,
           primaryKey: true,
       },
+      tie :{
+        type :DataTypes.BOOLEAN
+      }
   },
   {
       tableName: "challenges",
@@ -40,6 +47,5 @@ Challenge.init(
   }
 );
 
-Challenge.hasOne(Question, {as :'winner'});
-Challenge.hasOne(Question, {as :'loser'});
+Challenge.hasOne(Question);
 Question.belongsTo(Challenge);

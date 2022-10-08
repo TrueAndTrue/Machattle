@@ -6,8 +6,8 @@ import { exerciseRoutes } from './exerciseRoutes';
 
 const rootRouter = Router();
 
-rootRouter.use("/api/users", userRoutes);
-rootRouter.use("/api/challanges", challengeRoutes);
-rootRouter.use("/api/exercises", exerciseRoutes);
+rootRouter.use("/users", userRoutes);
+rootRouter.use("/challanges", challengeRoutes);
+rootRouter.use("/exercises", exerciseRoutes);
 
 export { rootRouter };

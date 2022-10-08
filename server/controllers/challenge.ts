@@ -1,11 +1,14 @@
 import { Request, Response } from "express";
 import { Challenge } from "../models/Challenge"
+import { challengeRoutes } from "../router/challengeRoutes";
 
 
-export const addChallenge = async (req :Request, res :Response) => {
+export const createChallenge = async (req :Request, res :Response) => {
   try{
-    const response = await Challenge.create(req.body.challenge)
-    res.status(201).send({challenge : response})
+    const {winner, loser, question, tie} = req.body
+    const challenge = await Challenge.create({tie})
+    challenge.addQuestion(question)
+
   } catch (e) {
     res.status(500).send({error :e , message :'error creating new Challenge'})
   }

@@ -7,9 +7,9 @@ type QuestionCreationAttributes = Optional<IQuestion, 'id'>;
 export class Question extends Model<IQuestion, QuestionCreationAttributes> {
   public id!: number;
   public question! :string;
+  public timeComplexity! :string;
   public tests! : string[];
   public difficulty! :string;
-  public ownerId?: number;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -27,6 +27,9 @@ Question.init({
   question: {
     type: DataTypes.TEXT,
     allowNull: false
+  },
+  timeComplexity : {
+    type : DataTypes.STRING
   },
   tests :{
     type : DataTypes.ARRAY(DataTypes.STRING),
