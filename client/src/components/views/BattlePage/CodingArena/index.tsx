@@ -1,41 +1,19 @@
-import { useState, useEffect } from 'react';
-import CodeMirror from "@uiw/react-codemirror";
-import { Button } from '@mui/material';
+import { useState } from 'react';
 
+import CodeMirror from "@uiw/react-codemirror";
 import { EditorState, Compartment } from '@codemirror/state';
 import { EditorView, keymap } from '@codemirror/view';
 import { basicSetup } from 'codemirror';
 import {defaultKeymap } from "@codemirror/commands"
 import { javascript } from '@codemirror/lang-javascript';
 
-// import useCodeArena from './codeArena';
 import styles from './styles.module.css';
-
-type CodeArenaProps = {
-  extensions?: any[] | undefined;
-  value: string;
-  onChange: Function;
-};
 
 let language = new Compartment, tabSize = new Compartment
 
 export function CodingArena () {
 
   const [ getCode, setCode ] = useState('');
-
-  // const CodeArena = ({ extensions }: CodeArenaProps) => {
-  //   const { ref } = useCodeArena(extensions);
-  //   return <div ref={ref} />;
-  // };
-
-  function testState(): string {
-    const textState = getCode;
-    return textState;
-  }
-
-  // useEffect(() => {
-  //   console.log(getCode, 'code');
-  // }, [ getCode ])
 
   return (
     <div className={styles.coding_arena_container}>
@@ -53,7 +31,6 @@ export function CodingArena () {
           setCode(value)
         }}
       />
-      {/* <Button onClick={testState()}>Click</Button> */}
     </div>
   )
 }
