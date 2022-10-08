@@ -51,5 +51,5 @@ Challenge.init(
     }
 );
 
-Challenge.belongsTo(Question);
+Challenge.belongsTo(Question, {foreignKey :'questionId'})
 Question.hasMany(Challenge, {foreignKey : 'questionId'});

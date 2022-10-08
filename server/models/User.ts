@@ -20,16 +20,18 @@ export class User extends Model<IUser, UserCreationAttributes> {
   public rating! : number;
   public username! : string
   public image! : string;
-  
+
   public addQuestion!: HasManyAddAssociationMixin<Question, number>;
   public addFriend! : HasManyAddAssociationMixin<User, string>;
+    public addChallenge! : HasManyAddAssociationMixin<Challenge, number>;
+  
   public readonly questions?: Question[];
-  public readonly challanges?: Challenge[];
+  public readonly challenges?: Challenge[];
 
   public static associations: {
     questions: Association<User, Question>;
     friends: Association<User, User>;
-    challange :Association<User, Challenge>
+    challenges :Association<User, Challenge>
   }; 
 
 }
@@ -69,28 +71,21 @@ User.init(
   }
 );
 
-User.belongsToMany(User, { as: 'Friends', through: 'UserFriends' })
+User.belongsToMany(User, { as: 'friends', through: 'UserFriends' })
 
-User.hasMany(Question, {
-  sourceKey: "id",
-  foreignKey: "ownerId",
-  as: "completedQuestions",
+//two 1-to-many associations between user and challanges
+User.hasMany(Challenge, {
+  sourceKey: "uid",
+  foreignKey: "winnerId",
+  as: "WonChallenges",
+});
+User.hasMany(Challenge, {
+  sourceKey: "uid",
+  foreignKey: "loserId",
+  as: "LostChallenges"
 });
 
-// //two 1-to-many associations between user and challanges
-// User.hasMany(Challenge, {
-//   sourceKey: "uid",
-//   foreignKey: "winnerId",
-//   as: "WonChallanges",
-// });
-// User.hasMany(Challenge, {
-//   sourceKey: "uid",
-//   foreignKey: "loserId",
-//   as: "LostChallanges",
-// });
-// Challenge.belongsToMany(User, {through : 'UserChallenge'});
-
-
-// Challenge.belongsTo(User, { foreignKey: "winner"});
-// Challenge.belongsTo(User, { foreignKey: "loser"});
-Question.belongsTo(User, {foreignKey: "ownerId"});
+Challenge.belongsTo(User, {foreignKey: "winnerId"});
+Challenge.belongsTo(User, {foreignKey: "loserId"});
+User.belongsToMany(Question, {through : 'userQuestions'});
+Question.belongsToMany(User, {through : 'userQuestions'});
