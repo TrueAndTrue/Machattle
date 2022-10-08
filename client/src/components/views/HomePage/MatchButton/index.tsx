@@ -12,7 +12,7 @@ interface IProps {
   data: string,
 }
 
-export const MatchButton: FunctionComponent = () => {
+export const MatchButton: FunctionComponent<IProps> = (data) => {
 
   const { uid, users, inQueue } = useContext(SocketContext).SocketState
   
@@ -36,16 +36,14 @@ export const MatchButton: FunctionComponent = () => {
   const QueueHandler = () => {
     console.log(uid)
     SocketDispatch({type: 'queue_user', payload: uid})
-    socket.emit('queue_user', () => {
-
-    })
+    socket.emit('queue_user', (uid))
     console.log(inQueue)
   }
 
   return (
     <div className={styles.match_button_container}>
       <h1>{matchFound && 'MATCH FOUND!'}</h1>
-      <Button className={styles.match_button} onClick={QueueHandler}> Queue </Button>
+      <Button className={styles.match_button} onClick={QueueHandler}> {data.data} </Button>
     </div>
   )
 }
