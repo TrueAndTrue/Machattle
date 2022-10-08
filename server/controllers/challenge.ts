@@ -1,13 +1,16 @@
 import { Request, Response } from "express";
 import { Challenge } from "../models/Challenge"
 import { User } from '../models/User'
-import { challengeRoutes } from "../router/challengeRoutes";
 
 export const createChallenge = async (req :Request, res :Response) => {
   try{
     const {winnerId, loserId, questionId, tie} = req.body.challenge
     const challenge = await Challenge.create({tie, winnerId, loserId, questionId})
-    res.status(201).send({error :false , res : 'Challenge Recorded Successfully'})
+    const winner = await User.findOne( {where :{uid : winnerId } })
+    const loser = await User.findOne( {where :{uid : winnerId } })
+    // winner?.addChallenge(challenge);
+    // loser?.addChallenge(challenge);
+    res.status(201).send({error :false , res :challenge})
   } catch (e) {
     res.status(500).send({error :true , res :'error creating new Challenge'})
   }
