@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-import CodeMirror from "@uiw/react-codemirror";
-import { Button } from '@mui/material';
+import { useState, useCallback, useEffect } from 'react';
 
 import { EditorState, Compartment } from '@codemirror/state';
 import { EditorView, keymap } from '@codemirror/view';
@@ -8,57 +6,43 @@ import { basicSetup } from 'codemirror';
 import {defaultKeymap } from "@codemirror/commands"
 import { javascript } from '@codemirror/lang-javascript';
 
-// import useCodeArena from './codeArena';
 import styles from './styles.module.css';
-
-type CodeArenaProps = {
-  extensions?: any[] | undefined;
-  value: string;
-  onChange: Function;
-};
 
 let language = new Compartment, tabSize = new Compartment
 
-export function CodingArena () {
+export default function useCodeArena(extensions: any[] | undefined) {
+  const [element, setElement] = useState<HTMLElement>();
 
-  const [ getCode, setCode ] = useState('');
+  const ref = useCallback((node: HTMLElement | null) => {
+    if (!node) return;
 
-  // const CodeArena = ({ extensions }: CodeArenaProps) => {
-  //   const { ref } = useCodeArena(extensions);
-  //   return <div ref={ref} />;
-  // };
+    setElement(node);
+  }, []);
 
-  function testState(): string {
-    const textState = getCode;
-    return textState;
-  }
+  useEffect(() => {
+    if (!element) return;
 
-  // useEffect(() => {
-  //   console.log(getCode, 'code');
-  // }, [ getCode ])
-
-  return (
-    <div className={styles.coding_arena_container}>
-      <CodeMirror
-        value={getCode}
-        extensions={[
+    const view = new EditorView({
+      state: EditorState.create({
+        doc: 'Hello Codebot',
+        extensions: [
           basicSetup,
           language.of(javascript()),
           keymap.of(defaultKeymap),
           tabSize.of(EditorState.tabSize.of(2)),
           arenaTheme,
-        ]}
-        onChange={(value: string) => {
-          console.log(value, 'in onChange');
-          setCode(value)
-        }}
-      />
-      {/* <Button onClick={testState()}>Click</Button> */}
-    </div>
-  )
+        ],
+      }),
+      parent: element,
+    });
+
+    return () => view.destroy();
+  }, [element]);
+
+  return { ref };
 }
 
-const arenaTheme = EditorView.theme({
+let arenaTheme = EditorView.theme({
   "&": {
     height: "66vh",
     width: "60vw",
