@@ -47,7 +47,8 @@ User.init(
     },
     uid: {
       type: DataTypes.STRING,
-      allowNull :false
+      allowNull :false,
+      unique:true
     },
     username: {
       type: new DataTypes.STRING(128),
@@ -78,19 +79,19 @@ User.hasMany(UserFriend);
 UserFriend.belongsTo(User);
 
 
-//two 1-to-many associations between user and challanges
-User.hasMany(Challenge, {
-  sourceKey: "id",
-  foreignKey: "winnerId",
-  as: "WonChallanges",
-});
-User.hasMany(Challenge, {
-  sourceKey: "id",
-  foreignKey: "loserId",
-  as: "LostChallanges",
-});
-Challenge.belongsTo(User, { foreignKey: "winnerId"});
-Challenge.belongsTo(User, { foreignKey: "loserId"});
+// //two 1-to-many associations between user and challanges
+// User.hasMany(Challenge, {
+//   sourceKey: "uid",
+//   foreignKey: "winnerId",
+//   as: "WonChallanges",
+// });
+// User.hasMany(Challenge, {
+//   sourceKey: "uid",
+//   foreignKey: "loserId",
+//   as: "LostChallanges",
+// });
+// Challenge.belongsToMany(User, {through : 'UserChallenge'});
+
 
 //many-to-many between user & friend
 User.belongsToMany(Question, {through : "userQuestion"} );
