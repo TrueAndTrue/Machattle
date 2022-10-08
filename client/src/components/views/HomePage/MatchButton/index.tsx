@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react';
 import styles from './styles.module.css';
+import { useNavigate } from 'react-router-dom'
 
 import Button from '@mui/material/Button';
 import { useContext, useEffect, useState } from 'react';
@@ -15,7 +16,7 @@ interface IProps {
 export const MatchButton: FunctionComponent<IProps> = (data) => {
 
   const { socket, uid, users, inQueue } = useContext(SocketContext).SocketState
-  
+  const navigate = useNavigate();
   const [matchFound, setMatchFound] = useState(false);
   const [SocketState, SocketDispatch] = useReducer(SocketReducer, defaultSocketContextState);
 
@@ -23,6 +24,7 @@ export const MatchButton: FunctionComponent<IProps> = (data) => {
 
   socket?.on('match_found', () => {
     setMatchFound(true);
+    navigate('/battle');
   })
 
 
