@@ -16,18 +16,13 @@ interface ChallengeCreationAttributes extends Optional<IChallenge, 'id'> {}
 export class Challenge extends Model<IChallenge, ChallengeCreationAttributes> {
   public id! : number
   public tie!: boolean
-  public winner! : User;
-  public loser! : User;
-  public readonly question?: Question;
-
-  public addQuestion!: HasManyAddAssociationMixin<Question, number>;
+  public readonly questionId!: number;
 
   public static associations: {
     question : Association<Challenge, Question>
     winner: Association<User,Challenge >;
     loser: Association<User, Challenge>;
   }; 
-
 }
 
 Challenge.init(
@@ -39,13 +34,22 @@ Challenge.init(
       },
       tie :{
         type :DataTypes.BOOLEAN
+      }, 
+      winnerId : {
+        type : DataTypes.STRING
+      },
+      loserId: {
+        type :DataTypes.STRING
+      },
+      questionId :{
+        type :DataTypes.INTEGER
       }
-  },
-  {
+    },
+    {
       tableName: "challenges",
       sequelize,
-  }
+    }
 );
 
-Challenge.hasOne(Question);
-Question.belongsTo(Challenge);
+Challenge.belongsTo(Question);
+Question.hasMany(Challenge, {foreignKey : 'questionId'});

@@ -1,10 +1,13 @@
+
+import { ForeignKey } from 'sequelize'
+
 export interface IQuestion{
   id: number;
   question :string;
   timeComplexity : string;
   tests : string[];
   difficulty :string;
-  ownerId?: number;
+  timeElapsed :string;
 }
 
 export interface IUser{
@@ -28,4 +31,7 @@ export interface IQueue {
 export interface IChallenge{
   id: number; 
   tie :boolean;
+  winnerId : ForeignKey<string>
+  loserId: ForeignKey<string>
+  questionId :ForeignKey<number>
 }

@@ -21,9 +21,6 @@ Question.init({
     autoIncrement: true,
     primaryKey: true,
   },
-  ownerId: {
-    type: DataTypes.INTEGER
-  },
   question: {
     type: DataTypes.TEXT,
     allowNull: false
@@ -38,6 +35,9 @@ Question.init({
   difficulty: {
     type: DataTypes.STRING,
     allowNull: false
+  }, 
+  timeElapsed : {
+    type :DataTypes.STRING
   }
 } , {
   sequelize,
