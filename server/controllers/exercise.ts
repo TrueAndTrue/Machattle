@@ -27,6 +27,7 @@ export const getExerciseById = async (req : Request , res : Response) => {
 
 export const addExercise = async (req : Request, res : Response) => {
   try{
+    console.log(req.body.question)
     const response = await Question.create(req.body.question)
     res.status(201).send({question : response})
   } catch (e) {
