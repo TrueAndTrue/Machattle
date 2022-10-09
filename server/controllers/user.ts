@@ -1,43 +1,43 @@
 import { Request, Response } from "express";
-import { User } from "../models/User"
+import { User } from "../models/User";
 import { Question } from "../models/Question";
-import { Challenge } from '../models/Challenge'
+import { Challenge } from '../models/Challenge';
 
 export const getAllUsers = async (req :Request, res :Response) => {
   try{ 
     const users = await User.findAll();
-    res.status(200).send(users)
+    res.status(200).send({error :false ,res :users });
   }catch (e) {
-    res.status(500).send({error :e , message :'Error Getting Exercises' })
+    res.status(500).send({error :true , res :'Error Getting Exercises' });
   }
 }
 
 export const addUser = async (req :Request, res :Response) => {
   try{
     const newUser = req.body.user
-    const userExists = await User.findOne({where: { username: newUser.username } })
+    const userExists = await User.findOne( {where: { username: newUser.username } } );
     if(!userExists){
-      const user = await User.create(newUser)
-      res.status(201).send({ user })
+      const user = await User.create(newUser);
+      res.status(201).send( {error : false, res: user } );
     } else {
-      res.status(409).send({message : 'Username Already Exists!'})
+      res.status(409).send({error :true, res : 'Username Already Exists!'});
     }
   } catch (e) {
-    res.status(500).send({error :e , message :'Error Creating New User'})
+    res.status(500).send({error :true , res :'Error Creating New User'});
   }
 }
 
 export const getUserByUsername = async(req:Request, res :Response) =>{
   try{
-    const { username } = req.body.user
-    const user = await User.findOne({where: { username } })
+    const { username } = req.body;
+    const user = await User.findOne({ where: { username } });
     if (user) {
-      res.status(200).send(user)
+      res.status(200).send({ error : false , res: user });
     } else {
-      res.status(404).send('User Does Not Exist')
+      res.status(404).send({ error : true, res :'User Does Not Exist' });
     }
   } catch(e) {
-    res.status(500).send({error :e , message :'Error Getting User'})
+    res.status(500).send({ error :true , res :'Error Getting User' });
   }
 }
 
@@ -46,18 +46,19 @@ export const getUserById = async(req:Request, res :Response) =>{
     const { uid } = req.params
     const user = await User.findOne({where: { uid } })
     if (user) {
-      res.status(200).send(user)
+      res.status(200).send({error :false, res :user})
     } else {
-      res.status(404).send('User Does Not Exist')
+      res.status(404).send({error :true , res:'User Does Not Exist'})
     }
   } catch(e) {
-    res.status(500).send({error :e , message :'Error Getting User'})
+    res.status(500).send({error :true , res :'Error Getting User'})
   }
 }
 
 export const addFriend = async( req :Request, res :Response) => {
   try{
-    const { uid, friendUID } = req.body
+    const { friendUID } = req.body
+    const { uid } = req.params
     const user = await User.findOne({
       where : { uid },
       include : {model :User , as : 'friends' }
@@ -85,7 +86,8 @@ export const addFriend = async( req :Request, res :Response) => {
 
 export const addExercise = async  (req : Request, res : Response) => {
   try { 
-    const { uid, questionId } = req.body
+    const { questionId } = req.body
+    const { uid } = req.params
     const user = await User.findOne({
       where: { uid },
       include : {
@@ -109,5 +111,31 @@ export const addExercise = async  (req : Request, res : Response) => {
     }
   } catch (e) {
     res.status(500).send({error : true , res :'Error Adding To Completed Exercises'})
+  }
+}
+
+export const getUserExercises = async (req : Request, res :Response) => {
+  try {
+    const { uid } = req.params
+    const user = await User.findOne({
+      where: { uid },
+      include : { model : Question}
+    })
+    const completedQuestions = user?.getDataValue('Questions');
+    res.status(200).send({error : false, res : completedQuestions})
+  }catch (e) {
+    res.status(500).send({error: true , res : 'Error Getting User Exercises'})
+  }
+}
+
+export const getUserChallenges = async (req :Request, res :Response) => {
+  try {
+    const { uid } = req.params;
+    const wonChallenges = await Challenge.findAll({where : {winnerId : uid}});
+    const lostChallenges = await Challenge.findAll({where : {loserId : uid}});
+    const completedChallenges = { lostChallenges, wonChallenges };
+    res.status(200).send({error : false, res : completedChallenges});
+  } catch (e) {
+    res.status(500).send({error: true , res : 'Error Getting User Challenges'});
   }
 }
