@@ -11,6 +11,7 @@
 
 # BUILD
 node_modules/
+client/node_modules
 
 #enviornemnt 
 server/.env
