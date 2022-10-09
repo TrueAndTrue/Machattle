@@ -9,7 +9,7 @@
     "build" :"npm run cupdate", 
     "push": "git add .; git commit -m Heroku; git push origin build",
     "supdate": "tsc",
-    "cupdate": "cd client && npm run build",
+    "cupdate": "cd client && npm i && npm run build",
     "update": "npm run supdate && rm -r dist/build && npm run cupdate",
     "server": "tsc && node dist/index.js"
   },
