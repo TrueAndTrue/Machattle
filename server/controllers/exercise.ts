@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { Question } from "../models/Question"
-import { Inqueue } from '../models/Inqueue'
 
 export const getAllExercises = async (req : Request, res : Response) => {
   try{ 

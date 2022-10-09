@@ -8,8 +8,8 @@
     "start": "node dist/index.js",
     "tsc" : "./typescript/bin/tsc",
     "build" :"tsc && npm run cupdate", 
+    "ask" : "git add . ;read varname ; git commit -m varname", 
     "push": "git add .; git commit -m Heroku; git push origin build",
-    "update": "tsc",
     "cupdate": "cd client && npm i react-scripts && npm run build"
   },
   "repository": {
