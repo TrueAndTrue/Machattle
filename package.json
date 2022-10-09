@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/index.js",
-    "build" :" npm run cupdate", 
+    "build" :"npm run supdate && npm run cupdate", 
     "push": "git add .; git commit -m Heroku; git push origin build",
-    "supdate": "tsc",
+    "supdate": "npm i typescript && tsc",
     "cupdate": "cd client && npm i react-scripts && npm run build",
     "update": "npm run supdate && rm -r dist/build && npm run cupdate",
     "server": "tsc && node dist/index.js"
