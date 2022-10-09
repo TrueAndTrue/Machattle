@@ -9,16 +9,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addExercise = exports.addFriend = exports.getUserById = exports.getUserByUsername = exports.addUser = exports.getAllUsers = void 0;
+exports.getUserChallenges = exports.getUserExercises = exports.addExercise = exports.addFriend = exports.getUserById = exports.getUserByUsername = exports.addUser = exports.getAllUsers = void 0;
 const User_1 = require("../models/User");
 const Question_1 = require("../models/Question");
+const Challenge_1 = require("../models/Challenge");
 const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield User_1.User.findAll();
-        res.status(200).send(users);
+        res.status(200).send({ error: false, res: users });
     }
     catch (e) {
-        res.status(500).send({ error: e, message: 'Error Getting Exercises' });
+        res.status(500).send({ error: true, res: 'Error Getting Exercises' });
     }
 });
 exports.getAllUsers = getAllUsers;
@@ -28,30 +29,30 @@ const addUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const userExists = yield User_1.User.findOne({ where: { username: newUser.username } });
         if (!userExists) {
             const user = yield User_1.User.create(newUser);
-            res.status(201).send({ user });
+            res.status(201).send({ error: false, res: user });
         }
         else {
-            res.status(409).send({ message: 'Username Already Exists!' });
+            res.status(409).send({ error: true, res: 'Username Already Exists!' });
         }
     }
     catch (e) {
-        res.status(500).send({ error: e, message: 'Error Creating New User' });
+        res.status(500).send({ error: true, res: 'Error Creating New User' });
     }
 });
 exports.addUser = addUser;
 const getUserByUsername = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { username } = req.body.user;
+        const { username } = req.body;
         const user = yield User_1.User.findOne({ where: { username } });
         if (user) {
-            res.status(200).send(user);
+            res.status(200).send({ error: false, res: user });
         }
         else {
-            res.status(404).send('User Does Not Exist');
+            res.status(404).send({ error: true, res: 'User Does Not Exist' });
         }
     }
     catch (e) {
-        res.status(500).send({ error: e, message: 'Error Getting User' });
+        res.status(500).send({ error: true, res: 'Error Getting User' });
     }
 });
 exports.getUserByUsername = getUserByUsername;
@@ -60,21 +61,22 @@ const getUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const { uid } = req.params;
         const user = yield User_1.User.findOne({ where: { uid } });
         if (user) {
-            res.status(200).send(user);
+            res.status(200).send({ error: false, res: user });
         }
         else {
-            res.status(404).send('User Does Not Exist');
+            res.status(404).send({ error: true, res: 'User Does Not Exist' });
         }
     }
     catch (e) {
-        res.status(500).send({ error: e, message: 'Error Getting User' });
+        res.status(500).send({ error: true, res: 'Error Getting User' });
     }
 });
 exports.getUserById = getUserById;
 const addFriend = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
-        const { uid, friendUID } = req.body;
+        const { friendUID } = req.body;
+        const { uid } = req.params;
         const user = yield User_1.User.findOne({
             where: { uid },
             include: { model: User_1.User, as: 'friends' }
@@ -103,7 +105,8 @@ exports.addFriend = addFriend;
 const addExercise = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _b;
     try {
-        const { uid, questionId } = req.body;
+        const { questionId } = req.body;
+        const { uid } = req.params;
         const user = yield User_1.User.findOne({
             where: { uid },
             include: {
@@ -132,3 +135,31 @@ const addExercise = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.addExercise = addExercise;
+const getUserExercises = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { uid } = req.params;
+        const user = yield User_1.User.findOne({
+            where: { uid },
+            include: { model: Question_1.Question }
+        });
+        const completedQuestions = user === null || user === void 0 ? void 0 : user.getDataValue('Questions');
+        res.status(200).send({ error: false, res: completedQuestions });
+    }
+    catch (e) {
+        res.status(500).send({ error: true, res: 'Error Getting User Exercises' });
+    }
+});
+exports.getUserExercises = getUserExercises;
+const getUserChallenges = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { uid } = req.params;
+        const wonChallenges = yield Challenge_1.Challenge.findAll({ where: { winnerId: uid } });
+        const lostChallenges = yield Challenge_1.Challenge.findAll({ where: { loserId: uid } });
+        const completedChallenges = { lostChallenges, wonChallenges };
+        res.status(200).send({ error: false, res: completedChallenges });
+    }
+    catch (e) {
+        res.status(500).send({ error: true, res: 'Error Getting User Challenges' });
+    }
+});
+exports.getUserChallenges = getUserChallenges;
