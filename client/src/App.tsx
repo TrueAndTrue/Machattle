@@ -13,6 +13,7 @@ import { HomePage } from './components/views/HomePage';
 import { LeaderboardPage } from './components/views/LeaderboardPage';
 import { ProfilePage } from './components/views/ProfilePage';
 import { QueuePage } from './components/views/QueuePage';
+import { LandingPage } from './components/views/LandingPage';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         </div>
         <section className='views-container'>
           <Routes>
+            <Route path='/' element={<LandingPage />}/>
             <Route path='/home' element={<HomePage />}/>
             <Route path='/profile' element={<ProfilePage />}/>
             <Route path='/battle' element={<BattlePage />}/>

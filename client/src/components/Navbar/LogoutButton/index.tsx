@@ -4,9 +4,11 @@ import Button from '@mui/material/Button'
 
 export function LogoutButton () {
 
-  const { loginWithRedirect } = useAuth0();
+  const { logout, user } = useAuth0();
+
+
 
   return (
-    <Button className={styles.logout_button_container} onClick={() => loginWithRedirect()}> Login </Button>
+    <Button className={styles.logout_button_container} onClick={() => logout()}> {user && 'logout'} {!user && ''} </Button>
   )
 }
