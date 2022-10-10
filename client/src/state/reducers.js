@@ -52,5 +52,4 @@ const currentUser = (currentUser = {
   }
 };
 
-
 export default combineReducers({ status, currentUser, currentQuestion });
