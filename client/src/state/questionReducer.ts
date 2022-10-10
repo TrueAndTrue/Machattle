@@ -23,9 +23,9 @@ export const currentQuestion = (state = initialQuestion, action : Qaction) => {
     case UPDATE_QUESTION:
       return {state, ...action.question};
     case UPDATE_CURRENTANSWER:
-      return {...currentQuestion, currentAnswer: action.currentAnswer};
+      return {...state, currentAnswer: action.currentAnswer};
     case UPDATE_SUBMITTEDANSWER:
-      return {...currentQuestion, submittedAnswer: action.submittedAnswer};
+      return {...state, submittedAnswer: action.submittedAnswer};
     default:
       return state;
   }

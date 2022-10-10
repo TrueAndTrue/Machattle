@@ -51,25 +51,6 @@ const currentUser = (currentUser = {
       return currentUser;
   }
 };
-const currentQuestion = (currentQuestion = {
-    difficulty: '',
-    question: '',
-    currentAnswer: '',
-    submittedAnswer: '',
-    finalAnswer: '',
-    tests: [],
-    attempts: 0,
-  },
-  action
-) => {
-  switch (action.type) {
-    case UPDATE_CURRENTANSWER:
-      return {...currentQuestion, currentAnswer: action.currentAnswer};
-    case UPDATE_SUBMITTEDANSWER:
-      return {...currentQuestion, submittedAnswer: action.submittedAnswer};
-    default:
-      return currentQuestion;
-  }
-};
+
 
 export default combineReducers({ status, currentUser, currentQuestion });
