@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import styles from './styles.module.css';
 
+//code mirror modules
 import CodeMirror from "@uiw/react-codemirror";
 import { EditorState, Compartment } from '@codemirror/state';
 import { EditorView, keymap } from '@codemirror/view';
@@ -7,12 +9,14 @@ import { basicSetup } from 'codemirror';
 import {defaultKeymap } from "@codemirror/commands"
 import { javascript } from '@codemirror/lang-javascript';
 
-import styles from './styles.module.css';
+//state imports
+import { useDispatch } from 'react-redux';
+import { updateCurrentAnswer } from '../../../../state/actions/question';
 
 let language = new Compartment, tabSize = new Compartment
 
 export function CodingArena () {
-
+  const dispatch = useDispatch();
   const [ getCode, setCode ] = useState('');
 
   return (
@@ -28,13 +32,15 @@ export function CodingArena () {
         ]}
         onChange={(value: string) => {
           console.log(value, 'in onChange');
-          setCode(value)
+          dispatch(updateCurrentAnswer(value));
+          // setCode(value)
         }}
       />
     </div>
   )
 }
 
+//styling for the code mirror field
 const arenaTheme = EditorView.theme({
   "&": {
     height: "66vh",
