@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-
+import { currentQuestion} from './questionReducer'
 //import actions
 //user actions
 //question actions
@@ -32,18 +32,6 @@ const currentUser = (currentUser = {
       return currentUser;
   }
 };
-const currentQuestion = (currentQuestion = {
-    difficulty: '',
-    question: '',
-    tests: [],
-    attempts: 0,
-  },
-  action
-) => {
-  switch (action.type) {
-    default:
-      return currentQuestion;
-  }
-};
+
 
 export default combineReducers({ status, currentUser, currentQuestion });

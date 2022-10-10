@@ -1,3 +1,19 @@
 .coding_arena_container {
   display: flex;
+  width: 67vw;
+  height: 80%;
+  padding-top: 20px;
+  justify-content: center;
+}
+
+.cm-editor {
+
+}
+
+.cm-content {
+
+}
+
+.cm-gutter {
+
 }

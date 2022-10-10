@@ -5,21 +5,21 @@ interface Qaction{
   payload :IQuestion;
 }
 
-const currentQuestion = (currentQuestion = {
-    difficulty: '',
-    question: '',
-    tests: [],
-    id :-1,
-    timeComplexity : 'O(1)',
-    timeElapsed :'0',
-    attempts : 0
-  },
-  action : Qaction
-) => {
+const initialQuestion = {
+  difficulty: '',
+  question: '',
+  tests: [],
+  id :-1,
+  timeComplexity : 'O(1)',
+  timeElapsed :'0',
+  attempts : 0
+}
+
+export const currentQuestion = (state = initialQuestion, action : Qaction) => {
   switch (action.type) {
-    case 'UPDATE':
-      return {currentQuestion, ...action.payload}
+    case "UPDATE_QUESTION":
+      return {state, ...action.payload}
     default:
-      return currentQuestion;
+      return state;
   }
 };

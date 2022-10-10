@@ -26,9 +26,22 @@ export const getExerciseById = async (req : Request , res : Response) => {
 
 export const addExercise = async (req : Request, res : Response) => {
   try{
-    const question = await Question.create(req.body.question)
-    res.status(201).send({ error : false , res : question})
+    const question = await Question.create(req.body.question);
+    res.status(201).send({ error : false , res : question});
   } catch (e) {
-    res.status(500).send({error :true , res :'Error Creating New Exercise'})
+    res.status(500).send({error :true , res :'Error Creating New Exercise'});
+  }
+}
+
+export const getRandomExercise = async (req :Request, res : Response) =>{
+  try {
+    console.log(req.body)
+    const difficulty ='2';
+    const questions = await Question.findAll({where: {difficulty}});
+    const numQuestions = questions.length;
+    const questionIndex = Math.floor(Math.random()*numQuestions)
+    res.status(200).send({error : false, res : questions[questionIndex]})
+  } catch {
+    res.status(500).send({error:true, res : 'Error Getting Random Exercise'})
   }
 }

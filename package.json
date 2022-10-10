@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/index.js",
     "tsc": "./typescript/bin/tsc",
-    "build": "tsc && npm run cupdate",
+    "build": "tsc && npm run cupdate && mv client/build /dist",
     "push": "git add .; git commit -m Heroku; git push origin build",
     "cupdate": "cd client && npm i react-scripts && npm run build"
   },
@@ -33,14 +33,11 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.6",
-    "@types/react-redux": "^7.1.24",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "path": "^0.12.7",
     "pg": "^8.8.0",
-    "react-redux": "^8.0.4",
     "sequelize": "^6.24.0",
     "socket.io": "^4.5.2",
     "uuid": "^9.0.0"
