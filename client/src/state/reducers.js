@@ -50,8 +50,8 @@ const currentQuestion = (currentQuestion = {
   switch (action.type) {
     case UPDATE_CURRENTANSWER:
       return {...currentQuestion, currentAnswer: action.currentAnswer};
-      case UPDATE_SUBMITTEDANSWER:
-        return {...currentQuestion, submittedAnswer: action.submittedAnswer};
+    case UPDATE_SUBMITTEDANSWER:
+      return {...currentQuestion, submittedAnswer: action.submittedAnswer};
     default:
       return currentQuestion;
   }
