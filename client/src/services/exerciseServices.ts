@@ -6,13 +6,28 @@ process.env.NODE_ENV ==  'production' ?
 
 export const getExerciseById = async (id : string) => {
   try {
-    const response = await fetch(`${BASE_URL}/exercise/${id}` , {
+    const response = await fetch(`${BASE_URL}/exercises/${id}` , {
       headers: {
         'Content-Type': 'application/json',
       }
     })
-    const data = response.json()
-    return data
+    const data = await response.json()
+    return data.res
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export const getRandomExercise = async (difficulty : number) => {
+  try {
+    const response = await fetch(`${BASE_URL}/exercises/random` , {
+      headers: {
+        'Content-Type': 'application/json',
+        body : JSON.stringify(difficulty)
+      }
+    })
+    const data = await response.json()
+    return data.res
   } catch (e) {
     console.log(e)
   }

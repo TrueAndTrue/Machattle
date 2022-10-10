@@ -6,7 +6,7 @@ import { Challenge } from '../models/Challenge';
 export const getAllUsers = async (req :Request, res :Response) => {
   try{ 
     const users = await User.findAll();
-    res.status(200).send({error :false ,res :users });
+    res.status(200).send({error : false, res :users});
   }catch (e) {
     res.status(500).send({error :true , res :'Error Getting Exercises' });
   }
@@ -63,10 +63,10 @@ export const addFriend = async( req :Request, res :Response) => {
       where : { uid },
       include : {model :User , as : 'friends' }
     })
-    const friend = await User.findOne({where : {uid :friendUID}}) 
+    const friend = await User.findOne({where : {uid :friendUID}})
     if (user && friend) {
 
-      const hasFriend = user.getDataValue('friends')?.filter(user => {
+      const hasFriend = user.getDataValue('friends')?.filter(user => { //looks over users friends
         return friendUID === user.uid
       }).length;
 

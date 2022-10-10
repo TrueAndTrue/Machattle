@@ -15,6 +15,7 @@ export function SubmitButton () {
   const codeSubmission = useSelector((state: any) => state.currentQuestion.currentAnswer);
   const [ getUpdate, setUpdate ] = useState('');
 
+<<<<<<< HEAD
   useEffect (() => {
   }, [getUpdate])
 
@@ -45,6 +46,17 @@ export function SubmitButton () {
       };
     })
     setUpdate(getUpdate + 'rerender');
+=======
+  function codeTranspile(code: string) {
+    console.log(code, 'code?');
+    const options = { presets: ['es2015-loose', 'react'] };
+    const { code: transpiledCode } = transform(code, options);
+    console.log(transpiledCode, 'transpiled');
+    if (transpiledCode) {
+      dispatch(updateSubmittedAnswer(transpiledCode));
+    }
+    return transpiledCode;
+>>>>>>> add-question
   }
 
   return (

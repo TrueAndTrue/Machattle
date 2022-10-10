@@ -29,7 +29,7 @@ Question.init({
     type : DataTypes.STRING
   },
   tests :{
-    type : DataTypes.ARRAY(DataTypes.STRING),
+    type : DataTypes.ARRAY(DataTypes.ARRAY(DataTypes.STRING)),
     allowNull :false
   },
   difficulty: {

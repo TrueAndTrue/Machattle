@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-
+import { currentQuestion} from './questionReducer'
 //import actions
 //user actions
 //question actions

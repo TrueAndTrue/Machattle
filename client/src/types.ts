@@ -5,3 +5,12 @@ export interface IChallenge{
   loserId: string
   questionId :number
 }
+
+export interface IQuestion{
+  id: number;
+  question :string;
+  timeComplexity : string;
+  tests : string[];
+  difficulty :string;
+  timeElapsed :string;
+}
