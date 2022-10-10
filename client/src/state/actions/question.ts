@@ -6,13 +6,13 @@ export const UPDATE_QUESTION = 'UPDATE_QUESTION';
 
 export const updateCurrentAnswer = (currentAnswer : string ) => ({
   type: UPDATE_CURRENTANSWER,
- currentAnswer,
+  currentAnswer,
 });
 export const updateSubmittedAnswer = (submittedAnswer:string ) => ({
   type: UPDATE_SUBMITTEDANSWER,
- submittedAnswer,
+  submittedAnswer,
 });
 export const updateQuestion = (question : IQuestion) => ({
   type: UPDATE_QUESTION,
-  payload : question
+  question
 });
