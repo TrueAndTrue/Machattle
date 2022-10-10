@@ -8,8 +8,6 @@ export const createChallenge = async (req :Request, res :Response) => {
     const challenge = await Challenge.create({tie, winnerId, loserId, questionId})
     const winner = await User.findOne( {where :{uid : winnerId } })
     const loser = await User.findOne( {where :{uid : winnerId } })
-    // winner?.addChallenge(challenge);
-    // loser?.addChallenge(challenge);
     res.status(201).send({error :false , res :challenge})
   } catch (e) {
     res.status(500).send({error :true , res :'error creating new Challenge'})

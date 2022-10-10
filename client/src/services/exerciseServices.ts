@@ -17,3 +17,17 @@ export const getExerciseById = async (id : string) => {
     console.log(e)
   }
 }
+
+export const getRandomExercise = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/exercise/random` , {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    const data = response.json()
+    return data
+  } catch (e) {
+    console.log(e)
+  }
+}
