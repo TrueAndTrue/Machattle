@@ -23,11 +23,12 @@ export const getRandomExercise = async (difficulty : number) => {
     const response = await fetch(`${BASE_URL}/exercises/random` , {
       headers: {
         'Content-Type': 'application/json',
-        body : JSON.stringify(difficulty)
+        body: JSON.stringify(difficulty)
       }
     })
-    const data = await response.json()
-    return data.res
+    const data = await response.json();
+    console.log(data, 'question shape');
+    return data.res;
   } catch (e) {
     console.log(e)
   }

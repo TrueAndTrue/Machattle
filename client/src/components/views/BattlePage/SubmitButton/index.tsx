@@ -13,6 +13,7 @@ let failError = '';
 export function SubmitButton () {
   const dispatch = useDispatch();
   const codeSubmission = useSelector((state: any) => state.currentQuestion.currentAnswer);
+  const testArray = useSelector((state: any) => state.currentQuestion.tests);
   const [ getUpdate, setUpdate ] = useState('');
 
   useEffect (() => {
@@ -26,7 +27,7 @@ export function SubmitButton () {
     testsFailed = 0;
     testsPassed = 0;
 
-    mocksAdd.forEach((tuple) => {
+    testArray.forEach((tuple: any) => {
       let args = tuple[0];
       if (Array.isArray(args)) {
         if(testFunction(...args) === tuple[1]) {

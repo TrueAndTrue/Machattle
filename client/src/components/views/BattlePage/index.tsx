@@ -17,10 +17,10 @@ export function BattlePage () {
   useEffect(() => {
     getQuestion();
   },[])
-  
+
   async function getQuestion() {
-    const newQuestion = await getRandomExercise(2); 
-    dispatch(updateQuestion(newQuestion))
+    const newQuestion = await getRandomExercise(2);
+    dispatch(updateQuestion(newQuestion));
   }
 
   return (
