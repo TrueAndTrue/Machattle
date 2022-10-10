@@ -10,7 +10,7 @@ import {defaultKeymap } from "@codemirror/commands"
 import { javascript } from '@codemirror/lang-javascript';
 
 //state imports
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateCurrentAnswer } from '../../../../state/actions/question';
 
 let language = new Compartment, tabSize = new Compartment
@@ -22,7 +22,7 @@ export function CodingArena () {
   return (
     <div className={styles.coding_arena_container}>
       <CodeMirror
-        value={getCode}
+        value={useSelector((state: any) => state.currentQuestion.currentAnswer)}
         extensions={[
           basicSetup,
           language.of(javascript()),
