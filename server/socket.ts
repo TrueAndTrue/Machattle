@@ -1,5 +1,6 @@
 import { Server as HTTPServer} from 'http';
 import { Socket, Server} from 'socket.io';
+import { Inqueue } from './models/Inqueue';
 
 export class ServerSocket {
   public static instance: ServerSocket;
@@ -12,6 +13,8 @@ export class ServerSocket {
     this.users = {};
     this.io = new Server(server, {
       serveClient: false,
+      pingInterval: 10000,
+      pingTimeout: 5000,
       cors: {
         origin: '*'
       }
@@ -52,10 +55,33 @@ export class ServerSocket {
 
       this.SendMessage(
         'user_connected',
-        users.filter(id => id !== socket.id),
+        users.filter((id) => id !== socket.id),
         users
       )
 
+
+    })
+
+    socket.on('queue_user', async (uid: string) => {
+      console.log(uid);
+      console.log('queued user.')
+      const queued = await Inqueue.findAll();
+      if (queued.length >= 1) {
+        console.log('should not create room.')
+        socket.join(queued[0].roomId)
+        this.io.to(queued[0].roomId).emit('match_found')
+        const count = await Inqueue.destroy({where: {uid: uid}})
+        const count2 = await Inqueue.destroy({where: {uid: queued[0].uid}})
+        console.log(count + count2);
+      }
+
+      else {
+        const room = JSON.stringify(Math.floor(Math.random() * 1000));
+        socket.join(room);
+        await Inqueue.create({uid: uid, roomId: room})
+      }
+
+      
 
     })
 

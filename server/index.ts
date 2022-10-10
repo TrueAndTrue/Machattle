@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors'
 import path from 'path'
 
-import { router } from './router/router'
+import { rootRouter } from './router/index'
 import { sequelize } from './models/index';
 import { ServerSocket } from './socket';
 
@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors());
 
 app.use(express.json())
-app.use('/api',router);
+app.use('/api',rootRouter);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
