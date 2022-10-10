@@ -1,17 +1,43 @@
 let BASE_URL : string;
-process.env.NODE_ENV ==  'production' ?
+process.env.NODE_ENV ===  'production' ?
   BASE_URL = 'https://machattle.herokuapp.com/api' :
   BASE_URL = 'http://localhost:3030/api'
 
 
-export const getUserByUsername = async (username :string) => {
+export const addUser = async (uid: string, username: string) => {
   try {
-    const response = await fetch(`${BASE_URL}/user` , {
+    const rank = 'Silver 4'
+    const image = 'Mock.url'
+    const rating = 1200
+    const response = await fetch(`${BASE_URL}/users/create`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user: {
+          uid, 
+          username, 
+          rank, 
+          image, 
+          rating
+        }
+      })
+    })
+    return response;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getUserById = async (uid :string) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/${uid}` , {
       headers: {
         'Content-Type': 'application/json',
       }
     })
-    const data = response.json()
+    const data = await response.json()
     return data
   } catch (e) {
     console.log(e)
