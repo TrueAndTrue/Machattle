@@ -3,10 +3,10 @@ import { currentQuestion} from './questionReducer'
 //import actions
 //user actions
 //question actions
-const {
-  UPDATE_CURRENTANSWER,
-  UPDATE_SUBMITTEDANSWER,
-} = require('./actions/question');
+// const {
+//   UPDATE_CURRENTANSWER,
+//   UPDATE_SUBMITTEDANSWER,
+// } = require('./actions/question');
 
 const {
   UPDATE_LOGGED
@@ -25,7 +25,7 @@ const status = (status = {
   action
 ) => {
   switch (action.type) {
-    case UPDATE_LOGGED: 
+    case UPDATE_LOGGED:
       return {...status, loggedIn: action.loggedIn};
     default:
       return {...status};
