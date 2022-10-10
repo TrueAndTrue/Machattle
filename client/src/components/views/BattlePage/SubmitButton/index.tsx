@@ -52,8 +52,8 @@ export function SubmitButton () {
     <div className={styles.submit_button_container} >
       <Button onClick={() => codeSubmit(codeSubmission)}>SUBMIT SOLUTION</Button>
       <div className={styles.tests_result_container} >
-        <p>{mocksAdd.length} total tests</p>
-        { testsPassed === mocksAdd.length ?
+        <p>{testArray.length} total tests</p>
+        { testsPassed === testArray.length ?
           <p>All tests passed!</p>
         : <p>{failError}</p>
         }
