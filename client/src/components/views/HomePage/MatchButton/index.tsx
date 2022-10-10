@@ -1,7 +1,6 @@
 import { FunctionComponent } from 'react';
 import styles from './styles.module.css';
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { useContext, useEffect, useState } from 'react';
 import SocketContext from '../../../../contexts/Context';

@@ -16,3 +16,21 @@ export const theme = createTheme({
     fontFamily: 'Quantico',
   },
 });
+
+
+export const btnTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#EEEEEE',
+      light: '#4ECCA3'
+    },
+    secondary: {
+      main: '#232931',
+      light : '#393E46',
+    }
+  },
+  typography: {
+    fontFamily: 'Quantico',
+    fontSize: 30,
+  },
+});
