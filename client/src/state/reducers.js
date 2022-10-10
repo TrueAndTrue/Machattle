@@ -8,6 +8,15 @@ const {
   UPDATE_SUBMITTEDANSWER,
 } = require('./actions/question');
 
+const {
+  UPDATE_LOGGED
+} = require('./actions/status');
+
+const {
+  UPDATE_USER
+} = require('./actions/user');
+
+
 const status = (status = {
   loggedIn: false,
   inQueue: false,
@@ -16,22 +25,28 @@ const status = (status = {
   action
 ) => {
   switch (action.type) {
+    case UPDATE_LOGGED: 
+      return {...status, loggedIn: action.loggedIn};
     default:
-      return status;
+      return {...status};
   }
 };
 const currentUser = (currentUser = {
     rank: '',
     username: '',
     rating: 0,
-    id: 0,
+    uid: 0,
     friends: [],
     challenges: [],
-    imageLocation: '',
+    image: '',
   },
   action
 ) => {
   switch (action.type) {
+    case UPDATE_USER: {
+      const { uid, rank, username, rating, image } = action.user
+      return {...currentUser, uid, rank, username, rating, image }
+    }
     default:
       return currentUser;
   }
@@ -50,8 +65,8 @@ const currentQuestion = (currentQuestion = {
   switch (action.type) {
     case UPDATE_CURRENTANSWER:
       return {...currentQuestion, currentAnswer: action.currentAnswer};
-      case UPDATE_SUBMITTEDANSWER:
-        return {...currentQuestion, submittedAnswer: action.submittedAnswer};
+    case UPDATE_SUBMITTEDANSWER:
+      return {...currentQuestion, submittedAnswer: action.submittedAnswer};
     default:
       return currentQuestion;
   }
