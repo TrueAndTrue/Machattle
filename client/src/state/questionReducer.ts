@@ -34,15 +34,15 @@ export const currentQuestion = (state = initialQuestion, action : Qaction) => {
     case UPDATE_QUESTION:
       return { state, ...action.question };
     case UPDATE_EDITORPROMPT:
-      return { state, editorPrompt: action.editorPrompt };
+      return { ...state, editorPrompt: action.editorPrompt };
     case UPDATE_CURRENTANSWER:
       return { ...state, currentAnswer: action.currentAnswer };
     case UPDATE_SUBMITTEDANSWER:
       return { ...state, submittedAnswer: action.submittedAnswer };
     case UPDATE_TESTS:
-      return { state, tests: action.tests };
+      return { ...state, tests: action.tests };
     case UPDATE_ATTEMPTS:
-      return { state, attempts: action.attempts };
+      return { ...state, attempts: action.attempts };
     default:
       return state;
   }
