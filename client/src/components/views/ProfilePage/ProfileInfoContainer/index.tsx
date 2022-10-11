@@ -8,7 +8,7 @@ export function ProfileInfoContainer () {
     <div className={styles.profile_info_container}>
       <ProfileCard />
       {/* on button press, open profile update form */}
-      <ProfileUpdateForm />
+      {/* <ProfileUpdateForm /> */}
     </div>
   )
 }

@@ -30,14 +30,14 @@ export function SubmitButton () {
     testArray.forEach((tuple: any) => {
       let args = tuple[0];
       if (Array.isArray(args)) {
-        if(testFunction(...args) === tuple[1]) {
+        if(testFunction(...args) == tuple[1]) {
           testsPassed = testsPassed + 1;
         } else {
           failError = `Expected result of ${args} to be ${tuple[1]}.`
           testsFailed = testsFailed + 1;
         }
       } else {
-        if (testFunction(args) === tuple[1]) {
+        if (testFunction(args) == tuple[1]) {
           testsPassed = testsPassed + 1;
         } else {
           failError = `Expected result of ${args} to be ${tuple[1]}.`

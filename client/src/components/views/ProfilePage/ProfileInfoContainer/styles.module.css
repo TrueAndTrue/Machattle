@@ -1,6 +1,6 @@
 .profile_info_container {
-  height: 45%;
-  width: 60%;
+  height: 50%;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
