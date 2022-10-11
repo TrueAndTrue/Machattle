@@ -31,15 +31,22 @@ export const addUser = async (uid: string, username: string, image: string) => {
 
 export const getUserById = async (uid :string) => {
   try {
-    const response = await fetch(`${BASE_URL}/users/${uid}` , {
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
+    console.log(uid)
+    const response = await fetch(`${BASE_URL}/users/${uid}`)
     const data = await response.json()
     return data
   } catch (e) {
     console.log(e)
+  }
+}
+
+export const getUserByUsername = async (username: string) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/${username}/username`)
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.log(error)
   }
 }
 

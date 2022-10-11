@@ -13,6 +13,7 @@ import { updateLogged } from './state/actions/status';
 
 //component imports
 import NavBar from './components/Navbar/index'
+import { PopUp } from './components/views/PopUp';
 
 //services imports 
 import { getUserById, addUser } from './services/userServices';
@@ -30,12 +31,13 @@ function App() {
           const clientUser = await getUserById(user?.sub)
           console.log(clientUser);
           if (clientUser.error === true) {
-            const newUser = await addUser(user.sub, 'Hello', user.picture)
-            dispatch(updateUser(newUser))
+            navigate('/username')
+            // const newUser = await addUser(user.sub, 'Hello', user.picture)
+            // dispatch(updateUser(newUser))
           }
           else {
             dispatch(updateLogged(true));
-            dispatch(updateUser(clientUser.res))
+            dispatch(updateUser(clientUser.res));
           }
         }
         else {

@@ -16,6 +16,7 @@ const router = Router();
 router.get('/',getAllUsers);
 router.get('/leaderBoard', getTopUsers)
 router.get('/:uid',getUserById);
+router.get('/:username/username', getUserByUsername)
 router.get('/:uid/exercises',getUserExercises);
 router.get('/:uid/challenges',getUserChallenges);
 
