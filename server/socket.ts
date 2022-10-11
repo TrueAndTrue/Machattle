@@ -68,11 +68,16 @@ export class ServerSocket {
       const queued = await Inqueue.findAll();
       if (queued.length >= 1) {
         console.log('should not create room.')
-        socket.join(queued[0].roomId)
-        this.io.to(queued[0].roomId).emit('match_found')
-        const count = await Inqueue.destroy({where: {uid: uid}})
-        const count2 = await Inqueue.destroy({where: {uid: queued[0].uid}})
-        console.log(count + count2);
+        if (uid === queued[0].uid) {
+          console.log('Same user cannot queue into himself.')
+        }
+        else {
+          socket.join(queued[0].roomId)
+          this.io.to(queued[0].roomId).emit('match_found')
+          const count = await Inqueue.destroy({where: {uid: uid}})
+          const count2 = await Inqueue.destroy({where: {uid: queued[0].uid}})
+          console.log(count + count2);
+        }
       }
 
       else {
