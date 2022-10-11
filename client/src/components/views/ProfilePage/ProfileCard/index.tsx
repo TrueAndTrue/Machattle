@@ -17,18 +17,18 @@ export function ProfileCard () {
     <div className={styles.profile_card_container}>
       <div className={styles.profile_info}>
         <div className={styles.profile_username}>
-          <h2>{user && user.username}</h2>
+          <h2>{(user && user.username) || 'Username'}</h2>
         </div>
         <div className={styles.profile_img}>
           <img src={userPfp} alt='profile pic' />
         </div>
         <div className={styles.profile_rank}>
           <h2>Your Rank:</h2>
-          <h1>{user && user.rank}</h1>
+          <h1>{(user && user.rank) || 'Unranked'}</h1>
           <img className={styles.ranked_logo} src={silver} alt="silver rank icon" />
         </div>
       </div>
-        <h2>Friends online: {user && user.friends.length}</h2>
+      <h2 className={styles.friend_text}>Friends online: {user && user.friends.length}</h2>
     </div>
   )
 }
