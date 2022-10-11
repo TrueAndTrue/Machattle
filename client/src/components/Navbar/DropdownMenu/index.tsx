@@ -1,16 +1,17 @@
 import * as React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+
 import styles from './styles.module.css';
+import { MilitaryTech, PrecisionManufacturing, SmartToy } from '@mui/icons-material';
 
 type Anchor = 'left'
 
@@ -21,6 +22,11 @@ export function DropdownMenu() {
     bottom: false,
     right: false,
   });
+
+  // const navigate = useNavigate();
+  // const nav = () => {
+  //   navigate('/profile')
+  // }
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -44,29 +50,36 @@ export function DropdownMenu() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        <ListItem key={'Home'} disablePadding>
+          <Link to={'/Home'} className={styles.link_text}>
+            <ListItemButton >
+              <ListItemIcon>
+                <SmartToy />
+              </ListItemIcon>
+              <ListItemText primary={'Home'} />
+            </ListItemButton>
+          </Link>
+        </ListItem>
+        <ListItem key={'Profile'} disablePadding>
+          <Link to={'/Profile'} className={styles.link_text}>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <PrecisionManufacturing />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={'Profile'} />
             </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+          </Link>
+        </ListItem>
+        <ListItem key={'Leaderboard'} disablePadding>
+          <Link to={'/Leaderboard'} className={styles.link_text}>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <MilitaryTech />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={'Leaderboard'} />
             </ListItemButton>
-          </ListItem>
-        ))}
+          </Link>
+        </ListItem>
       </List>
     </Box>
   );

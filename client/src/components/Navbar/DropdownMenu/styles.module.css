@@ -6,3 +6,7 @@
   display: flex;
   width: 10vw;
 }
+
+.link_text {
+  color: #393e46;
+}

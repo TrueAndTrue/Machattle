@@ -10,7 +10,7 @@ export default function NavBar () {
 
   const pfp = useSelector((state: any) => state.currentUser.image);
 
-  console.log(pfp, 'in nav')
+  // console.log(pfp, 'in nav')
   const navigate = useNavigate();
   const nav = () => {
     navigate('/profile')
@@ -21,7 +21,7 @@ export default function NavBar () {
       <DropdownMenu />
       {pfp && <img className={styles.pfp} src={pfp} alt='profile pic'/>}
       <Mascot />
-      <Button onClick={nav}>Profile</Button>
+      {/* <Button onClick={nav}>Profile</Button> */}
       <LogoutButton />
     </div>
   )
