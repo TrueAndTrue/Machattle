@@ -13,7 +13,6 @@ export function HomePage () {
 
   return (
     <div className={styles.home_page_container}>
-      <MatchButton data={'queue'}/>
       <SelectMatchContainer />
       <RecentEventsFeed />
       {/* <MatchButton />

@@ -13,12 +13,10 @@ export function LeaderboardFeed () {
   
   useEffect(() => {
     getTop10();
-    console.log(leaders)
   },[])
   
   async function getTop10() {
     const topUsers = await getTopUsers();
-    console.log(topUsers)
     dispatch(updateLeaderBoard(topUsers))
     setLeaders([...topUsers]);
   }

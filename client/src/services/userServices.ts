@@ -23,7 +23,8 @@ export const addUser = async (uid: string, username: string, image: string) => {
         }
       })
     })
-    return response;
+    const data = await response.json();
+    return data.res
   } catch (error) {
     console.log(error)
   }
@@ -86,7 +87,7 @@ export const getUserExercises = async (uid :string) => {
       }
     })
     const data = await response.json();
-    return data;
+    return data.res;
   } catch (e) {
     console.log(e)
   }
@@ -100,7 +101,7 @@ export const getUserChallenges = async (uid :string) => {
       }
     })
     const data = await response.json();
-    return data;
+    return data.res;
   } catch (e) {
     console.log(e)
   }
@@ -109,6 +110,20 @@ export const getUserChallenges = async (uid :string) => {
 export const getTopUsers = async () => {
   try {
     const response = await fetch(`${BASE_URL}/users/leaderBoard` , {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    const data = await response.json();
+    return data.res;
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export const getUserFriends = async ( uid:string ) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/${uid}/friends` , {
       headers: {
         'Content-Type': 'application/json',
       }

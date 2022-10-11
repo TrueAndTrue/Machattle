@@ -4,11 +4,16 @@ import { User } from '../models/User'
 
 export const createChallenge = async (req :Request, res :Response) => {
   try{
-    const {winnerId, loserId, questionId, tie} = req.body.challenge
-    const challenge = await Challenge.create({tie, winnerId, loserId, questionId})
-    const winner = await User.findOne( {where :{uid : winnerId } })
-    const loser = await User.findOne( {where :{uid : winnerId } })
-    res.status(201).send({error :false , res :challenge})
+    const {winnerUsername, loserUsername, questionId, tie} = req.body.challenge
+    await Challenge.create({tie, winnerUsername, loserUsername, questionId})
+    const winner = await User.findOne( {where :{username : winnerUsername } })
+    const loser = await User.findOne( {where :{username : loserUsername } })
+    const sentChallenge = {
+      winner :winner?.getDataValue('username'), 
+      loser :loser?.getDataValue('username')
+    } 
+
+    res.status(201).send({error :false , res :sentChallenge})
   } catch (e) {
     res.status(500).send({error :true , res :'error creating new Challenge'})
   }
@@ -28,10 +33,10 @@ export const getChallengeById = async(req:Request, res :Response) =>{
   }
 }
 
-export const getRecentChallenges = async(req:Request, res :Response) =>{
+export const getRecentChallenges = async(req:Request, res :Response) => {
   try{
     const challenges = await Challenge.findAll({ limit: 10, order: [['updatedAt', 'DESC']]});
-    res.status(200).send(challenges)
+    res.status(200).send({error :false , res :challenges})
   } catch(e) {
     res.status(500).send({error :e , message :'Error Getting Recent Challenges'})
   }

@@ -149,12 +149,24 @@ export const getUserExercises = async (req : Request, res :Response) => {
 
 export const getUserChallenges = async (req :Request, res :Response) => {
   try {
-    const { uid } = req.params;
-    const wonChallenges = await Challenge.findAll({where : {winnerId : uid}});
-    const lostChallenges = await Challenge.findAll({where : {loserId : uid}});
+    const { username } = req.params;
+    const wonChallenges = await Challenge.findAll({where : {winnerUsername : username}});
+    const lostChallenges = await Challenge.findAll({where : {loserUsername : username}});
+
     const completedChallenges = { lostChallenges, wonChallenges };
     res.status(200).send({error : false, res : completedChallenges});
   } catch (e) {
     res.status(500).send({error: true , res : 'Error Getting User Challenges'});
   }
 }
+
+export const getUserFriends = async (req :Request, res :Response) => {
+  try {
+    const { uid } = req.params; 
+    const user = await User.findOne({where: {uid}, include : {model :User , as : 'friends' }})
+    const friends = user?.getDataValue('friends');
+    res.status(200).send({error :false, res : friends})
+  } catch (e) {
+    res.status(500).send({error: true , res : 'Error Getting User Friends'});
+  }
+} 

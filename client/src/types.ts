@@ -1,9 +1,10 @@
 export interface IChallenge{
   id?: number; 
   tie :boolean;
-  winnerId : string
-  loserId: string
+  winnerUsername : string
+  loserUsername : string
   questionId :number
+  updatedAt : Date
 }
 
 export interface IQuestion{

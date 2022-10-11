@@ -1,8 +1,8 @@
 .landing_page_container {
   display: flex;
   background-color: #393e46;
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;

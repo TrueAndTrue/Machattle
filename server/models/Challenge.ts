@@ -24,30 +24,28 @@ export class Challenge extends Model<IChallenge, ChallengeCreationAttributes> {
   }; 
 }
 
-Challenge.init(
-  {
-      id: {
-          type: DataTypes.INTEGER,
-          autoIncrement: true,
-          primaryKey: true,
-      },
-      tie :{
-        type :DataTypes.BOOLEAN
-      }, 
-      winnerId : {
-        type : DataTypes.STRING
-      },
-      loserId: {
-        type :DataTypes.STRING
-      },
-      questionId :{
-        type :DataTypes.INTEGER
-      }
+Challenge.init({
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
     },
-    {
-      tableName: "challenges",
-      sequelize,
+    tie :{
+      type :DataTypes.BOOLEAN
+    }, 
+    winnerUsername : {
+      type : DataTypes.STRING
+    },
+    loserUsername: {
+      type :DataTypes.STRING
+    },
+    questionId :{
+      type :DataTypes.INTEGER
     }
+  },{
+    tableName: "challenges",
+    sequelize,
+  }
 );
 
 Challenge.belongsTo(Question, {foreignKey :'questionId'})

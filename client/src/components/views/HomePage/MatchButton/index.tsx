@@ -11,9 +11,10 @@ import { useSelector } from 'react-redux';
 
 interface IProps {
   data: string,
+  mode : string
 }
 
-export const MatchButton: FunctionComponent<IProps> = (data) => {
+export const MatchButton = ({data , mode} : IProps) => {
 
   const { socket, users, inQueue } = useContext(SocketContext).SocketState
   const navigate = useNavigate();
@@ -29,7 +30,6 @@ export const MatchButton: FunctionComponent<IProps> = (data) => {
     navigate('/battle');
   })
 
-
   const QueueHandler = () => {
     console.log(userInfo.uid)
     SocketDispatch({type: 'queue_user', payload: userInfo.uid})
@@ -37,10 +37,15 @@ export const MatchButton: FunctionComponent<IProps> = (data) => {
     console.log(inQueue)
   }
 
+  const onClick = () => {
+    if (mode == 'ranked') QueueHandler();
+    else navigate('/battle')
+  } 
+
   return (
     <div className={styles.match_button_container}>
       <h1>{matchFound && 'MATCH FOUND!'}</h1>
-      <Button className={styles.match_button} onClick={QueueHandler}> {data.data} </Button>
+      <Button className={styles.match_button} onClick={onClick}> {data} </Button>
     </div>
   )
 }

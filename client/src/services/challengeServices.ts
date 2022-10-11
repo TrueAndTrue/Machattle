@@ -13,8 +13,9 @@ export const getChallengeById = async (id :string) => {
         'Content-Type': 'application/json',
       }
     })
-    const data = response.json()
-    return data
+    const data = await response.json()
+    return data.res
+
   } catch (e) {
     console.log(e)
   }
@@ -27,8 +28,9 @@ export const getRecentChallenges = async () => {
         'Content-Type': 'application/json',
       }
     })
-    const data = response.json()
-    return data
+    const data = await response.json()
+    return data.res
+    console.log(data)
   } catch (e) {
     console.log(e)
   }
@@ -45,8 +47,8 @@ export const createChallenge = async(challenge : IChallenge) => {
         'Content-Type': 'application/json',
       }
     })
-    const data = response.json()
-    return data
+    const data = await response.json()
+    return data.res
   } catch (e) {
     console.log(e)
   }

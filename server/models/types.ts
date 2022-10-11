@@ -1,4 +1,3 @@
-
 import { ForeignKey } from 'sequelize'
 
 export interface IQuestion{
@@ -11,7 +10,6 @@ export interface IQuestion{
   functionName : string
   parameters : string[]
 }
-
 
 export interface IQueue{
   uid:string;
@@ -39,7 +37,7 @@ export interface IQueue {
 export interface IChallenge{
   id: number; 
   tie :boolean;
-  winnerId : ForeignKey<string>;
-  loserId: ForeignKey<string>;
+  winnerUsername : ForeignKey<string>;
+  loserUsername: ForeignKey<string>;
   questionId :ForeignKey<number>;
 }

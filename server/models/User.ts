@@ -50,6 +50,7 @@ User.init(
     username: {
       type: new DataTypes.STRING(128),
       allowNull: false,
+      unique:true
     },
     rank: {
       type: new DataTypes.STRING(128),

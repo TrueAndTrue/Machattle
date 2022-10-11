@@ -7,7 +7,7 @@ interface IProps {
   mode: string,
 }
 
-export const MatchCard: FunctionComponent<IProps> = (mode) => {
+export const MatchCard= ({ mode}:IProps ) => {
 
   let matchObj = {
     title: '',
@@ -15,7 +15,7 @@ export const MatchCard: FunctionComponent<IProps> = (mode) => {
     body: '',
   };
 
-  if (mode.mode === 'ranked') {
+  if (mode === 'ranked') {
     matchObj.title = 'RANKED BATTLE';
     matchObj.buttonText = 'Find Match';
     matchObj.body = 'Complete a challenge head-to-head with another opponent to improve your ranking!';
@@ -32,7 +32,7 @@ export const MatchCard: FunctionComponent<IProps> = (mode) => {
         <p>{matchObj.title}</p>
       </div>
       <p className={styles.body_text}>{matchObj.body}</p>
-      <MatchButton data={matchObj.buttonText} />
+      <MatchButton data={matchObj.buttonText} mode ={mode} />
       <img src={robo} alt='robot logo' className={styles.robot_mascot}/>
     </div>
   )
