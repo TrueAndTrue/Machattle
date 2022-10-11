@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { currentQuestion} from './questionReducer'
+import { currentBoard } from './leaderBoardReducer'
 //import actions
 //user actions
 //question actions
@@ -52,4 +53,4 @@ const currentUser = (currentUser = {
   }
 };
 
-export default combineReducers({ status, currentUser, currentQuestion });
+export default combineReducers({ status, currentUser, currentQuestion, currentBoard });

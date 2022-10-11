@@ -1,3 +1,20 @@
 .leaderboard_card_container {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#user_card{
+  display: flex;
+  justify-content: space-around;
+  border-radius: 5px;
+  border-color: #eeeeee;
+  border-style: inset;
+  border-width: 2px;
+  margin: 4px;
+}
+
+#pfp{
+  width:65px;
+  background-size: cover;
 }

@@ -107,7 +107,7 @@ export const getTopUsers = async () => {
       }
     })
     const data = await response.json();
-    return data;
+    return data.res;
   } catch (e) {
     console.log(e)
   }

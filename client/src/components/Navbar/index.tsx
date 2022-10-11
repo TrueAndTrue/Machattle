@@ -12,8 +12,11 @@ export default function NavBar () {
 
   console.log(pfp, 'in nav')
   const navigate = useNavigate();
-  const nav = () => {
+  const profile = () => {
     navigate('/profile')
+  }
+  const leaderBoard = () => {
+    navigate('/leaderBoard')
   }
 
   return (
@@ -21,7 +24,8 @@ export default function NavBar () {
       <DropdownMenu />
       {pfp && <img className={styles.pfp} src={pfp} alt='profile pic'/>}
       <Mascot />
-      <Button onClick={nav}>Profile</Button>
+      <Button onClick={profile}>Profile</Button>
+      <Button onClick={leaderBoard}>Leaders</Button>
       <LogoutButton />
     </div>
   )

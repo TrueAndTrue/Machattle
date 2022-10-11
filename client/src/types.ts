@@ -17,6 +17,6 @@ export interface IQuestion{
 
 export interface ILeaderBoardUser {
   username : string;
-  userRating : number;
-  userImage :string
+  rating : number;
+  image :string
 }

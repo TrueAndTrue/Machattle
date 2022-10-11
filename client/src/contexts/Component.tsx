@@ -72,7 +72,7 @@ const SocketContextComponent: React.FunctionComponent<ISocketContextComponentPro
 
   return <SocketContextProvider value={{SocketState, SocketDispatch}}>
     {children}
-</SocketContextProvider>
+  </SocketContextProvider>
 }
 
 export default SocketContextComponent;
