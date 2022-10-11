@@ -32,8 +32,6 @@ function App() {
           console.log(clientUser);
           if (clientUser.error === true) {
             navigate('/username')
-            // const newUser = await addUser(user.sub, 'Hello', user.picture)
-            // dispatch(updateUser(newUser))
           }
           else {
             dispatch(updateLogged(true));

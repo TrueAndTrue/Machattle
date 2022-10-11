@@ -14,21 +14,21 @@ export function LandingPage () {
   const { user } = useAuth0();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   (async () => {
-  //     if (user && user.sub) {
-  //       const returnUser = await getUserById(user?.sub);
-  //       if (returnUser?.error === true) {
+  useEffect(() => {
+    (async () => {
+      if (user && user.sub) {
+        const returnUser = await getUserById(user?.sub);
+        if (returnUser?.error === false) {
+          navigate('/home');
 
-  //       }
+        }
 
 
 
-  //       // navigate('/home');
-  //     }
+      }
       
-  // })()
-  // }, [user])
+  })()
+  }, [user])
 
   return (
     <div className={styles.landing_page_container}>
