@@ -8,9 +8,12 @@ const SocketContextComponent: React.FunctionComponent<ISocketContextComponentPro
 
   const { children } = props;
 
+  let socketUrl;
+  process.env.NODE_ENV === 'production' ? socketUrl = '/' : socketUrl = 'ws://localhost:3030'
+
   const [SocketState, SocketDispatch] = useReducer(SocketReducer, defaultSocketContextState);
   const [loading, setLoading] = useState(true);
-  const serverPort =  '/';
+  const serverPort =  socketUrl;
   
   const socket = useSocket(serverPort, {
 
