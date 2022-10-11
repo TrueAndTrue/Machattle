@@ -10,3 +10,8 @@
   border-width: 10px;
   justify-content: center;
 }
+
+.tests_result_container {
+  display: flex;
+  margin-left: 10px;
+}
