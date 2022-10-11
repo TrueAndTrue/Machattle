@@ -1,39 +1,58 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
+import { useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 //redux imports
 import { Provider as ReduxProvider } from 'react-redux';
 import store from './state/store';
+import { useDispatch } from 'react-redux';
+import { updateUser } from './state/actions/user';
+import { updateLogged } from './state/actions/status';
 
 //component imports
 import NavBar from './components/Navbar/index'
-import { BattlePage } from './components/views/BattlePage';
-import { HomePage } from './components/views/HomePage';
-import { LeaderboardPage } from './components/views/LeaderboardPage';
-import { ProfilePage } from './components/views/ProfilePage';
-import { QueuePage } from './components/views/QueuePage';
-import { LandingPage } from './components/views/LandingPage';
+
+//services imports 
+import { getUserById, addUser } from './services/userServices';
 
 function App() {
 
+  const { user } = useAuth0();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (user && user.sub && user.picture) {
+          const clientUser = await getUserById(user?.sub)
+          console.log(clientUser);
+          if (clientUser.error === true) {
+            const newUser = await addUser(user.sub, 'Hello', user.picture)
+            dispatch(updateUser(newUser))
+          }
+          else {
+            dispatch(updateLogged(true));
+            dispatch(updateUser(clientUser.res))
+          }
+        }
+        else {
+          dispatch(updateLogged(false));
+        }
+      }
+      catch (error) {
+        dispatch(updateLogged(false));
+      }
+    })()
+  }, [user])
+
   return (
     <ReduxProvider store={store}>
-      <BrowserRouter>
-        <div className='navbar-outer-container'>
-          <NavBar />
-        </div>
-        <section className='views-container'>
-          <Routes>
-            <Route path='/' element={<LandingPage />}/>
-            <Route path='/home' element={<HomePage />}/>
-            <Route path='/profile' element={<ProfilePage />}/>
-            <Route path='/battle' element={<BattlePage />}/>
-            <Route path='/queue' element={<QueuePage />} />
-            <Route path='/leaderboard' element={<LeaderboardPage />} />
-          </Routes>
-        </section>
-      </BrowserRouter>
+      <div className='navbar-outer-container'>
+        <NavBar />
+      </div>
     </ReduxProvider>
   );
 }
