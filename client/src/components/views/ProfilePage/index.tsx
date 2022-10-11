@@ -1,3 +1,4 @@
+import { RecentEventsFeed } from '../HomePage/RecentEventsFeed';
 import { AvatarContainer } from './AvatarContainer/index';
 import { FriendsList } from './FriendsList';
 import { MatchHistory } from './MatchHistory';
@@ -13,7 +14,7 @@ export function ProfilePage () {
         <ProfileInfoContainer/>
         <FriendsList />
       </div>
-      <MatchHistory />
+      <RecentEventsFeed />
     </div>
   )
 }
