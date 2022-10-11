@@ -32,7 +32,7 @@ export function PopUp () {
       setInputError(false);
       const newUser = await addUser(user.sub, username, user.picture);
       dispatch(updateUser(newUser));
-      // navigate('/home')
+      navigate('/home');
     }
   }
 
@@ -43,7 +43,7 @@ export function PopUp () {
           <h1>Choose username below</h1>
         </div>
         <form className={styles.pop_up_form}>
-          {!inputError && <TextField label='username' onChange={(e) => {setUsername(e.target.value)}} value={username}> </TextField>}
+          {!inputError && <TextField onChange={(e) => {setUsername(e.target.value)}} value={username}> </TextField>}
           {inputError && <TextField error label='error' helperText="username taken"  onChange={(e) => {
             setUsername(e.target.value)
             }} value={username}> </TextField>}
