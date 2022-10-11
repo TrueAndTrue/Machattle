@@ -7,17 +7,28 @@ import master from '../../../assets/Master.png'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getUserById, getUserByUsername } from '../../../services/userServices';
 
 export function LandingPage () {
 
   const { user } = useAuth0();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user) {
-      navigate('/home');
-    }
-  }, [user])
+  // useEffect(() => {
+  //   (async () => {
+  //     if (user && user.sub) {
+  //       const returnUser = await getUserById(user?.sub);
+  //       if (returnUser?.error === true) {
+
+  //       }
+
+
+
+  //       // navigate('/home');
+  //     }
+      
+  // })()
+  // }, [user])
 
   return (
     <div className={styles.landing_page_container}>
