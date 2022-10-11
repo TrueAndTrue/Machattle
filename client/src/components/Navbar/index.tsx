@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function NavBar () {
 
-
+  // console.log(pfp, 'in nav')
   const navigate = useNavigate();
   const nav = () => {
     navigate('/profile')
@@ -18,7 +18,7 @@ export default function NavBar () {
     <div className={styles.navbar_container}>
       <DropdownMenu />
       <Mascot />
-      <Button onClick={nav}>Profile</Button>
+      {/* <Button onClick={nav}>Profile</Button> */}
       <LogoutButton />
     </div>
   )
