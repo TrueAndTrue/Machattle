@@ -8,9 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function NavBar () {
 
-  const pfp = useSelector((state: any) => state.currentUser.image);
 
-  console.log(pfp, 'in nav')
   const navigate = useNavigate();
   const nav = () => {
     navigate('/profile')
@@ -19,7 +17,6 @@ export default function NavBar () {
   return (
     <div className={styles.navbar_container}>
       <DropdownMenu />
-      {pfp && <img className={styles.pfp} src={pfp} alt='profile pic'/>}
       <Mascot />
       <Button onClick={nav}>Profile</Button>
       <LogoutButton />
