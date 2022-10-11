@@ -7,6 +7,7 @@ import SocketContext from '../../../../contexts/Context';
 import { useSocket } from '../../../../hooks/useSocket';
 import { useReducer } from 'react';
 import { defaultSocketContextState, SocketContextProvider, SocketReducer } from '../../../../contexts/Context';
+import { useSelector } from 'react-redux';
 
 interface IProps {
   data: string,
@@ -14,12 +15,14 @@ interface IProps {
 
 export const MatchButton: FunctionComponent<IProps> = (data) => {
 
-  const { socket, uid, users, inQueue } = useContext(SocketContext).SocketState
+  const { socket, users, inQueue } = useContext(SocketContext).SocketState
   const navigate = useNavigate();
   const [matchFound, setMatchFound] = useState(false);
   const [SocketState, SocketDispatch] = useReducer(SocketReducer, defaultSocketContextState);
 
   socket?.connect();
+
+  const userInfo = useSelector((state: any) => state.currentUser)
 
   socket?.on('match_found', () => {
     setMatchFound(true);
@@ -28,9 +31,9 @@ export const MatchButton: FunctionComponent<IProps> = (data) => {
 
 
   const QueueHandler = () => {
-    console.log(uid)
-    SocketDispatch({type: 'queue_user', payload: uid})
-    socket?.emit('queue_user', (uid))
+    console.log(userInfo.uid)
+    SocketDispatch({type: 'queue_user', payload: userInfo.uid})
+    socket?.emit('queue_user', (userInfo.uid))
     console.log(inQueue)
   }
 
