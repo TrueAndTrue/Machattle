@@ -1,3 +1,34 @@
 .profile_card_container {
+  height: 85%;
+  width: 80%;
   display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #4ecca3;
+  margin-top: 5%;
+  margin-right: 10%
+}
+
+.profile_info {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.profile_img {
+  width: 33%;
+}
+
+.profile_username {
+  width: 33%;
+}
+
+.profile_ramk {
+  width: 33%;
+}
+
+.ranked_logo {
+  width: 95px;
 }
