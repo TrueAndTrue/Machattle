@@ -72,7 +72,7 @@ export class ServerSocket {
       const queued = await Inqueue.findAll();
       if (queued.length >= 1) {
         console.log('should not create room.')
-        if (!(uid === queued[0].uid)) {
+        if (uid === queued[0].uid) {
           console.log('Same user cannot queue into himself.')
         }
         else {
