@@ -46,7 +46,7 @@ export const getUserById = async (uid :string) => {
 
 export const addFriend = async (uid : string , friendUID :string) => {
   try {
-    const response = await fetch(`${BASE_URL}/user/${uid}/addFriend` , {
+    const response = await fetch(`${BASE_URL}/users/${uid}/addFriend` , {
       headers: {
         'Content-Type': 'application/json',
         method :'PUT',
@@ -60,7 +60,7 @@ export const addFriend = async (uid : string , friendUID :string) => {
 
 export const addExercise = async (uid :string, questionId : number) => {
   try {
-    const response = await fetch(`${BASE_URL}/user/${uid}/addExercise` , {
+    const response = await fetch(`${BASE_URL}/users/${uid}/addExercise` , {
       headers: {
         'Content-Type': 'application/json',
         method :'PUT',
@@ -74,7 +74,7 @@ export const addExercise = async (uid :string, questionId : number) => {
 
 export const getUserExercises = async (uid :string) => {
   try {
-    const response = await fetch(`${BASE_URL}/user/${uid}/exercises` , {
+    const response = await fetch(`${BASE_URL}/users/${uid}/exercises` , {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -88,7 +88,21 @@ export const getUserExercises = async (uid :string) => {
 
 export const getUserChallenges = async (uid :string) => {
   try {
-    const response = await fetch(`${BASE_URL}/user/${uid}/challenges` , {
+    const response = await fetch(`${BASE_URL}/users/${uid}/challenges` , {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export const getTopUsers = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/leaderBoard` , {
       headers: {
         'Content-Type': 'application/json',
       }

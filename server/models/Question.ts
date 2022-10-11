@@ -38,6 +38,12 @@ Question.init({
   }, 
   timeElapsed : {
     type :DataTypes.STRING
+  },
+  functionName : {
+    type :DataTypes.STRING
+  },
+  functionParameters : {
+    type :DataTypes.ARRAY(DataTypes.STRING)
   }
 } , {
   sequelize,

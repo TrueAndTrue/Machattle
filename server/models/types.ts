@@ -5,9 +5,11 @@ export interface IQuestion{
   id: number;
   question :string;
   timeComplexity : string;
-  tests : string[];
+  tests : string[][];
   difficulty :string;
   timeElapsed :string;
+  functionName : string
+  functionParameters : string[]
 }
 
 
@@ -37,7 +39,7 @@ export interface IQueue {
 export interface IChallenge{
   id: number; 
   tie :boolean;
-  winnerId : ForeignKey<string>
-  loserId: ForeignKey<string>
-  questionId :ForeignKey<number>
+  winnerId : ForeignKey<string>;
+  loserId: ForeignKey<string>;
+  questionId :ForeignKey<number>;
 }

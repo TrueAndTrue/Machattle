@@ -3,9 +3,26 @@ import { User } from "../models/User";
 import { Question } from "../models/Question";
 import { Challenge } from '../models/Challenge';
 
+
+export const getTopUsers = async (req :Request, res :Response) => {
+  try{ 
+    const users = await User.findAll({
+      attributes: ['username', 'rating', 'image'],
+      order: [['rating', 'DESC']],
+      limit: 10
+    });
+    res.status(200).send({error : false, res :users});
+  }catch (e) {
+    res.status(500).send({error :true , res :'Error Getting Exercises' });
+  }
+}
+
 export const getAllUsers = async (req :Request, res :Response) => {
   try{ 
-    const users = await User.findAll();
+    const users = await User.findAll({
+      attributes: ['username', 'rating', 'image'],
+      order: [['rating', 'DESC']]
+    });
     res.status(200).send({error : false, res :users});
   }catch (e) {
     res.status(500).send({error :true , res :'Error Getting Exercises' });

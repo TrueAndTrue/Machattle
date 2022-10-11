@@ -3,10 +3,6 @@ import { currentQuestion} from './questionReducer'
 //import actions
 //user actions
 //question actions
-const {
-  UPDATE_CURRENTANSWER,
-  UPDATE_SUBMITTEDANSWER,
-} = require('./actions/question');
 
 const {
   UPDATE_LOGGED

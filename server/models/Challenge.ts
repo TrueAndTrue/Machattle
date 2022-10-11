@@ -1,6 +1,5 @@
 import {
   Association,
-  HasManyAddAssociationMixin,
   Model,
   Optional,
   DataTypes,

@@ -14,3 +14,9 @@ export interface IQuestion{
   difficulty :string;
   timeElapsed :string;
 }
+
+export interface ILeaderBoardUser {
+  username : string;
+  userRating : number;
+  userImage :string
+}
