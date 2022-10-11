@@ -1,6 +1,8 @@
 import styles from './styles.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
+import { useContext } from 'react';
+import SocketContext from '../../../../contexts/Context';
 
 //code transpilation!?
 import { updateSubmittedAnswer } from '../../../../state/actions/question';
@@ -14,7 +16,12 @@ export function SubmitButton () {
   const dispatch = useDispatch();
   const codeSubmission = useSelector((state: any) => state.currentQuestion.currentAnswer);
   const testArray = useSelector((state: any) => state.currentQuestion.tests);
+  const thisUser = useSelector((state: any) => state.currentUser.uid);
   const [ getUpdate, setUpdate ] = useState('');
+  const { roomId, player1, player2 } = useSelector((state: any) => state.match);
+  const { socket } = useContext(SocketContext).SocketState
+  const [winnerText, setWinnerText] = useState('')
+  socket?.connect();
 
   useEffect (() => {
   }, [getUpdate])
@@ -45,8 +52,22 @@ export function SubmitButton () {
         }
       };
     })
+
+    if (testsPassed === testArray.length) {
+      socket?.emit('player_won', thisUser, roomId);
+    }
+
     setUpdate(getUpdate + 'rerender');
   }
+
+  socket?.on('winner', (winner) => {
+    if (thisUser === winner) {
+      setWinnerText('YOU WON!')
+    }
+    else {
+      setWinnerText('You lost ;(')
+    }
+  })
 
   return (
     <div className={styles.submit_button_container} >
@@ -58,6 +79,7 @@ export function SubmitButton () {
         : <p>{failError}</p>
         }
       </div>
+      {winnerText}
     </div>
   )
 }
