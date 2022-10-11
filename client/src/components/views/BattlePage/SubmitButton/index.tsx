@@ -7,6 +7,7 @@ import SocketContext from '../../../../contexts/Context';
 //code transpilation!?
 import { updateSubmittedAnswer } from '../../../../state/actions/question';
 import { useEffect, useState } from 'react';
+import { getUserById } from '../../../../services/userServices';
 
 let testsFailed = 0;
 let testsPassed = 0;
