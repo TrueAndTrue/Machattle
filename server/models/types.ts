@@ -9,7 +9,7 @@ export interface IQuestion{
   difficulty :string;
   timeElapsed :string;
   functionName : string
-  functionParameters : string[]
+  parameters : string[]
 }
 
 

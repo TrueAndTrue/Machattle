@@ -42,7 +42,7 @@ Question.init({
   functionName : {
     type :DataTypes.STRING
   },
-  functionParameters : {
+  parameters : {
     type :DataTypes.ARRAY(DataTypes.STRING)
   }
 } , {
