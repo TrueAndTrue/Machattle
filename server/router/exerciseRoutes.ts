@@ -4,7 +4,7 @@ import { getAllExercises, addExercise , getExerciseById, getRandomExercise } fro
 const router = Router();
 
 router.get('/', getAllExercises);
-router.get('/random', getRandomExercise);
+router.get('/random/:difficulty', getRandomExercise);
 router.get('/:id', getExerciseById);
 
 router.post('/create',addExercise);

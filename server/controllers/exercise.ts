@@ -35,8 +35,7 @@ export const addExercise = async (req : Request, res : Response) => {
 
 export const getRandomExercise = async (req :Request, res : Response) =>{
   try {
-    console.log(req.body)
-    const difficulty ='2';
+    const {difficulty} = req.params
     const questions = await Question.findAll({where: {difficulty}});
     const numQuestions = questions.length;
     const questionIndex = Math.floor(Math.random()*numQuestions)
