@@ -7,10 +7,6 @@ import styles from './styles.module.css';
 
 export function HomePage () {
 
-  const { uid, users, inQueue } = useContext(SocketContext).SocketState
-
-  console.log(inQueue);
-
   return (
     <div className={styles.home_page_container}>
       <MatchButton data={'queue'}/>

@@ -24,17 +24,15 @@ export const MatchButton: FunctionComponent<IProps> = (data) => {
 
   const userInfo = useSelector((state: any) => state.currentUser)
 
-  socket?.on('match_found', () => {
-    setMatchFound(true);
-    navigate('/battle');
-  })
+  // socket?.on('match_found', () => {
+  //   setMatchFound(true);
+  //   navigate('/battle');
+  // })
 
 
   const QueueHandler = () => {
-    console.log(userInfo.uid)
     SocketDispatch({type: 'queue_user', payload: userInfo.uid})
     socket?.emit('queue_user', (userInfo.uid))
-    console.log(inQueue)
   }
 
   return (

@@ -17,6 +17,30 @@ const {
   UPDATE_USER
 } = require('./actions/user');
 
+const {
+  UPDATE_MATCH
+} = require('./actions/match');
+
+const match = (match = {
+  player1: '',
+  player2: '',
+  matchFound: false,
+  winner: '',
+  loser: '',
+  roomId: ''
+  }, 
+  action
+) => {
+  switch (action.type) {
+    case UPDATE_MATCH: {
+      const { player1, player2, matchFound, winner, loser, roomId } = action.matchInfo;
+      return {...match, player1, player2, matchFound, winner, loser, roomId}
+    }
+    default: 
+      return {...match}
+  }
+}
+
 
 const status = (status = {
   loggedIn: false,
@@ -53,4 +77,4 @@ const currentUser = (currentUser = {
   }
 };
 
-export default combineReducers({ status, currentUser, currentQuestion, currentBoard });
+export default combineReducers({ status, currentUser, currentQuestion, currentBoard, match });
