@@ -4,10 +4,9 @@ process.env.NODE_ENV ===  'production' ?
   BASE_URL = 'http://localhost:3030/api'
 
 
-export const addUser = async (uid: string, username: string) => {
+export const addUser = async (uid: string, username: string, image: string) => {
   try {
     const rank = 'Silver 4'
-    const image = 'Mock.url'
     const rating = 1200
     const response = await fetch(`${BASE_URL}/users/create`, {
       method: 'POST',
