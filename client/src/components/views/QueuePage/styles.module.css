@@ -1,3 +1,45 @@
 .queue_page_container {
   display: flex;
+  width: 100vw;
+  justify-content: center;
+  background-color: #393e46;
+}
+
+.queue_page_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 30vw;
+  margin-top: 35px;
+  background-color: #4ecca3;
+  height: 40vh;
+  border-radius: 25px;
+  border-color: #eeeeee;
+  border-style: inset;
+  border-width: 10px;
+}
+
+.queue_text {
+  display: flex;
+  margin-top: 50px;
+  font-size: 28px;
+  font-weight: 500;
+  /* height: 50px; */
+  background-color: #232931;
+  color: #eeeeee;
+  width: 100%;
+  justify-content: center;
+}
+
+.loading_bar {
+  margin-top: 12px;
+  width: 66%;
+  background-color: #232931;
+}
+
+.robot_mascot {
+  width: 75px;
+  margin-top: 40px;
+  margin-bottom: 75px;
 }
