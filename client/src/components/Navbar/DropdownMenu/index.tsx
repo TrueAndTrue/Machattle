@@ -1,24 +1,28 @@
-import * as React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux'; 
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import * as React from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 
-import { IUser } from '../../../types';
-import styles from './styles.module.css';
-import { MilitaryTech, PrecisionManufacturing, SmartToy } from '@mui/icons-material';
+import { IUser } from "../../../types";
+import styles from "./styles.module.css";
+import {
+  MilitaryTech,
+  PrecisionManufacturing,
+  SmartToy,
+} from "@mui/icons-material";
 
 interface IState {
-  currentUser : IUser
+  currentUser: IUser;
 }
 
-type Anchor = 'left'
+type Anchor = "left";
 
 export function DropdownMenu() {
   const [state, setState] = React.useState({
@@ -28,15 +32,15 @@ export function DropdownMenu() {
     right: false,
   });
 
-  const username = useSelector((state :IState) => state.currentUser.username )
+  const username = useSelector((state: IState) => state.currentUser.username);
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
       ) {
         return;
       }
@@ -46,39 +50,38 @@ export function DropdownMenu() {
 
   const list = (anchor: Anchor) => (
     <Box
-
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <ListItem key={'Home'} disablePadding>
-          <Link to={'/Home'} className={styles.link_text}>
-            <ListItemButton >
+        <ListItem key={"Home"} disablePadding>
+          <Link to={"/Home"} className={styles.link_text}>
+            <ListItemButton>
               <ListItemIcon>
                 <SmartToy />
               </ListItemIcon>
-              <ListItemText primary={'Home'} />
+              <ListItemText primary={"Home"} />
             </ListItemButton>
           </Link>
         </ListItem>
-        <ListItem key={'Profile'} disablePadding>
+        <ListItem key={"Profile"} disablePadding>
           <Link to={`/Profile/${username}`} className={styles.link_text}>
             <ListItemButton>
               <ListItemIcon>
                 <PrecisionManufacturing />
               </ListItemIcon>
-              <ListItemText primary={'Profile'} />
+              <ListItemText primary={"Profile"} />
             </ListItemButton>
           </Link>
         </ListItem>
-        <ListItem key={'Leaderboard'} disablePadding>
-          <Link to={'/Leaderboard'} className={styles.link_text}>
+        <ListItem key={"Leaderboard"} disablePadding>
+          <Link to={"/Leaderboard"} className={styles.link_text}>
             <ListItemButton>
               <ListItemIcon>
                 <MilitaryTech />
               </ListItemIcon>
-              <ListItemText primary={'Leaderboard'} />
+              <ListItemText primary={"Leaderboard"} />
             </ListItemButton>
           </Link>
         </ListItem>
@@ -88,9 +91,14 @@ export function DropdownMenu() {
 
   return (
     <div className={styles.dropdown_btn_container}>
-      {(['left'] as const).map((anchor) => (
+      {(["left"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button className={styles.dropdown_btn} onClick={toggleDrawer(anchor, true)}>- - -</Button>
+          <Button
+            className={styles.dropdown_btn}
+            onClick={toggleDrawer(anchor, true)}
+          >
+            - - -
+          </Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

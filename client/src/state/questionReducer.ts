@@ -1,4 +1,4 @@
-import { IQuestion } from '../types'
+import { IQuestion } from "../types";
 import {
   UPDATE_QUESTION,
   UPDATE_EDITORPROMPT,
@@ -6,30 +6,30 @@ import {
   UPDATE_SUBMITTEDANSWER,
   UPDATE_TESTS,
   UPDATE_ATTEMPTS,
-} from './actions/question';
+} from "./actions/question";
 
-interface Qaction{
-  type : string;
-  question :IQuestion;
+interface Qaction {
+  type: string;
+  question: IQuestion;
   editorPrompt: string;
   currentAnswer: string;
-  submittedAnswer : string;
+  submittedAnswer: string;
   tests: [];
   attempts: number;
 }
 
 const initialQuestion = {
-  difficulty: '',
-  question: '',
-  editorPrompt: '',
-  currentAnswer: '',
-  submittedAnswer: '',
-  finalAnswer: '',
+  difficulty: "",
+  question: "",
+  editorPrompt: "",
+  currentAnswer: "",
+  submittedAnswer: "",
+  finalAnswer: "",
   tests: [],
   attempts: 0,
-}
+};
 
-export const currentQuestion = (state = initialQuestion, action : Qaction) => {
+export const currentQuestion = (state = initialQuestion, action: Qaction) => {
   switch (action.type) {
     case UPDATE_QUESTION:
       return { state, ...action.question };
