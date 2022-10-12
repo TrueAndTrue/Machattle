@@ -21,3 +21,8 @@ export interface ILeaderBoardUser {
   rating : number;
   image :string
 }
+
+export interface IUser extends ILeaderBoardUser{
+  rank :string;
+  friends :[]
+}

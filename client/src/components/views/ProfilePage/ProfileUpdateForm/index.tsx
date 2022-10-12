@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 export function ProfileUpdateForm () {
-
   const user = useSelector((state: any) => state.currentUser);
   const [userPfp, setUserPfp] = useState('');
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { useSelector } from 'react-redux'; 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -10,8 +10,13 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
+import { IUser } from '../../../types';
 import styles from './styles.module.css';
 import { MilitaryTech, PrecisionManufacturing, SmartToy } from '@mui/icons-material';
+
+interface IState {
+  currentUser : IUser
+}
 
 type Anchor = 'left'
 
@@ -23,10 +28,7 @@ export function DropdownMenu() {
     right: false,
   });
 
-  // const navigate = useNavigate();
-  // const nav = () => {
-  //   navigate('/profile')
-  // }
+  const username = useSelector((state :IState) => state.currentUser.username )
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -61,7 +63,7 @@ export function DropdownMenu() {
           </Link>
         </ListItem>
         <ListItem key={'Profile'} disablePadding>
-          <Link to={'/Profile'} className={styles.link_text}>
+          <Link to={`/Profile/${username}`} className={styles.link_text}>
             <ListItemButton>
               <ListItemIcon>
                 <PrecisionManufacturing />

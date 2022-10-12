@@ -44,8 +44,8 @@ export const getUserById = async (uid :string) => {
 export const getUserByUsername = async (username: string) => {
   try {
     const response = await fetch(`${BASE_URL}/users/${username}/username`)
-    console.log(response);
-    return response;
+    const data = await response.json()
+    return data.res;
   } catch (error) {
     console.log(error)
   }

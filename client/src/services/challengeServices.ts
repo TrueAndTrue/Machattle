@@ -47,6 +47,7 @@ export const createChallenge = async(challenge : IChallenge) => {
         'Content-Type': 'application/json',
       }
     })
+    
     const data = await response.json()
     return data.res
   } catch (e) {

@@ -37,7 +37,7 @@ root.render(
               <Routes>
                 <Route path='/' element={<LandingPage />}/>
                 <Route path='/home' element={<HomePage />}/>
-                <Route path='/profile' element={<ProfilePage />}/>
+                <Route path='/profile/:username' element={<ProfilePage />}/>
                 <Route path='/username' element={<PopUp />} />
                 <Route path='/battle' element={<BattlePage />}/>
                 <Route path='/queue' element={<QueuePage />} />
