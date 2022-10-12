@@ -1,0 +1,24 @@
+#friend_card{
+  display: flex;
+  flex-direction: column;
+  width:100px;
+  justify-content: center;
+}
+
+#friend_link{
+  text-align: center;
+  color:black;
+  height:50px;
+}
+
+#friend_link:link {
+  text-decoration: none;
+}
+
+#pfp{
+  width:40px;
+  height:40px;
+  object-fit: scale-down;
+  background-size:contain;
+  align-self: center;
+}
