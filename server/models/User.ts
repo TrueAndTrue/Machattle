@@ -5,34 +5,33 @@ import {
   Optional,
   DataTypes,
 } from "sequelize";
-import { Challenge } from './Challenge'
-import { sequelize } from './index'
-import { Question } from './Question';
-import { IUser } from './types';
+import { Challenge } from "./Challenge";
+import { sequelize } from "./index";
+import { Question } from "./Question";
+import { IUser } from "./types";
 
-interface UserCreationAttributes extends Optional<IUser, 'id'> {}
+interface UserCreationAttributes extends Optional<IUser, "id"> {}
 
 export class User extends Model<IUser, UserCreationAttributes> {
-  public id! : number
-  public uid! :string
-  public rank! :string;
-  public rating! : number;
-  public username! : string
-  public image! : string;
+  public id!: number;
+  public uid!: string;
+  public rank!: string;
+  public rating!: number;
+  public username!: string;
+  public image!: string;
 
   public addQuestion!: HasManyAddAssociationMixin<Question, number>;
-  public addFriend! : HasManyAddAssociationMixin<User, string>;
-  public addChallenge! : HasManyAddAssociationMixin<Challenge, number>;
-  
+  public addFriend!: HasManyAddAssociationMixin<User, string>;
+  public addChallenge!: HasManyAddAssociationMixin<Challenge, number>;
+
   public readonly questions?: Question[];
   public readonly challenges?: Challenge[];
 
   public static associations: {
     questions: Association<User, Question>;
     friends: Association<User, User>;
-    challenges :Association<User, Challenge>
-  }; 
-
+    challenges: Association<User, Challenge>;
+  };
 }
 
 User.init(
@@ -44,13 +43,13 @@ User.init(
     },
     uid: {
       type: DataTypes.STRING,
-      allowNull :false,
-      unique:true
+      allowNull: false,
+      unique: true,
     },
     username: {
       type: new DataTypes.STRING(128),
       allowNull: false,
-      unique:true
+      unique: true,
     },
     rank: {
       type: new DataTypes.STRING(128),
@@ -60,8 +59,8 @@ User.init(
       type: new DataTypes.STRING(128),
       allowNull: false,
     },
-    rating : {
-      type: new DataTypes.INTEGER,
+    rating: {
+      type: new DataTypes.INTEGER(),
       allowNull: false,
     },
   },
@@ -71,7 +70,7 @@ User.init(
   }
 );
 
-User.belongsToMany(User, { as: 'friends', through: 'UserFriends' })
+User.belongsToMany(User, { as: "friends", through: "UserFriends" });
 
 //two 1-to-many associations between user and challanges
 User.hasMany(Challenge, {
@@ -82,10 +81,10 @@ User.hasMany(Challenge, {
 User.hasMany(Challenge, {
   sourceKey: "uid",
   foreignKey: "loserId",
-  as: "LostChallenges"
+  as: "LostChallenges",
 });
 
-Challenge.belongsTo(User, {foreignKey: "winnerId"});
-Challenge.belongsTo(User, {foreignKey: "loserId"});
-User.belongsToMany(Question, {through : 'userQuestions'});
-Question.belongsToMany(User, {through : 'userQuestions'});
+Challenge.belongsTo(User, { foreignKey: "winnerId" });
+Challenge.belongsTo(User, { foreignKey: "loserId" });
+User.belongsToMany(Question, { through: "userQuestions" });
+Question.belongsToMany(User, { through: "userQuestions" });

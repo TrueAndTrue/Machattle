@@ -1,33 +1,32 @@
-let BASE_URL : string;
-process.env.NODE_ENV ==  'production' ?
-  BASE_URL = 'https://machattle.herokuapp.com/api' :
-  BASE_URL = 'http://localhost:3030/api'
+let BASE_URL: string;
+process.env.NODE_ENV == "production"
+  ? (BASE_URL = "https://machattle.herokuapp.com/api")
+  : (BASE_URL = "http://localhost:3030/api");
 
-
-export const getExerciseById = async (id : string) => {
+export const getExerciseById = async (id: string) => {
   try {
-    const response = await fetch(`${BASE_URL}/exercises/${id}` , {
+    const response = await fetch(`${BASE_URL}/exercises/${id}`, {
       headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-    const data = await response.json()
-    return data.res
-  } catch (e) {
-    console.log(e)
-  }
-}
-
-export const getRandomExercise = async (difficulty : number) => {
-  try {
-    const response = await fetch(`${BASE_URL}/exercises/random/${difficulty}` , {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+        "Content-Type": "application/json",
+      },
+    });
     const data = await response.json();
     return data.res;
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
-}
+};
+
+export const getRandomExercise = async (difficulty: number) => {
+  try {
+    const response = await fetch(`${BASE_URL}/exercises/random/${difficulty}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data.res;
+  } catch (e) {
+    console.log(e);
+  }
+};

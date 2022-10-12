@@ -1,30 +1,29 @@
-import { FunctionComponent } from 'react'
-import { MatchButton } from '../MatchButton/index';
-import styles from './styles.module.css';
-import robo from '../../../../assets/CodeBot004.gif';
+import { MatchButton } from "../MatchButton/index";
+import styles from "./styles.module.css";
+import robo from "../../../../assets/CodeBot004.gif";
 
 interface IProps {
-  mode: string,
+  mode: string;
 }
 
-export const MatchCard= ({ mode}:IProps ) => {
-
+export const MatchCard = ({ mode }: IProps) => {
   let matchObj = {
-    title: '',
-    buttonText: '',
-    body: '',
+    title: "",
+    buttonText: "",
+    body: "",
   };
 
-  if (mode === 'ranked') {
-    matchObj.title = 'RANKED BATTLE';
-    matchObj.buttonText = 'Find Match';
-    matchObj.body = 'Complete a challenge head-to-head with another opponent to improve your ranking!';
+  if (mode === "ranked") {
+    matchObj.title = "RANKED BATTLE";
+    matchObj.buttonText = "Find Match";
+    matchObj.body =
+      "Complete a challenge head-to-head with another opponent to improve your ranking!";
   } else {
-    matchObj.title = 'PRACTICE BATTLE';
-    matchObj.buttonText = 'Enter Match';
-    matchObj.body = 'Complete a coding challenge alone. Practice your skills, without changing ranking!';
-  };
-
+    matchObj.title = "PRACTICE BATTLE";
+    matchObj.buttonText = "Enter Match";
+    matchObj.body =
+      "Complete a coding challenge alone. Practice your skills, without changing ranking!";
+  }
 
   return (
     <div className={styles.match_card_container}>
@@ -32,8 +31,8 @@ export const MatchCard= ({ mode}:IProps ) => {
         <p>{matchObj.title}</p>
       </div>
       <p className={styles.body_text}>{matchObj.body}</p>
-      <MatchButton data={matchObj.buttonText} mode ={mode} />
-      <img src={robo} alt='robot logo' className={styles.robot_mascot}/>
+      <MatchButton data={matchObj.buttonText} mode={mode} />
+      <img src={robo} alt="robot logo" className={styles.robot_mascot} />
     </div>
-  )
-}
+  );
+};
