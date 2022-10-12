@@ -8,16 +8,14 @@ import styles from './styles.module.css';
 export function ProfileCard () {
   const user = useContext(UserContext).user;
   //const user = useSelector((state: any) => state.currentUser);
-    
+  console.log(user.image)
   return (
     <div className={styles.profile_card_container}>
       <div className={styles.profile_info}>
         <div className={styles.profile_username}>
           <h2>{(user.username) || 'Username'}</h2>
         </div>
-        <div className={styles.profile_img}>
-          <img src={user.image} alt='profile pic' />
-        </div>
+        <div id={styles.profile_img} style={{ backgroundImage: `url(${user.image})` }} />
         <div className={styles.profile_rank}>
           <h2>Your Rank:</h2>
           <h1>{(user.rank) || 'Unranked'}</h1>

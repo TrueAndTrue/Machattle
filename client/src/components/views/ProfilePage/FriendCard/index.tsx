@@ -15,7 +15,7 @@ export const FriendCard = ({friend} :IProps) => {
       <Link to ={`../../profile/${friend.username}`} relative="path" id = {styles.friend_link}>
         <h4>{friend.username}</h4>
       </Link>
-      <image  id ={styles.pfp} style={{ backgroundImage: `url(/pfp/${friend.image})` }} />
+      <image  id ={styles.pfp} style={{ backgroundImage: `url(${friend.image})` }} />
     </div>
   )
 }

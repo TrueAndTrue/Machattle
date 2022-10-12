@@ -13,7 +13,7 @@ export function LeaderboardCard ({user, position} :IProps) {
       <div id = {styles.user_card} >
         <p>{position}</p>
         <Link to={`/profile/${user.username}`}><p>{user.username}</p></Link>
-        <div  id ={styles.pfp} style={{ backgroundImage: `url(/pfp/${user.image})` }} />
+        <div  id ={styles.pfp} style={{ backgroundImage: `url(${user.image})` }} />
       </div>
     </div>
   )
