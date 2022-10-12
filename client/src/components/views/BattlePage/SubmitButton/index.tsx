@@ -1,26 +1,32 @@
 import styles from "./styles.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Button } from "@mui/material";
 import { useContext } from "react";
 import SocketContext from "../../../../contexts/Context";
 
 //code transpilation!?
 import { useEffect, useState } from "react";
+import { updateMatch } from "../../../../state/actions/match";
 
 let testsFailed = 0;
 let testsPassed = 0;
 let failError = "";
 
-export function SubmitButton() {
+interface IProps {
+  setTrigger: Function
+}
+
+export function SubmitButton(props: IProps) {
   const codeSubmission = useSelector(
     (state: any) => state.currentQuestion.currentAnswer
   );
   const testArray = useSelector((state: any) => state.currentQuestion.tests);
   const thisUser = useSelector((state: any) => state.currentUser.uid);
   const [getUpdate, setUpdate] = useState("");
+
   const { roomId, player1, player2 } = useSelector((state: any) => state.match);
   const { socket } = useContext(SocketContext).SocketState;
-  const [winnerText, setWinnerText] = useState("");
+  const dispatch = useDispatch();
   socket?.connect();
 
   useEffect(() => {}, [getUpdate]);
@@ -53,17 +59,45 @@ export function SubmitButton() {
     });
 
     if (testsPassed === testArray.length) {
+      console.log('player has won')
       socket?.emit("player_won", thisUser, roomId);
     }
 
     setUpdate(getUpdate + "rerender");
   }
 
+  const findEnemy = (uid1: string, uid2: string) => {
+    if (uid1 === thisUser) {
+      return uid2;
+    }
+    else {
+      return uid1;
+    }
+  }
+
   socket?.on("winner", (winner) => {
+    console.log('IN')
+    const enemy = findEnemy(player1, player2);
     if (thisUser === winner) {
-      setWinnerText("YOU WON!");
+      props.setTrigger(true)
+      dispatch(updateMatch({
+        player1: player1,
+        player2: player2,
+        matchFound: true,
+        winner: thisUser,
+        loser: enemy,
+        roomId: roomId
+      }));
     } else {
-      setWinnerText("You lost ;(");
+      props.setTrigger(true)
+      dispatch(updateMatch({
+        player1: player1,
+        player2: player2,
+        matchFound: true,
+        winner: enemy,
+        loser: thisUser,
+        roomId: roomId
+      }))
     }
   });
 
@@ -80,7 +114,6 @@ export function SubmitButton() {
           <p>{failError}</p>
         )}
       </div>
-      {winnerText}
     </div>
   );
 }
