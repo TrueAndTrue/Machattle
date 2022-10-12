@@ -20,10 +20,16 @@
   color: #393e46;
 }
 
-.profile_img {
+#profile_img {
   display: flex;
   justify-content: center;
   width: 33%;
+  min-width: 130px;
+  min-height: 130px;
+  object-fit: scale-down;
+  background-size:contain;
+  align-self: center;
+  background-repeat: no-repeat;
 }
 
 .profile_username {
