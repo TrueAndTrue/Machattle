@@ -8,9 +8,12 @@ export class ServerSocket {
 
   public users: { [uid: string]: string };
 
+  public uid: string
+
   constructor(server: HTTPServer) {
     ServerSocket.instance = this;
     this.users = {};
+    this.uid = '';
     this.io = new Server(server, {
       serveClient: false,
       pingInterval: 10000,
@@ -28,17 +31,24 @@ export class ServerSocket {
   StartListeners = (socket: Socket) => {
     console.info("Message Received from " + socket.id);
 
+    socket.on("send_uid", (uid: string) => {
+      if (uid) {
+        this.uid = uid;
+        console.log(this.uid, 'THIS.UID')
+      }
+    })
+
     socket.on(
       "handshake",
       (callback: (uid: string, users: string[]) => void) => {
         console.info("Handshake received from " + socket.id);
-
         const reconnected = Object.values(this.users).includes(socket.id);
 
         if (reconnected) {
           console.log("this user has reconnected");
 
-          const uid = this.GetUidFromSocketId(socket.id);
+          const uid = this.uid
+          console.log(uid, 'inside handshaek')
           const users = Object.values(this.users);
 
           if (uid) {
@@ -48,7 +58,8 @@ export class ServerSocket {
           }
         }
 
-        const uid = JSON.stringify(Math.floor(Math.random() * 100000));
+        const uid = this.uid
+        console.log(uid, 'also in hadnskae')
         this.users[uid] = socket.id;
         const users = Object.values(this.users);
 
@@ -73,6 +84,11 @@ export class ServerSocket {
       console.log("queued user.");
       const queued = await Inqueue.findAll();
       if (queued.length >= 1) {
+        if (uid == '0') {
+          console.log('UID WAS 0');
+          return;
+        } 
+
         if (uid === queued[0].uid) {
           console.info("Same user cannot queue into himself.");
         } else {
@@ -86,18 +102,24 @@ export class ServerSocket {
           });
         }
       } else {
+        if (uid == '0') {
+          console.log('UID WAS 0');
+          return;
+        } 
         const room = JSON.stringify(Math.floor(Math.random() * 1000));
         socket.join(room);
         await Inqueue.create({ uid: uid, roomId: room });
       }
     });
 
-    socket.on("disconnect", () => {
+    socket.on("disconnect", async () => {
       console.info("Disconnect received from " + socket.id);
 
-      const uid = this.GetUidFromSocketId(socket.id);
+      const uid = this.uid;
+      console.log(uid, 'IN DISCONNECT');
 
       if (uid) {
+        await Inqueue.destroy({ where: { uid: uid }});
         delete this.users[uid];
         const users = Object.values(this.users);
         this.SendMessage("user_disconnected", users, uid);
