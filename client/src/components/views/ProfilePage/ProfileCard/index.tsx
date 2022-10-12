@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 export function ProfileCard () {
   const user = useContext(UserContext).user;
   //const user = useSelector((state: any) => state.currentUser);
-
+    
   return (
     <div className={styles.profile_card_container}>
       <div className={styles.profile_info}>
@@ -24,7 +24,7 @@ export function ProfileCard () {
           <img className={styles.ranked_logo} src={silver} alt="silver rank icon" />
         </div>
       </div>
-      <h2 className={styles.friend_text}>Friends online: {user.friends.length}</h2>
+      <h2 className={styles.friend_text}>Friends online: {user.friends?.length}</h2>
     </div>
   )
 }

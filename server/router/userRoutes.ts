@@ -16,10 +16,10 @@ const router = Router();
 
 router.get('/',getAllUsers);
 router.get('/leaderBoard', getTopUsers)
+router.get('/username=:username', getUserByUsername)
 router.get('/:uid',getUserById);
 router.get('/:uid/friends',getUserChallenges);
 router.get('/:uid/exercises',getUserExercises);
-router.get('/:username', getUserByUsername)
 router.get('/:username/challenges',getUserChallenges);
 
 router.put('/:uid/addFriend', addFriend);

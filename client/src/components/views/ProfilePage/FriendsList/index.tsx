@@ -1,3 +1,8 @@
+
+
+import { getUserByUsername } from '../../../../services/userServices';
+import { IUser } from '../../../../types'
+
 import styles from './styles.module.css';
 
 export function FriendsList () {

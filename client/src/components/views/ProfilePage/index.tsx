@@ -26,8 +26,8 @@ export function ProfilePage () {
 
   const getUser = async () => {
     if(username) {
-      const user = await getUserByUsername(username);
-      user && setUser(user)
+      const newUser = await getUserByUsername(username);
+      newUser && setUser(newUser)
     }
   }
   return (

@@ -45,6 +45,7 @@ export const addUser = async (req :Request, res :Response) => {
 }
 
 export const getUserByUsername = async(req:Request, res :Response) =>{
+  console.log('username')
   try{
     const { username } = req.params;
     const user = await User.findOne({ where: { username },include : {model :User , as : 'friends' } });
@@ -59,6 +60,7 @@ export const getUserByUsername = async(req:Request, res :Response) =>{
 }
 
 export const getUserById = async(req:Request, res :Response) =>{
+  console.log('id')
   try{
     const { uid } = req.params
     const user = await User.findOne({where: { uid } })
