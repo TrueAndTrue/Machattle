@@ -13,9 +13,8 @@ export function RecentEventsFeed() {
 
   const getEvents = async () => {
     const challenges = await getRecentChallenges();
-    setRecentEvents(challenges);
-    console.log(challenges);
-  };
+    setRecentEvents(challenges)
+  }
 
   return (
     <div className={styles.recent_events_feed_container}>

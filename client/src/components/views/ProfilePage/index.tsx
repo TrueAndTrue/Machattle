@@ -14,16 +14,21 @@ import { ShootingStar } from '../QueuePage/ShootingStar';
 interface IContext {
   user : IUser
 }
+
 const initialUser : IUser = {username :'', rating : 0, rank: '', image :'' , friends :[]}
 export const UserContext = createContext<IContext>({user :initialUser});
 
+interface IProps  {
+  username : string | undefined
+}
+
 export function ProfilePage () {
-  const { username }  = useParams<string>()
+  const { username } = useParams() 
   const [user, setUser] = useState<IUser>(initialUser)
 
   useEffect(() => {
     getUser();
-  }, [])
+  }, [username])
 
   const getUser = async () => {
     if(username) {
@@ -31,6 +36,7 @@ export function ProfilePage () {
       newUser && setUser(newUser)
     }
   }
+
   return (
     <UserContext.Provider value = {{ user }}>
     <div className={styles.profile_page_container}>

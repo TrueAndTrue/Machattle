@@ -9,8 +9,7 @@ interface IProps {
 
 export const RecentEventsCard: FunctionComponent<IProps> = (data) => {
   const feedData = data.data;
-  const timeAgo = moment(feedData.updatedAt).fromNow();
-  console.log(timeAgo);
+  const timeAgo = moment(feedData.updatedAt).fromNow()
   return (
     <div className={styles.recent_events_card_container}>
       <p className={styles.winner_text}>{feedData.winnerUsername}</p>

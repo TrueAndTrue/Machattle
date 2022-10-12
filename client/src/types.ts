@@ -22,7 +22,7 @@ export interface ILeaderBoardUser {
   image: string;
 }
 
-export interface IUser extends ILeaderBoardUser {
-  rank: string;
-  friends: [];
+export interface IUser extends ILeaderBoardUser{
+  rank :string;
+  friends :IUser[]
 }
