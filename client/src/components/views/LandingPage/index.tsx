@@ -1,3 +1,4 @@
+
 import { LoginButton } from './LoginButton';
 import { SignupButton } from './SignupButton';
 import { WelcomeBanner } from './WelcomeBanner';
@@ -12,6 +13,7 @@ import { ShootingStar } from '../QueuePage/ShootingStar';
 
 export function LandingPage () {
 
+
   const { user } = useAuth0();
   const navigate = useNavigate();
 
@@ -20,28 +22,23 @@ export function LandingPage () {
       if (user && user.sub) {
         const returnUser = await getUserById(user?.sub);
         if (returnUser?.error === false) {
-          navigate('/home');
-
+          navigate("/home");
         }
-
-
-
       }
-
-  })()
-  }, [user])
+    })();
+  }, [user]);
 
   return (
     <div className={styles.landing_page_container}>
       <ShootingStar />
       <WelcomeBanner />
       <div className={styles.landing_page_images}>
-        <img src={silver} alt='silver rank logo'/>
-        <img src={master} alt='master rank logo'/>
+        <img src={silver} alt="silver rank logo" />
+        <img src={master} alt="master rank logo" />
       </div>
       <SignupButton />
       <div className={styles.landing_page_text}>or</div>
       <LoginButton />
     </div>
-  )
+  );
 }

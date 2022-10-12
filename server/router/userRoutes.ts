@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { 
+import {
   addUser,
   getUserById,
   getAllUsers,
@@ -9,22 +9,21 @@ import {
   getUserExercises,
   getUserChallenges,
   getTopUsers,
-  getUserFriends
-} from '../controllers/user';
+} from "../controllers/user";
 
 const router = Router();
 
-router.get('/',getAllUsers);
-router.get('/leaderBoard', getTopUsers)
-router.get('/username=:username', getUserByUsername)
-router.get('/:uid',getUserById);
-router.get('/:uid/friends',getUserChallenges);
-router.get('/:uid/exercises',getUserExercises);
-router.get('/:username/challenges',getUserChallenges);
+router.get("/", getAllUsers);
+router.get("/leaderBoard", getTopUsers);
+router.get("/username=:username", getUserByUsername);
+router.get("/:uid", getUserById);
+router.get("/:uid/friends", getUserChallenges);
+router.get("/:uid/exercises", getUserExercises);
+router.get("/:username/challenges", getUserChallenges);
 
-router.put('/:uid/addFriend', addFriend);
-router.put('/:uid/addExercise', addExercise);
+router.put("/:uid/addFriend", addFriend);
+router.put("/:uid/addExercise", addExercise);
 
-router.post('/create', addUser);
+router.post("/create", addUser);
 
-export {router as userRoutes}
+export { router as userRoutes };

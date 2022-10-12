@@ -1,4 +1,4 @@
-export const UPDATE_MATCH = 'UPDATE_MATCH';
+export const UPDATE_MATCH = "UPDATE_MATCH";
 
 interface match {
   player1: string;

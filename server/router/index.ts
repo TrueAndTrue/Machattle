@@ -1,8 +1,8 @@
-import express, { Router } from 'express'
+import { Router } from "express";
 
 import { userRoutes } from "./userRoutes";
-import { challengeRoutes } from './challengeRoutes';
-import { exerciseRoutes } from './exerciseRoutes';
+import { challengeRoutes } from "./challengeRoutes";
+import { exerciseRoutes } from "./exerciseRoutes";
 
 const rootRouter = Router();
 
