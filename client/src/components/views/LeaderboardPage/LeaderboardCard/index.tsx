@@ -10,10 +10,10 @@ interface IProps {
 export function LeaderboardCard ({user, position} :IProps) {
   return (
     <div className={styles.leaderboard_card_container}>
-      <div id = {styles.user_card} >
-        <p>{position}</p>
-        <Link to={`/profile/${user.username}`}><p>{user.username}</p></Link>
-        <div  id ={styles.pfp} style={{ backgroundImage: `url(/pfp/${user.image})` }} />
+      <div id={styles.user_card} >
+        <p className={styles.card_text}>{position}</p>
+        <Link to={`/profile/${user.username}`} className={styles.card_text}><p>{user.username}</p></Link>
+        <div  id={styles.pfp} style={{ backgroundImage: `url(/pfp/${user.image})` }} />
       </div>
     </div>
   )

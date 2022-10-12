@@ -10,11 +10,11 @@ import styles from './styles.module.css';
 export function LeaderboardFeed () {
   const [leaders, setLeaders] = useState<ILeaderBoardUser[]>([]);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     getTop10();
   },[])
-  
+
   async function getTop10() {
     const topUsers = await getTopUsers();
     dispatch(updateLeaderBoard(topUsers))
