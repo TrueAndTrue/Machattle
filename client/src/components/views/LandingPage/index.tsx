@@ -1,15 +1,19 @@
-import { LoginButton } from "./LoginButton";
-import { SignupButton } from "./SignupButton";
-import { WelcomeBanner } from "./WelcomeBanner";
-import styles from "./styles.module.css";
-import silver from "../../../assets/Silver.png";
-import master from "../../../assets/Master.png";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { getUserById } from "../../../services/userServices";
 
-export function LandingPage() {
+import { LoginButton } from './LoginButton';
+import { SignupButton } from './SignupButton';
+import { WelcomeBanner } from './WelcomeBanner';
+import styles from './styles.module.css';
+import silver from '../../../assets/Silver.png';
+import master from '../../../assets/Master.png'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getUserById, getUserByUsername } from '../../../services/userServices';
+import { ShootingStar } from '../QueuePage/ShootingStar';
+
+export function LandingPage () {
+
+
   const { user } = useAuth0();
   const navigate = useNavigate();
 
@@ -26,6 +30,7 @@ export function LandingPage() {
 
   return (
     <div className={styles.landing_page_container}>
+      <ShootingStar />
       <WelcomeBanner />
       <div className={styles.landing_page_images}>
         <img src={silver} alt="silver rank logo" />

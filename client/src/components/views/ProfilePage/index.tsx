@@ -9,6 +9,7 @@ import { ProfileInfoContainer } from './ProfileInfoContainer';
 import { IUser } from '../../../types';
 import { getUserByUsername } from '../../../services/userServices';
 import styles from './styles.module.css';
+import { ShootingStar } from '../QueuePage/ShootingStar';
 
 interface IContext {
   user : IUser
@@ -33,6 +34,7 @@ export function ProfilePage () {
   return (
     <UserContext.Provider value = {{ user }}>
     <div className={styles.profile_page_container}>
+      <ShootingStar />
       <div className={styles.profile_left}>
         <ProfileInfoContainer />
         <FriendsList />

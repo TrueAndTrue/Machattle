@@ -3,6 +3,7 @@
   width: 100vw;
   justify-content: center;
   background-color: #393e46;
+  z-index: -2;
 }
 
 .queue_page_card {
