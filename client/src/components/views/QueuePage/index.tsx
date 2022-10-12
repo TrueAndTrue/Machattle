@@ -6,6 +6,7 @@ import SocketContext, { SocketReducer } from '../../../contexts/Context';
 import { useSelector, useDispatch } from 'react-redux';
 import { defaultSocketContextState } from '../../../contexts/Context';
 import { updateMatch } from '../../../state/actions/match';
+import { ShootingStar } from './ShootingStar';
 
 import robo from '../../../assets/CodeBot004.gif'
 
@@ -33,6 +34,7 @@ export function QueuePage () {
 
   return (
     <div className={styles.queue_page_container}>
+      <ShootingStar />
       <div className={styles.queue_page_card}>
         <p className={styles.queue_text}>Searching for match...</p>
         <LinearProgress color="primary" className={styles.loading_bar} />

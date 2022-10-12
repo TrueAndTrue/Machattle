@@ -8,6 +8,16 @@ import { InstructionsContainer } from "./InstructionsContainer/index";
 import styles from "./styles.module.css";
 import { getUserById } from "../../../services/userServices";
 
+
+import { updateQuestion } from '../../../state/actions/question';
+import { getRandomExercise } from '../../../services/exerciseServices';
+import { IQuestion } from '../../../types'
+import { CodingArena } from './CodingArena/index';
+import { InstructionsContainer } from './InstructionsContainer/index';
+import styles from './styles.module.css';
+import { getUserById } from '../../../services/userServices';
+import { ShootingStar } from '../QueuePage/ShootingStar';
+
 const initialQuestion: IQuestion = {
   id: -1,
   question: "",
@@ -16,6 +26,7 @@ const initialQuestion: IQuestion = {
   tests: [],
   timeElapsed: "",
 };
+
 
 export function BattlePage() {
   const dispatch = useDispatch();
@@ -47,6 +58,8 @@ export function BattlePage() {
 
   return (
     <div className={styles.battle_page_container}>
+
+      <ShootingStar />
       <div className={styles.battle_title}>
         <p>{thisUsername} (me)</p> <p> VS </p> <p> {opponentUsername} </p>
       </div>
