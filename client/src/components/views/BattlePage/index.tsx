@@ -8,6 +8,7 @@ import { CodingArena } from './CodingArena/index';
 import { InstructionsContainer } from './InstructionsContainer/index';
 import styles from './styles.module.css';
 import { getUserById } from '../../../services/userServices';
+import { ShootingStar } from '../QueuePage/ShootingStar';
 
 const initialQuestion : IQuestion = {id : -1, question :'', difficulty:'', timeComplexity:'', tests:[], timeElapsed :''}
 
@@ -42,8 +43,9 @@ export function BattlePage () {
 
   return (
     <div className={styles.battle_page_container}>
+      <ShootingStar />
       <div className={styles.battle_title}><p>{thisUsername} (me)</p> <p> VS </p> <p> {opponentUsername} </p></div>
-      <div className={styles.battle_page}> 
+      <div className={styles.battle_page}>
         <InstructionsContainer  />
         <CodingArena />
       </div>

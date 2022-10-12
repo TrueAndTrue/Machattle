@@ -8,6 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserById, getUserByUsername } from '../../../services/userServices';
+import { ShootingStar } from '../QueuePage/ShootingStar';
 
 export function LandingPage () {
 
@@ -26,12 +27,13 @@ export function LandingPage () {
 
 
       }
-      
+
   })()
   }, [user])
 
   return (
     <div className={styles.landing_page_container}>
+      <ShootingStar />
       <WelcomeBanner />
       <div className={styles.landing_page_images}>
         <img src={silver} alt='silver rank logo'/>
