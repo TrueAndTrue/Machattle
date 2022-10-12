@@ -24,8 +24,8 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <SocketContextComponent>
-    <ReduxProvider store={store}>
+  <ReduxProvider store={store}>
+    <SocketContextComponent>
       <BrowserRouter>
         <Auth0Provider
           domain={domain}
@@ -48,6 +48,6 @@ root.render(
           </ThemeProvider>
         </Auth0Provider>
       </BrowserRouter>
-    </ReduxProvider>
-  </SocketContextComponent>
+    </SocketContextComponent>
+  </ReduxProvider>
 );
