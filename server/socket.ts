@@ -62,6 +62,10 @@ export class ServerSocket {
 
     })
 
+    socket.on('player_won', async (winnerUid: string, roomId: string) => {
+      this.io.to(roomId).emit('winner', winnerUid)
+    })
+
     socket.on('queue_user', async (uid: string) => {
       console.log(uid);
       console.log('queued user.')
@@ -73,7 +77,7 @@ export class ServerSocket {
         }
         else {
           socket.join(queued[0].roomId)
-          this.io.to(queued[0].roomId).emit('match_found')
+          this.io.to(queued[0].roomId).emit('match_found', queued[0].uid, uid, queued[0].roomId)
           const count = await Inqueue.destroy({where: {uid: uid}})
           const count2 = await Inqueue.destroy({where: {uid: queued[0].uid}})
           console.log(count + count2);
