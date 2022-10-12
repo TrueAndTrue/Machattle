@@ -10,6 +10,7 @@ import {
   SocketContextProvider,
   SocketReducer,
 } from "./Context";
+import { useSelector } from "react-redux";
 
 export interface ISocketContextComponentProps extends PropsWithChildren {}
 
@@ -29,6 +30,7 @@ const SocketContextComponent: React.FunctionComponent<
   );
   const [loading, setLoading] = useState(true);
   const serverPort = socketUrl;
+  const userUid = useSelector((state: any) => state.currentUser.uid)
 
   const socket = useSocket(serverPort, {
     reconnectionAttempts: 5,
@@ -42,8 +44,6 @@ const SocketContextComponent: React.FunctionComponent<
     SocketDispatch({ type: "update_socket", payload: socket });
 
     StartListeners();
-
-    SendHandShake();
   }, []);
 
   const StartListeners = () => {
@@ -68,17 +68,21 @@ const SocketContextComponent: React.FunctionComponent<
     });
   };
 
-  const SendHandShake = () => {
-    console.log("sending handshake to server...");
+  useEffect(() => {
+    const SendHandShake = () => {
+        socket.emit("send_uid", (userUid))
+        console.log("sending handshake to server...");
+        socket.emit("handshake", (uid: string, users: string[]) => {
+          console.log("user handshake callback message received");
+          SocketDispatch({ type: "update_uid", payload: uid });
+          SocketDispatch({ type: "update_users", payload: users });
+    
+          setLoading(false);
+        });
+    };
+    SendHandShake();
+  }, [userUid])
 
-    socket.emit("handshake", (uid: string, users: string[]) => {
-      console.log("user handshake callback message received");
-      SocketDispatch({ type: "update_uid", payload: uid });
-      SocketDispatch({ type: "update_users", payload: users });
-
-      setLoading(false);
-    });
-  };
 
   if (loading) return <p>loading socket...</p>;
 
