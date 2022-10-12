@@ -1,0 +1,28 @@
+.popup_container {
+  height: 100%;
+  width: 100%;
+  border: 2px solid white;
+  position: absolute;
+  z-index: 20;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 70%;
+  margin-bottom: 6%;
+  width: 75%;
+  background-color: #4ecca3;
+  border-radius: 100px;
+}
+
+.popup_btn {
+  font-size: xx-large;
+}

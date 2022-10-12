@@ -3,11 +3,15 @@ import { SubmitButton } from "../SubmitButton/index";
 
 import styles from "./styles.module.css";
 
-export function InstructionsContainer() {
+interface IProps {
+  setTrigger: Function
+}
+
+export function InstructionsContainer(props: IProps) {
   return (
     <div className={styles.instructions_container}>
       <InstructionsCard />
-      <SubmitButton />
+      <SubmitButton setTrigger={props.setTrigger}/>
     </div>
   );
 }

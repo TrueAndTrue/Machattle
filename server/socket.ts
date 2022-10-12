@@ -64,6 +64,7 @@ export class ServerSocket {
     );
 
     socket.on("player_won", async (winnerUid: string, roomId: string) => {
+      console.log(winnerUid, roomId);
       this.io.to(roomId).emit("winner", winnerUid);
     });
 
