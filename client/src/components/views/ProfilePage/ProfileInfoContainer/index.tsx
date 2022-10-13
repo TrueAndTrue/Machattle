@@ -37,7 +37,7 @@ export function ProfileInfoContainer () {
       <div id = {styles.button_container}>
         {isProfileUser && <Button id ={styles.update_profile} onClick={updateProfile}> Update Profile?</Button>}
         {!isProfileUser &&  !isUserFriend  &&  <Button id ={styles.add_friend} onClick ={addFriendToUser}>Add Friend</Button>}
-        {!isProfileUser &&  isUserFriend  &&  <Button id ={styles.add_friend}>Remove Friend</Button>}        
+        {!isProfileUser &&  isUserFriend  &&  <Button id ={styles.add_friend} onClick = {removeUserFriend}>Remove Friend</Button>}        
       </div>
       {update && <ProfileUpdateForm updateProfile = {updateProfile}/>}
     </div>
