@@ -7,8 +7,8 @@
 
 #friend_link{
   text-align: center;
-  color:black;
-  height:50px;
+  color: #eeeeee;
+  height: 64px;
 }
 
 #friend_link:link {
@@ -16,8 +16,8 @@
 }
 
 #pfp{
-  width:40px;
-  height:40px;
+  width:48px;
+  height:48px;
   object-fit: scale-down;
   background-size:contain;
   align-self: center;

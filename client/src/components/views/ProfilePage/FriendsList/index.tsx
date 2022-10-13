@@ -12,8 +12,8 @@ export function FriendsList () {
 
   return (
     <div className={styles.friends_list_container}>
-      <h1>Friends</h1>
-      <div className={styles.friend_carousel}>
+      <h1 className={styles.friends_title}>Friends</h1>
+      <div className={styles.friends_carousel}>
         {friends?.map(friend => <FriendCard friend={friend}/>)}
       </div>
     </div>
