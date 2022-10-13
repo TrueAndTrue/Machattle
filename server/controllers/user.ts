@@ -233,7 +233,7 @@ export const getUserChallenges = async (req: Request, res: Response) => {
       where: { loserUsername: username },
     });
 
-    const completedChallenges = { lostChallenges, wonChallenges };
+    const completedChallenges = [...lostChallenges, ...wonChallenges ];
     res.status(200).send({ error: false, res: completedChallenges });
   } catch (e) {
     res.status(500).send({ error: true, res: "Error Getting User Challenges" });
