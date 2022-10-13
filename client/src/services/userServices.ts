@@ -96,9 +96,10 @@ export const getUserExercises = async (uid: string) => {
   }
 };
 
-export const getUserChallenges = async (uid: string) => {
+export const getUserChallenges = async (username: string) => {
+  console.log(username)
   try {
-    const response = await fetch(`${BASE_URL}/users/${uid}/challenges`, {
+    const response = await fetch(`${BASE_URL}/users/${username}/challenges`, {
       headers: {
         "Content-Type": "application/json",
       },

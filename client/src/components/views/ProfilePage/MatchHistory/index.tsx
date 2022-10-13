@@ -16,7 +16,7 @@ export function MatchHistory () {
   },[])
 
   const getChallenges = async () => {
-    const userChallenges = await getUserChallenges(user.uid)
+    const userChallenges = await getUserChallenges(user.username)
     setChallenges(userChallenges)
   }
 
