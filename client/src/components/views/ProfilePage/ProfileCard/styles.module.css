@@ -23,9 +23,10 @@
 #profile_img {
   display: flex;
   justify-content: center;
-  width: 33%;
-  min-width: 130px;
-  min-height: 130px;
+  min-width: 128px;
+  max-width: 100%;
+  min-height: 128px;
+  max-height: 100%;
   object-fit: scale-down;
   background-size:contain;
   align-self: center;
@@ -35,6 +36,8 @@
 .profile_username {
   display: flex;
   width: 33%;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   color: #393e46;
 }
@@ -49,9 +52,35 @@
 
 .friend_text {
   color: #393e46;
+  font-size: 20px;
 }
 
 .ranked_logo {
   display: flex;
   width: 95px;
+  margin-top: 30px;
+}
+
+.avatar_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33%;
+}
+
+#button_container{
+  display: flex;
+  margin-top: 30px;
+}
+
+#update_profile{
+  align-self: flex-start;
+  display: flex;
+  background-color: #232931;
+}
+
+#add_friend{
+  align-self: flex-start;
+  display: flex;
+  background-color: #232931;
 }
