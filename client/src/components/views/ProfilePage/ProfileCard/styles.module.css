@@ -23,9 +23,8 @@
 #profile_img {
   display: flex;
   justify-content: center;
-  width: 33%;
-  min-width: 130px;
-  min-height: 130px;
+  min-width: 64px;
+  min-height: 64px;
   object-fit: scale-down;
   background-size:contain;
   align-self: center;
@@ -49,9 +48,17 @@
 
 .friend_text {
   color: #393e46;
+  font-size: 20px;
 }
 
 .ranked_logo {
   display: flex;
   width: 95px;
+}
+
+.avatar_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33%;
 }
