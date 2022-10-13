@@ -14,6 +14,7 @@ export function ProfileInfoContainer () {
   const otherProfile = useContext(UserContext).user;
   const [update, setUpdate] = useState(false)
   const [isFriend, setFriend] = useState(false)
+
   useEffect(() => {
     isUserFriend()
   },[update])
@@ -21,7 +22,7 @@ export function ProfileInfoContainer () {
   const isUserProfile = currentUser.uid == otherProfile.uid
 
   const isUserFriend = () =>{
-    setFriend(currentUser.friends.filter((friend :IUser)  => friend.uid === otherProfile.uid).length >0)
+    setFriend(currentUser.friends.filter((friend :IUser)  => friend.uid === otherProfile.uid).length >0)  
   }
 
   const updateProfile = () => {
