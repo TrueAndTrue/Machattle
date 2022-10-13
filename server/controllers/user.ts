@@ -226,7 +226,7 @@ export const removeFriend = async (req :Request, res :Response) => {
           .send({ error: false, res: "Friend removed successfully" });
       } else
         res
-          .status(409)
+          .status(404)
           .send({ error: true, res: "Error, User Dosen't Have Friend" });
     } else {
       res.status(404).send("User Does Not Exist");
