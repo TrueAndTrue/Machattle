@@ -15,7 +15,7 @@ interface IContext {
   user : IUser
 }
 
-const initialUser : IUser = {username :'', rating : 0, rank: '', image :'' , friends :[], uid:''}
+const initialUser : IUser = {username :'', rating : 0, rank: '', image :'' , friends :[], uid:'', challenges:[]}
 export const UserContext = createContext<IContext>({user :initialUser});
 
 export function ProfilePage () {

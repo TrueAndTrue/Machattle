@@ -26,4 +26,5 @@ export interface IUser extends ILeaderBoardUser{
   uid:string;
   rank :string;
   friends :IUser[];
+  challenges : IChallenge[]
 }
