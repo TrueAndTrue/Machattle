@@ -8,7 +8,7 @@ interface IProps {
 export function AvatarSelectForm ({onClick} :IProps) {
   const imgLocations =[];
   for(let i =1; i<=10;i++){
-    imgLocations.push(`pfp/Avatar${i}.png`)
+    imgLocations.push(`pfp/${i}.png`)
   }
 
   return (
