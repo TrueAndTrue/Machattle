@@ -152,3 +152,20 @@ export const updatePfp = async (uid:string, image :string) => {
     console.log(e);
   }
 }
+
+export const removeFriend = async (uid: string, friendUID: string) => {
+  const requestOptions = {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ friendUID })
+  }
+  console.log('service')
+  console.log(uid, friendUID)
+  try {
+    const response = await fetch(`${BASE_URL}/users/${uid}/removeFriend`, requestOptions);
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};

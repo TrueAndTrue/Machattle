@@ -10,7 +10,8 @@ import {
   getUserChallenges,
   getTopUsers,
   updateImg,
-  getUserFriends
+  getUserFriends,
+  removeFriend
 } from "../controllers/user";
 
 const router = Router();
@@ -25,6 +26,7 @@ router.get("/:username/challenges", getUserChallenges);
 
 router.put("/update/image", updateImg)
 router.put("/:uid/addFriend", addFriend);
+router.put("/:uid/removeFriend", removeFriend);
 router.put("/:uid/addExercise", addExercise);
 
 

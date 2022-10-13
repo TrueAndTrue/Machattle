@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { UserContext } from '..';
 import { ProfileCard } from '../ProfileCard/index';
 import { ProfileUpdateForm } from '../ProfileUpdateForm/index';
-import { addFriend } from '../../../../services/userServices';
+import { addFriend, removeFriend } from '../../../../services/userServices';
 import styles from './styles.module.css';
 
 export function ProfileInfoContainer () {
@@ -25,6 +25,10 @@ export function ProfileInfoContainer () {
 
   const addFriendToUser = async () => {
     await addFriend(currentUser.uid, otherProfile.uid)
+  }
+
+  const removeUserFriend = async () => {
+    await removeFriend(currentUser.uid, otherProfile.uid)
   }
 
   return (

@@ -22,6 +22,7 @@ export class User extends Model<IUser, UserCreationAttributes> {
 
   public addQuestion!: HasManyAddAssociationMixin<Question, number>;
   public addFriend!: HasManyAddAssociationMixin<User, string>;
+  public removeFriend!: HasManyAddAssociationMixin<User, string>;
   public addChallenge!: HasManyAddAssociationMixin<Challenge, number>;
 
   public readonly questions?: Question[];
