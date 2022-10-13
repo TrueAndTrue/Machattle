@@ -23,9 +23,11 @@ app.use(cors());
 app.use(express.json());
 app.use("/api", rootRouter);
 
-app.get("/*", (req, res) => {
+if (NODE_ENV == 'production'){
+  app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+  });
+}
 
 (async function bootstrap() {
   await sequelize.sync();

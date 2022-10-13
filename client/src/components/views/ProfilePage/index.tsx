@@ -15,12 +15,8 @@ interface IContext {
   user : IUser
 }
 
-const initialUser : IUser = {username :'', rating : 0, rank: '', image :'' , friends :[]}
+const initialUser : IUser = {username :'', rating : 0, rank: '', image :'' , friends :[], uid:'', challenges:[]}
 export const UserContext = createContext<IContext>({user :initialUser});
-
-interface IProps  {
-  username : string | undefined
-}
 
 export function ProfilePage () {
   const { username } = useParams() 

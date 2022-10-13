@@ -253,3 +253,50 @@ export const getUserFriends = async (req: Request, res: Response) => {
     res.status(500).send({ error: true, res: "Error Getting User Friends" });
   }
 };
+
+export const updateImg = async (req:Request , res : Response) => {
+  try {
+    const { image, uid } = req.body;
+    console.log(image,uid)
+    const user = await User.update(
+      { image },
+      { where: { uid} }
+    )
+    if (!user) return res.status(404).send("User Does Not Exist");
+    return res.status(201).send({error :false, res:"User Image Updated SuccessFully"})
+  } catch (e) {
+    res.status(500).send({ error: true, res: "Error Updating User" });
+  } 
+}
+
+export const removeFriend = async (req :Request, res :Response) => {
+  try {
+    const { friendUID } = req.body;
+    const { uid } = req.params;
+    const user = await User.findOne({
+      where: { uid },
+      include: { model: User, as: "friends" },
+    });
+    const friend = await User.findOne({ where: { uid: friendUID } });
+    if (user && friend) {
+      const hasFriend = user.getDataValue("friends")?.filter((user) => {
+        //looks over users friends
+        return friendUID === user.uid;
+      }).length;
+
+      if (hasFriend) {
+        user.removeFriend(friend);
+        res
+          .status(200)
+          .send({ error: false, res: "Friend removed successfully" });
+      } else
+        res
+          .status(409)
+          .send({ error: true, res: "Error, User Dosen't Have Friend" });
+    } else {
+      res.status(404).send("User Does Not Exist");
+    }
+  } catch (e) {
+    res.status(500).send({ error: true, res: "Error Removing Friend" });
+  }
+}

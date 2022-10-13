@@ -117,8 +117,3 @@ export function SubmitButton(props: IProps) {
     </div>
   );
 }
-
-const mocksAdd = [
-  [[3, 5], 8],
-  [[2, 3], 5],
-];

@@ -1,3 +1,15 @@
 .profile_update_form_container {
   display: flex;
 }
+
+.pfp{
+  display: flex;
+  justify-content: center;
+  width: 33%;
+  min-width: 130px;
+  min-height: 130px;
+  object-fit: scale-down;
+  background-size:contain;
+  align-self: center;
+  background-repeat: no-repeat;
+}

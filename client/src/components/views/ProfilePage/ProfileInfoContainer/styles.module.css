@@ -3,4 +3,23 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+
+#button_container{
+  display: flex;
+}
+
+#update_profile{
+  left: 3%;
+  align-self: flex-start;
+  display: flex;
+  background-color: #232931;
+}
+
+#add_friend{
+  left : 3%;
+  align-self: flex-start;
+  display: flex;
+  background-color: #232931;
 }

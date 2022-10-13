@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 
 export function ProfileCard () {
   const user = useContext(UserContext).user;
-  //const user = useSelector((state: any) => state.currentUser);
+
   console.log(user.image)
   return (
     <div className={styles.profile_card_container}>
