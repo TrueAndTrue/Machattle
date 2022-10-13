@@ -22,22 +22,13 @@ const initialQuestion: IQuestion = {
 };
 
 
-
-interface IState {
-  player1 :string;
-  player2: string;
-  roomId: string
-}
-
 export function BattlePage() {
   const dispatch = useDispatch();
-  const { player1, player2, roomId } = useSelector((state: {match:IState}) => state.match);
+  const { player1, player2 } = useSelector((state: any) => state.match);
   const thisUser = useSelector((state: any) => state.currentUser.uid);
   const [thisUsername, setThisUsername] = useState("");
   const [trigger, setTrigger] = useState(false);
   const [opponentUsername, setOpponentUsername] = useState("");
-
-
 
   useEffect(() => {
     getQuestion();
@@ -56,9 +47,7 @@ export function BattlePage() {
   }, []);
 
   async function getQuestion() {
-    //const salt = parseInt(roomId)
-    const salt = Math.floor(Math.random()*10000)
-    const newQuestion = await getRandomExercise(2, salt);
+    const newQuestion = await getRandomExercise(2);
     dispatch(updateQuestion(newQuestion));
   }
 
