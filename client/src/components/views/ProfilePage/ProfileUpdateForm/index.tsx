@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState, useContext } from 'react';
+import { useContext } from 'react';
 
 import { UserContext } from '..';
 import { updatePfp } from '../../../../services/userServices';
@@ -12,7 +11,7 @@ interface IProps{
 }
 
 export function ProfileUpdateForm ({updateProfile} :IProps) {
-  const currentUser = useSelector((state: any) => state.currentUser);
+  
   const profileUser = useContext(UserContext).user;
   
   interface TargetWithSrc extends EventTarget {

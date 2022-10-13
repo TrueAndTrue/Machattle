@@ -6,9 +6,20 @@
   flex-direction: column;
 }
 
+#button_container{
+  display: flex;
+}
+
 #update_profile{
+  left: 3%;
   align-self: flex-start;
   display: flex;
   background-color: #232931;
-  left:3%;
+}
+
+#add_friend{
+  left : 3%;
+  align-self: flex-start;
+  display: flex;
+  background-color: #232931;
 }
