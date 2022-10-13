@@ -12,18 +12,14 @@ import styles from './styles.module.css';
 export function ProfileInfoContainer () {
   const currentUser = useSelector((state: any) => state.currentUser);
   const otherProfile = useContext(UserContext).user;
+  const initialFriend = currentUser.friends.filter((friend :IUser)  => friend.uid === otherProfile.uid).length >0
   const [update, setUpdate] = useState(false)
-  const [isFriend, setFriend] = useState(false)
+  const [isFriend, setFriend] = useState(initialFriend)
 
   useEffect(() => {
-    isUserFriend()
   },[update])
 
   const isUserProfile = currentUser.uid == otherProfile.uid
-
-  const isUserFriend = () =>{
-    setFriend(currentUser.friends.filter((friend :IUser)  => friend.uid === otherProfile.uid).length >0)  
-  }
 
   const updateProfile = () => {
     setUpdate(!update);
