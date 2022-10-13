@@ -14,6 +14,8 @@
 }
 
 .friends_title {
+  display: flex;
+  justify-content: center;
   color: #4ecca3;
   font-size: 32px;
 }
