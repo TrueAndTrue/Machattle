@@ -1,5 +1,5 @@
 import { useContext, useEffect,useState } from 'react';
-
+import { useParams } from 'react-router-dom';
 import { IChallenge } from '../../../../types';
 import { getUserChallenges } from '../../../../services/userServices';
 import { MatchCard } from '../MatchCard';
@@ -8,7 +8,7 @@ import { UserContext } from '..';
 import styles from './styles.module.css';
 
 export function MatchHistory () {
-  const user = useContext(UserContext).user
+  const { username } = useParams()
   const [challenges, setChallenges] = useState<IChallenge[]>([])
 
   useEffect(()=> {
@@ -16,7 +16,8 @@ export function MatchHistory () {
   },[])
 
   const getChallenges = async () => {
-    const userChallenges = await getUserChallenges(user.username)
+    const userChallenges = await getUserChallenges(username!)
+    console.log(username!)
     setChallenges(userChallenges)
   }
 
