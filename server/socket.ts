@@ -34,15 +34,27 @@ export class ServerSocket {
   StartListeners = (socket: Socket) => {
 
     //queue handler
-    const queueLogic = async (uid: string, rank: string[], allowedDifference: number) => {
+    const queueLogic = async (uid: string, rank: string[], allowedDifference: number, roomId: string) => {
+      if (!this.uid || allowedDifference > 18) {
+        console.log(this.uid, 'NO UID.')
+        await Inqueue.destroy({ where: { uid } });
+        socket.leave(roomId)
+        return 'destroy';
+      };
       const queued = await Inqueue.findAll();
+      // console.log(queued, "queued")
       let matchFound = false;
       let matchPlayers: string[] = [];
+      if (queued.length === 0) {
+        console.log('queue length was 0')
+        return 'destroy';
+      }
       queued.forEach((queue) => { 
         if (queue.uid === uid) {
           console.log('yourself')
         }
         else {
+          console.log('got in the else', uid)
           let userIndex = 0;
           let opponentIndex = 0;
           this.ranks.find((currRank, i) => {
@@ -125,6 +137,7 @@ export class ServerSocket {
     socket.on("player_won", async (winnerUid: string, roomId: string) => {
       console.log(winnerUid, roomId);
       this.io.to(roomId).emit("winner", winnerUid);
+      socket.leave(roomId);
     });
 
     socket.on("queue_user", async (uid: string, rank: string[]) => {
@@ -132,17 +145,29 @@ export class ServerSocket {
         console.log('UID WAS 0');
         return;
       } 
+      let isFound: string | boolean | undefined;
       console.log(uid);
       console.log("queued user.");
+      const queueUsers = await Inqueue.findAll();
+      const queueUids = queueUsers.map((queued) => queued.uid);
+      console.log(queueUids)
+      if (queueUids.includes(uid)) {
+        return;
+      }
       let allowedDifference = 4;
       const room = JSON.stringify(Math.floor(Math.random() * 10000));
       socket.join(room);
       await Inqueue.create({ uid: uid, roomId: room, rank });
-      queueLogic(uid, rank, allowedDifference);
+      console.log('created user')
+      queueLogic(uid, rank, allowedDifference, room);
       
       const queuing = setInterval(async () => {
-        const isFound = await queueLogic(uid, rank, allowedDifference);
+        isFound = await queueLogic(uid, rank, allowedDifference, room);
         if (isFound) {
+          clearInterval(queuing);
+          return;
+        }
+        else if (isFound === 'destroy') {
           clearInterval(queuing);
           return;
         }
@@ -150,7 +175,10 @@ export class ServerSocket {
           allowedDifference++;
         }
         allowedDifference++
-      }, 20000)
+      }, 5000)
+
+
+      return;
 
     });
 
