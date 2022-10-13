@@ -21,8 +21,8 @@ export function ProfileUpdateForm ({updateProfile} :IProps) {
   const onClick = (event : React.MouseEvent<HTMLButtonElement>) => {
     const sourceEvent : TargetWithSrc = event.target as TargetWithSrc
     const imgLocation = sourceEvent.currentSrc.split('pfp')
-    updatePfp(profileUser.uid,'/pfp/Avatar'+imgLocation[1])
-    profileUser.image='/pfp/Avatar'+imgLocation[1];
+    updatePfp(profileUser.uid,'/pfp/'+imgLocation[1])
+    profileUser.image='/pfp/'+imgLocation[1];
     updateProfile();
   }
 
