@@ -50,14 +50,15 @@ export const getUserByUsername = async (username: string) => {
 };
 
 export const addFriend = async (uid: string, friendUID: string) => {
+  const requestOptions = {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ friendUID })
+  }
+  console.log('service')
+  console.log(uid, friendUID)
   try {
-    const response = await fetch(`${BASE_URL}/users/${uid}/addFriend`, {
-      headers: {
-        "Content-Type": "application/json",
-        method: "PUT",
-        body: JSON.stringify({ friendUID }),
-      },
-    });
+    const response = await fetch(`${BASE_URL}/users/${uid}/addFriend`, requestOptions);
     const data = await response.json();
     return data;
   } catch (e) {

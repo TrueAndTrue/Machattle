@@ -17,6 +17,8 @@ export function ProfileInfoContainer () {
   const isProfileUser = currentUser.uid == otherProfile.uid
   console.log(isProfileUser)
 
+  const isUserFriend = currentUser.friends.filter((friendId :string) => friendId === otherProfile.uid).length >0
+
   const updateProfile = () => {
     setUpdate(!update)
   }
@@ -30,7 +32,8 @@ export function ProfileInfoContainer () {
       <ProfileCard />
       <div id = {styles.button_container}>
         {isProfileUser && <Button id ={styles.update_profile} onClick={updateProfile}> Update Profile?</Button>}
-        {!isProfileUser && <Button id ={styles.add_friend} onClick ={addFriendToUser}>Add Friend</Button>}
+        {!isProfileUser &&  !isUserFriend  &&  <Button id ={styles.add_friend} onClick ={addFriendToUser}>Add Friend</Button>}
+        {!isProfileUser &&  isUserFriend  &&  <Button id ={styles.add_friend}>Remove Friend</Button>}        
       </div>
       {update && <ProfileUpdateForm updateProfile = {updateProfile}/>}
     </div>
