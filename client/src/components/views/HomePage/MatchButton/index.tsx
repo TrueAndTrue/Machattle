@@ -31,6 +31,7 @@ export const MatchButton = ({ data, mode }: IProps) => {
   const QueueHandler = () => {
     SocketDispatch({ type: "queue_user", payload: uid });
     socket?.emit("queue_user", uid, rank);
+    navigate("/queue")
   };
 
   const onClick = () => {
