@@ -24,7 +24,9 @@ export function MatchHistory () {
   return (
     <div className={styles.match_history_container}>
       <h1>Match History</h1>
-      {challenges.map(challenge => <MatchCard match={challenge}/>)}
+      <div className={styles.match_carousel}>
+        {challenges.map(challenge => <MatchCard match={challenge}/>)}
+      </div>
     </div>
   )
 }
