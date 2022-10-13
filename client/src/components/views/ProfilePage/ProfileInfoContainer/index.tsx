@@ -4,9 +4,9 @@ import Button from "@mui/material/Button";
 
 import { UserContext } from '..';
 import { ProfileCard } from '../ProfileCard/index';
-import { ProfileUpdateForm } from '../ProfileUpdateForm/index';
+// import { ProfileUpdateForm } from '../ProfileUpdateForm/index';
 import { IUser } from '../../../../types'
-import { addFriend, removeFriend } from '../../../../services/userServices';
+// import { addFriend, removeFriend } from '../../../../services/userServices';
 import styles from './styles.module.css';
 
 export function ProfileInfoContainer () {
@@ -16,34 +16,34 @@ export function ProfileInfoContainer () {
   const [update, setUpdate] = useState(false)
   const [isFriend, setFriend] = useState(initialFriend)
 
-  useEffect(() => {
-  },[update])
+  // useEffect(() => {
+  // },[update])
 
-  const isUserProfile = currentUser.uid == otherProfile.uid
+  // const isUserProfile = currentUser.uid == otherProfile.uid
 
-  const updateProfile = () => {
-    setUpdate(!update);
-  }
+  // const updateProfile = () => {
+  //   setUpdate(!update);
+  // }
 
-  const addFriendToUser = async () => {
-    await addFriend(currentUser.uid, otherProfile.uid);
-    setFriend(true)
-  }
+  // const addFriendToUser = async () => {
+  //   await addFriend(currentUser.uid, otherProfile.uid);
+  //   setFriend(true)
+  // }
 
-  const removeUserFriend = async () => {
-    await removeFriend(currentUser.uid, otherProfile.uid);
-    setFriend(false)
-  }
+  // const removeUserFriend = async () => {
+  //   await removeFriend(currentUser.uid, otherProfile.uid);
+  //   setFriend(false)
+  // }
 
   return (
     <div className={styles.profile_info_container}>
       <ProfileCard />
-      <div id = {styles.button_container}>
-        {isUserProfile && <Button id ={styles.update_profile} onClick={updateProfile}> Update Profile?</Button>}
+      {/* <div id = {styles.button_container}>
+        {isUserProfile && <Button id ={styles.update_profile} onClick={updateProfile}>Change Avatar</Button>}
         {!isUserProfile &&  !isFriend  &&  <Button id ={styles.add_friend} onClick ={addFriendToUser}>Add Friend</Button>}
-        {!isUserProfile &&  isFriend  &&  <Button id ={styles.add_friend} onClick = {removeUserFriend}>Remove Friend</Button>}        
+        {!isUserProfile &&  isFriend  &&  <Button id ={styles.add_friend} onClick = {removeUserFriend}>Remove Friend</Button>}
       </div>
-      {update && <ProfileUpdateForm updateProfile = {updateProfile}/>}
+      {update && <ProfileUpdateForm updateProfile = {updateProfile}/>} */}
     </div>
   )
 }
