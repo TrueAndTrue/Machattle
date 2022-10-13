@@ -5,7 +5,7 @@ process.env.NODE_ENV === "production"
 
 export const addUser = async (uid: string, username: string, image: string) => {
   try {
-    const rank = "Silver 4";
+    const rank = ["Silver 4", "0"];
     const rating = 1200;
     const response = await fetch(`${BASE_URL}/users/create`, {
       method: "POST",

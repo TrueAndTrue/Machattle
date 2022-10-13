@@ -7,6 +7,7 @@ type InqueueCreationAttributes = Optional<IQueue, "uid">;
 class Inqueue extends Model<IQueue, InqueueCreationAttributes> {
   declare uid: string;
   declare roomId: string;
+  declare rank: string[];
 }
 
 Inqueue.init(
@@ -19,6 +20,10 @@ Inqueue.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    rank: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false,
+    }
   },
   {
     timestamps: false,

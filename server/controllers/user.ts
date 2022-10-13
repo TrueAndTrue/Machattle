@@ -3,6 +3,9 @@ import { User } from "../models/User";
 import { Question } from "../models/Question";
 import { Challenge } from "../models/Challenge";
 
+const ranks = ['Bronze 4', 'Bronze 3', 'Bronze 2', 'Bronze 1', 'Silver 4', 'Silver 3', 'Silver 2', 'Silver 1', 'Gold 4', 'Gold 3', 'Gold 2', 'Gold 1', 'Platinum 4', 'Platinum 3', 'Platinum 2', 'Platinum 1', 'Diamond 4', 'Diamond 3', 'Diamond 2', 'Diamond 1', 'Palladium 4', 'Palladium 3', 'Palladium 2', 'Palladium 1'];
+
+
 export const getTopUsers = async (req: Request, res: Response) => {
   try {
     const users = await User.findAll({
@@ -27,6 +30,68 @@ export const getAllUsers = async (req: Request, res: Response) => {
     res.status(500).send({ error: true, res: "Error Getting Exercises" });
   }
 };
+
+export const updateRank = async (req: Request, res: Response) => {
+  try {
+    const { uid } = req.body.user;
+    const { rankChange } = req.body.change;
+    let user = await User.findOne({
+      where: { uid }
+    });
+    const rank: any = user?.rank;
+
+    if (user && rank) {
+      const mp = parseInt(rank[1]);
+      const rankStr = rank[0];
+      if (mp + rankChange >= 100) {
+        let index = 0;
+        ranks.find((currRank, i) => {
+          index = i;
+          return currRank === rankStr;
+        });
+        const newRank = ranks[index + 1]
+        if (!newRank) {
+          res.status(200).send({ error: false, res: "You are the highest rank possible!" })
+        }
+        user.set({
+          rank: [newRank, "0"]
+        });
+        user = await user.save();
+        res.status(200).send({ error: false, res: "Rank has been increased!" });
+      }
+      else if (mp + rankChange < 0) {
+        const remainder = mp + rankChange 
+        let index = 0;
+        ranks.find((currRank, i) => {
+          index = i;
+          return currRank === rankStr;
+        });
+        const newRank = ranks[index - 1];
+        if (!newRank) {
+          res.status(200).send({ error: false, res: "You are the lowest rank possible! Try some practice challenges! :)" })
+        }
+        user.set({
+          rank: [newRank, JSON.stringify(100 + remainder)]
+        })
+        user = await user.save();
+        res.status(200).send({ error: false, res: "Rank has been decreased!" });
+      }
+      else {
+        const newMp = mp + rankChange;
+        user.set({
+          rank: [rankStr, newMp]
+        });
+        user = await user.save();
+        res.status(200).send({ error: false, res: "MP has been changed!" });
+      }
+
+    }
+
+
+  } catch (error) {
+    res.status(500).send({ error: true, res: "Error updating rank" });
+  }
+}
 
 export const addUser = async (req: Request, res: Response) => {
   try {

@@ -3,6 +3,7 @@ import { Socket, Server } from "socket.io";
 import { Inqueue } from "./models/Inqueue";
 
 export class ServerSocket {
+  public ranks: string[];
   public static instance: ServerSocket;
   public io: Server;
 
@@ -14,6 +15,7 @@ export class ServerSocket {
     ServerSocket.instance = this;
     this.users = {};
     this.uid = '';
+    this.ranks = ['Bronze 4', 'Bronze 3', 'Bronze 2', 'Bronze 1', 'Silver 4', 'Silver 3', 'Silver 2', 'Silver 1', 'Gold 4', 'Gold 3', 'Gold 2', 'Gold 1', 'Platinum 4', 'Platinum 3', 'Platinum 2', 'Platinum 1', 'Diamond 4', 'Diamond 3', 'Diamond 2', 'Diamond 1', 'Palladium 4', 'Palladium 3', 'Palladium 2', 'Palladium 1'];
     this.io = new Server(server, {
       serveClient: false,
       pingInterval: 10000,
@@ -79,37 +81,67 @@ export class ServerSocket {
       this.io.to(roomId).emit("winner", winnerUid);
     });
 
-    socket.on("queue_user", async (uid: string) => {
+    socket.on("queue_user", async (uid: string, rank: string[]) => {
+      if (uid == '0') {
+        console.log('UID WAS 0');
+        return;
+      } 
       console.log(uid);
       console.log("queued user.");
-      const queued = await Inqueue.findAll();
-      if (queued.length >= 1) {
-        if (uid == '0') {
-          console.log('UID WAS 0');
+      let allowedDifference = 4;
+      let matchFound = false;
+      let matchPlayers: string[] = [];
+      const room = JSON.stringify(Math.floor(Math.random() * 10000));
+      socket.join(room);
+      await Inqueue.create({ uid: uid, roomId: room, rank });
+      
+      const queuing = setInterval(async () => {
+        if (!this.uid) {
+          console.log(this.uid, 'uid');
           return;
-        } 
-
-        if (uid === queued[0].uid) {
-          console.info("Same user cannot queue into himself.");
-        } else {
-          socket.join(queued[0].roomId);
-          this.io
-            .to(queued[0].roomId)
-            .emit("match_found", queued[0].uid, uid, queued[0].roomId);
-          await Inqueue.destroy({ where: { uid: uid } });
-          await Inqueue.destroy({
-            where: { uid: queued[0].uid },
-          });
         }
-      } else {
-        if (uid == '0') {
-          console.log('UID WAS 0');
+        const queued = await Inqueue.findAll();
+        queued.forEach((queue) => { 
+          if (queue.uid === uid) {
+            console.log('yourself')
+          }
+          else {
+            let userIndex = 0;
+            let opponentIndex = 0;
+            this.ranks.find((currRank, i) => {
+              if (currRank === rank[0]) {
+                userIndex = i;
+              }
+              else if (currRank === queue.rank[0]) {
+                opponentIndex = i;
+              }
+            let difference = userIndex - opponentIndex;
+            if (difference < 0) {
+              difference = difference / -1
+            }
+            if (difference <= allowedDifference) {
+              socket.join(queue.roomId);
+              this.io
+                .to(queue.roomId)
+                .emit("match_found", queue.uid, uid, queue.roomId);
+              matchFound = true;
+              matchPlayers.push(uid, queue.uid);
+              return;
+            }
+            });      
+          }
+        });
+  
+        if (matchFound) {
+          await Inqueue.destroy({ where: { uid: matchPlayers[0] } })
+          await Inqueue.destroy({ where: { uid: matchPlayers[1] } })
+          clearInterval(queuing);
           return;
-        } 
-        const room = JSON.stringify(Math.floor(Math.random() * 1000));
-        socket.join(room);
-        await Inqueue.create({ uid: uid, roomId: room });
-      }
+        }
+        allowedDifference++
+      }, 20000)
+
+      
     });
 
     socket.on("disconnect", async () => {

@@ -9,6 +9,7 @@ import {
   getUserExercises,
   getUserChallenges,
   getTopUsers,
+  updateRank,
   updateImg,
   getUserFriends,
   removeFriend
@@ -24,6 +25,7 @@ router.get("/:uid/friends", getUserFriends);
 router.get("/:uid/exercises", getUserExercises);
 router.get("/:username/challenges", getUserChallenges);
 
+router.put("/rank", updateRank)
 router.put("/update/image", updateImg)
 router.put("/:uid/addFriend", addFriend);
 router.put("/:uid/removeFriend", removeFriend);
