@@ -15,7 +15,7 @@ interface UserCreationAttributes extends Optional<IUser, "id"> {}
 export class User extends Model<IUser, UserCreationAttributes> {
   public id!: number;
   public uid!: string;
-  public rank!: string;
+  public rank!: string[];
   public rating!: number;
   public username!: string;
   public image!: string;
@@ -52,7 +52,7 @@ User.init(
       unique: true,
     },
     rank: {
-      type: new DataTypes.STRING(128),
+      type: new DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     },
     image: {

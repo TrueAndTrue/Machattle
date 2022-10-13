@@ -14,12 +14,13 @@ export interface IQuestion {
 export interface IQueue {
   uid: string;
   roomId: string;
+  rank: string[];
 }
 
 export interface IUser {
   id: number;
   uid: string;
-  rank: string;
+  rank: string[];
   rating: number;
   username: string;
   image: string;

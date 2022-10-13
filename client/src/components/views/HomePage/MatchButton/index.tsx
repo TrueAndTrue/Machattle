@@ -26,11 +26,11 @@ export const MatchButton = ({ data, mode }: IProps) => {
 
   socket?.connect();
 
-  const userInfo = useSelector((state: any) => state.currentUser);
+  const { uid, rank } = useSelector((state: any) => state.currentUser);
 
   const QueueHandler = () => {
-    SocketDispatch({ type: "queue_user", payload: userInfo.uid });
-    socket?.emit("queue_user", userInfo.uid);
+    SocketDispatch({ type: "queue_user", payload: uid });
+    socket?.emit("queue_user", uid, rank);
   };
 
   const onClick = () => {

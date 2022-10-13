@@ -9,6 +9,7 @@ import {
   getUserExercises,
   getUserChallenges,
   getTopUsers,
+  updateRank,
 } from "../controllers/user";
 
 const router = Router();
@@ -21,6 +22,7 @@ router.get("/:uid/friends", getUserChallenges);
 router.get("/:uid/exercises", getUserExercises);
 router.get("/:username/challenges", getUserChallenges);
 
+router.put("/rank", updateRank)
 router.put("/:uid/addFriend", addFriend);
 router.put("/:uid/addExercise", addExercise);
 
