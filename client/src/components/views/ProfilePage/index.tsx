@@ -18,7 +18,7 @@ const initialUser : IUser = {username :'', rating : 0, rank: '', image :'' , fri
 export const UserContext = createContext<IContext>({user :initialUser});
 
 export function ProfilePage () {
-  const { username } = useParams() 
+  const { username } = useParams()
   const [user, setUser] = useState<IUser>(initialUser)
 
   useEffect(() => {
@@ -38,8 +38,10 @@ export function ProfilePage () {
       <ShootingStar />
       <div className={styles.profile_left}>
         <ProfileInfoContainer />
-        <FriendsList />
-        <MatchHistory />
+        <div className={styles.profile_btm_left}>
+          <FriendsList />
+          <MatchHistory />
+        </div>
       </div>
       <RecentEventsFeed />
     </div>

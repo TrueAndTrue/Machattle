@@ -11,6 +11,8 @@
   border-color: #eeeeee;
   border-style: inset;
   border-width: 10px;
+  max-width: 45%;
+  height: 100%;
 }
 
 .friends_title {
@@ -22,5 +24,6 @@
 
 .friends_carousel {
   display : flex;
+  flex-direction: row;
   overflow-x: scroll;
 }
