@@ -23,6 +23,7 @@ export interface ILeaderBoardUser {
 }
 
 export interface IUser extends ILeaderBoardUser{
+  uid:string;
   rank :string;
-  friends :IUser[]
+  friends :IUser[];
 }

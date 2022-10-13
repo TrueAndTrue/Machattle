@@ -6,7 +6,7 @@ export function AvatarContainer () {
   return (
     <div className={styles.avatar_container}>
       {/* on button press, render select form */}
-      <AvatarSelectForm />
+      {/* <AvatarSelectForm /> */}
     </div>
   )
 }

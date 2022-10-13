@@ -55,7 +55,7 @@ export const addFriend = async (uid: string, friendUID: string) => {
       headers: {
         "Content-Type": "application/json",
         method: "PUT",
-        body: JSON.stringify({ uid, friendUID }),
+        body: JSON.stringify({ friendUID }),
       },
     });
     const data = await response.json();
@@ -136,3 +136,18 @@ export const getUserFriends = async (uid: string) => {
     console.log(e);
   }
 };
+
+export const updatePfp = async (uid:string, image :string) => {
+  const requestOptions = {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ uid, image })
+  }
+  try {
+    const response = await fetch(`${BASE_URL}/users/update/image`, requestOptions);
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+}

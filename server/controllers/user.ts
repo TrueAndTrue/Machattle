@@ -188,3 +188,18 @@ export const getUserFriends = async (req: Request, res: Response) => {
     res.status(500).send({ error: true, res: "Error Getting User Friends" });
   }
 };
+
+export const updateImg = async (req:Request , res : Response) => {
+  try {
+    const { image, uid } = req.body;
+    console.log(image,uid)
+    const user = await User.update(
+      { image },
+      { where: { uid} }
+    )
+    if (!user) return res.status(404).send("User Does Not Exist");
+    return res.status(201).send({error :false, res:"User Image Updated SuccessFully"})
+  } catch (e) {
+    res.status(500).send({ error: true, res: "Error Updating User" });
+  } 
+}

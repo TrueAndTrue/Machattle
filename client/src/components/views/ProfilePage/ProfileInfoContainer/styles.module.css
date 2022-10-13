@@ -3,4 +3,12 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+
+#update_profile{
+  align-self: flex-start;
+  display: flex;
+  background-color: #232931;
+  left:3%;
 }
