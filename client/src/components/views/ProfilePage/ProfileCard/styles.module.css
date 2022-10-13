@@ -24,7 +24,9 @@
   display: flex;
   justify-content: center;
   min-width: 64px;
+  max-width: 100%;
   min-height: 64px;
+  max-height: 100%;
   object-fit: scale-down;
   background-size:contain;
   align-self: center;
@@ -34,6 +36,7 @@
 .profile_username {
   display: flex;
   width: 33%;
+  flex-direction: column;
   justify-content: center;
   color: #393e46;
 }
@@ -54,6 +57,7 @@
 .ranked_logo {
   display: flex;
   width: 95px;
+  margin-top: 30px;
 }
 
 .avatar_container {
@@ -61,4 +65,20 @@
   flex-direction: column;
   align-items: center;
   width: 33%;
+}
+
+#button_container{
+  display: flex;
+}
+
+#update_profile{
+  align-self: flex-start;
+  display: flex;
+  background-color: #232931;
+}
+
+#add_friend{
+  align-self: flex-start;
+  display: flex;
+  background-color: #232931;
 }
