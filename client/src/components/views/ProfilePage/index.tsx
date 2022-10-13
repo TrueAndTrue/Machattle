@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { createContext, useState, useEffect } from 'react';
 
 import { RecentEventsFeed } from '../HomePage/RecentEventsFeed';
-import { AvatarContainer } from './AvatarContainer/index';
 import { FriendsList } from './FriendsList';
 import { MatchHistory } from './MatchHistory';
 import { ProfileInfoContainer } from './ProfileInfoContainer';
@@ -40,6 +39,7 @@ export function ProfilePage () {
       <div className={styles.profile_left}>
         <ProfileInfoContainer />
         <FriendsList />
+        <MatchHistory />
       </div>
       <RecentEventsFeed />
     </div>
