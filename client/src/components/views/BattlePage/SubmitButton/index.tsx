@@ -61,7 +61,7 @@ export function SubmitButton(props: IProps) {
           }))
         }
         timesRan++;
-        socket.removeAllListeners('loser');
+        socket.removeAllListeners('winner');
         console.log(timesRan)
       }
     });
