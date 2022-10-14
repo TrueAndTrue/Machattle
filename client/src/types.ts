@@ -14,6 +14,8 @@ export interface IQuestion {
   tests: string[];
   difficulty: string;
   timeElapsed: string;
+  functionName :string;
+  parameters :string[]
 }
 
 export interface ILeaderBoardUser {

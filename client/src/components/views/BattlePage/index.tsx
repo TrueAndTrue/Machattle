@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Popup } from "./Popup/index";
 
-
+import { updateCurrentAnswer } from "../../../state/actions/question";
 import { updateQuestion } from '../../../state/actions/question';
 import { getRandomExercise } from '../../../services/exerciseServices';
 import { IQuestion } from '../../../types'
@@ -19,6 +19,8 @@ const initialQuestion: IQuestion = {
   timeComplexity: "",
   tests: [],
   timeElapsed: "",
+  functionName :"",
+  parameters: []
 };
 
 
@@ -29,7 +31,6 @@ export function BattlePage() {
   const [thisUsername, setThisUsername] = useState("");
   const [trigger, setTrigger] = useState(false);
   const [opponentUsername, setOpponentUsername] = useState("");
-
   useEffect(() => {
     getQuestion();
     (async () => {
@@ -44,13 +45,17 @@ export function BattlePage() {
         setOpponentUsername(p1.res.username);
       }
     })();
-  }, []);
+  },[]);
 
   async function getQuestion() {
     let salt :number;
+    console.log(roomId)
     roomId ? salt = parseInt(roomId) : salt = Math.floor((Math.random()*10000))
     const newQuestion = await getRandomExercise(2,salt);
+    console.log(newQuestion)
     dispatch(updateQuestion(newQuestion));
+    let initialCode = `function ${newQuestion.functionName}(${newQuestion.parameters[0]}) {\n\n}`
+    dispatch(updateCurrentAnswer(initialCode))
   }
 
   useEffect(() => {
@@ -62,7 +67,7 @@ export function BattlePage() {
       {trigger && <Popup />}
       <ShootingStar />
       <div className={styles.battle_title}>
-        <p>{thisUsername} (me)</p> <p> VS </p> <p> {opponentUsername} </p>
+        {roomId && <div><p>{thisUsername} (me)</p> <p> VS </p> <p> {opponentUsername} </p></div>}
       </div>
       <div className={styles.battle_page}>
         <InstructionsContainer setTrigger={setTrigger}/>
