@@ -13,7 +13,7 @@ export function HomePage () {
   const { socket } = useContext(SocketContext).SocketState;
   socket?.connect();
   useEffect(() => {
-    socket?.removeAllListeners();
+    socket?.removeAllListeners('winner');
   }, [])
 
   return (
