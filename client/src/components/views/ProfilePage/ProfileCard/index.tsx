@@ -56,7 +56,7 @@ export function ProfileCard () {
         </div>
         <div className={styles.profile_rank}>
           <h2 className={styles.ranked_text}>Your Rank:</h2>
-          <h1 className={styles.ranked_text}>{(user.rank) || 'Unranked'}</h1>
+          <h1 className={styles.ranked_text}>{(user.rank[0] + ' ' + user.rank[1] + 'MP') || 'Unranked'}</h1>
           <img className={styles.ranked_logo} src={silver} alt="silver rank icon" />
         </div>
       </div>
