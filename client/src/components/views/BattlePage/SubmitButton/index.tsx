@@ -22,7 +22,7 @@ export function SubmitButton(props: IProps) {
     (state: any) => state.currentQuestion.currentAnswer
   );
   const testArray = useSelector((state: any) => state.currentQuestion.tests) || [];
-  const thisUser = useSelector((state: any) => state.currentUser.uid);
+  const thisUser = useSelector((state: any) => state.currentUser.uid) || "";
   const [getUpdate, setUpdate] = useState("");
 
   const { roomId, player1, player2 } = useSelector((state: any) => state.match);
