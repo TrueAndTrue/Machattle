@@ -42,7 +42,7 @@ export function ProfileCard () {
     <div className={styles.profile_card_container}>
       <div className={styles.profile_info}>
         <div className={styles.profile_username}>
-          <h2>{(user.username) || 'Username'}</h2>
+          <h2 className={styles.user_text}>{(user.username) || 'Username'}</h2>
           <h2 className={styles.friend_text}>Friends Online: {user.friends?.length}</h2>
         </div>
         <div className={styles.avatar_container}>
@@ -55,8 +55,8 @@ export function ProfileCard () {
           {update && <ProfileUpdateForm updateProfile = {updateProfile}/>}
         </div>
         <div className={styles.profile_rank}>
-          <h2>Your Rank:</h2>
-          <h1>{(user.rank) || 'Unranked'}</h1>
+          <h2 className={styles.ranked_text}>Your Rank:</h2>
+          <h1 className={styles.ranked_text}>{(user.rank) || 'Unranked'}</h1>
           <img className={styles.ranked_logo} src={silver} alt="silver rank icon" />
         </div>
       </div>

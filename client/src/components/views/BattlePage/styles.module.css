@@ -5,6 +5,7 @@
   height: 90vh;
   width: 100%;
   align-items: center;
+  overflow: hidden;
 }
 
 .battle_page {

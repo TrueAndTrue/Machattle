@@ -5,3 +5,7 @@
   align-items: center;
   overflow-y: scroll;
 }
+
+.recent_events_feed_container::-webkit-scrollbar {
+  display: none;
+}
