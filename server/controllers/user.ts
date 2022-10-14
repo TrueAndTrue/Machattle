@@ -39,6 +39,7 @@ export const updateRank = async (req: Request, res: Response) => {
       where: { uid }
     });
     const rank: any = user?.rank;
+    console.log(rankChange)
 
     if (user && rank) {
       const mp = parseInt(rank[1]);

@@ -134,7 +134,7 @@ export class ServerSocket {
       }
     );
 
-    socket.on("player_won", async (winnerUid: string, roomId: string) => {
+    socket.once("player_won", async (winnerUid: string, roomId: string) => {
       console.log(winnerUid, roomId);
       this.io.to(roomId).emit("winner", winnerUid);
       socket.leave(roomId);
@@ -194,6 +194,7 @@ export class ServerSocket {
         const users = Object.values(this.users);
         this.SendMessage("user_disconnected", users, uid);
       }
+      socket.removeAllListeners();
     });
   };
 
