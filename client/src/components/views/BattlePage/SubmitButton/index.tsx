@@ -31,10 +31,7 @@ export function SubmitButton(props: IProps) {
   socket?.connect();
 
   useEffect(() => {
-    let timesRan = 0;
-    socket?.once("winner", (winner) => {
-      if (timesRan < 1) {
-        console.log(timesRan)
+    socket?.on("winner", (winner) => {
         console.log(winner, 'in winner')
         const enemy = findEnemy(player1, player2);
         if (thisUser === winner) {
@@ -59,10 +56,7 @@ export function SubmitButton(props: IProps) {
             loser: thisUser,
             roomId: roomId
           }))
-        }
-        timesRan++;
         socket.removeAllListeners('winner');
-        console.log(timesRan)
       }
     });
   }, []);
@@ -96,6 +90,7 @@ export function SubmitButton(props: IProps) {
 
     if (testsPassed === testArray.length) {
       console.log('player has won')
+      console.log(socket)
       socket?.emit("player_won", thisUser, roomId);
     }
 
@@ -110,8 +105,6 @@ export function SubmitButton(props: IProps) {
       return uid1;
     }
   }
-  
-  console.log('testing')
 
   return (
     <div className={styles.submit_button_container}>

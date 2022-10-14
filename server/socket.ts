@@ -134,9 +134,10 @@ export class ServerSocket {
       }
     );
 
-    socket.once("player_won", async (winnerUid: string, roomId: string) => {
-      console.log(winnerUid, roomId);
+    socket.on("player_won", async (winnerUid: string, roomId: string) => {
+      console.log(winnerUid, roomId, "IN PLAYER WON");
       this.io.to(roomId).emit("winner", winnerUid);
+      console.log('after emit')
       socket.leave(roomId);
     });
 
@@ -175,7 +176,7 @@ export class ServerSocket {
           allowedDifference++;
         }
         allowedDifference++
-      }, 5000)
+      }, 2000)
 
 
       return;
