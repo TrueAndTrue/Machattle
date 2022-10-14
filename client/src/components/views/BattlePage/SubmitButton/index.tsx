@@ -20,7 +20,7 @@ export function SubmitButton(props: IProps) {
   const codeSubmission = useSelector(
     (state: any) => state.currentQuestion.currentAnswer
   );
-  const testArray = useSelector((state: any) => state.currentQuestion.tests);
+  const testArray = useSelector((state: any) => state.currentQuestion.tests) || [];
   const thisUser = useSelector((state: any) => state.currentUser.uid);
   const [getUpdate, setUpdate] = useState("");
 
