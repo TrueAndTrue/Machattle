@@ -19,13 +19,14 @@ export function MatchHistory () {
     const userChallenges = await getUserChallenges(username!)
     console.log(username!)
     setChallenges(userChallenges)
+    console.log(challenges)
   }
 
   return (
     <div className={styles.match_history_container}>
       <h1 className={styles.match_title}>Match History</h1>
       <div className={styles.match_carousel}>
-        {challenges.map(challenge => <MatchCard match={challenge}/>)}
+        {/* {challenges.length > 0 && challenges.map(challenge => <MatchCard match={challenge}/>)} */}
       </div>
     </div>
   )
