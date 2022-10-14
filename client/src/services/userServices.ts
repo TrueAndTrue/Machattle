@@ -29,6 +29,29 @@ export const addUser = async (uid: string, username: string, image: string) => {
   }
 };
 
+export const updateRank = async (uid: string, change: number) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/rank`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          uid
+        },
+        change: {
+          rankChange: change
+        }
+      })
+    })
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const getUserById = async (uid: string) => {
   try {
     const response = await fetch(`${BASE_URL}/users/${uid}`);

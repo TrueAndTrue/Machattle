@@ -7,6 +7,7 @@ import SocketContext from "../../../../contexts/Context";
 //code transpilation!?
 import { useEffect, useState } from "react";
 import { updateMatch } from "../../../../state/actions/match";
+import { updateRank } from "../../../../services/userServices";
 
 let testsFailed = 0;
 let testsPassed = 0;
@@ -79,6 +80,7 @@ export function SubmitButton(props: IProps) {
     console.log('IN')
     const enemy = findEnemy(player1, player2);
     if (thisUser === winner) {
+      updateRank(thisUser, 20)
       props.setTrigger(true)
       dispatch(updateMatch({
         player1: player1,
@@ -89,6 +91,7 @@ export function SubmitButton(props: IProps) {
         roomId: roomId
       }));
     } else {
+      updateRank(thisUser, -20)
       props.setTrigger(true)
       dispatch(updateMatch({
         player1: player1,
