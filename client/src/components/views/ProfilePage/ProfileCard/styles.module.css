@@ -1,6 +1,6 @@
 .profile_card_container {
   height: 95%;
-  width: 80%;
+  width: 75%;
   display: flex;
   flex-direction: column;
   border-radius: 25px;
@@ -17,7 +17,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  color: #393e46;
+  color: #232931;
 }
 
 #profile_img {
@@ -38,7 +38,6 @@
   width: 33%;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   color: #393e46;
 }
 
@@ -53,12 +52,13 @@
 .friend_text {
   color: #393e46;
   font-size: 20px;
+  margin-top: 30px;
 }
 
 .ranked_logo {
   display: flex;
   width: 95px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .avatar_container {
@@ -66,21 +66,31 @@
   flex-direction: column;
   align-items: center;
   width: 33%;
+  height: 100%;
+  background-color: #232931;
 }
 
-#button_container{
+#button_container {
   display: flex;
   margin-top: 30px;
 }
 
-#update_profile{
+#update_profile {
   align-self: flex-start;
   display: flex;
-  background-color: #232931;
+  background-color: #393e46;
 }
 
 #add_friend{
   align-self: flex-start;
   display: flex;
-  background-color: #232931;
+  background-color: #393e46;
+}
+
+.user_text {
+  margin-top: 30px;
+}
+
+.ranked_text {
+  margin-top: 30px;
 }
