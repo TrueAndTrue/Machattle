@@ -28,3 +28,7 @@
   color: #4ecca3;
   font-size: 32px;
 }
+
+.match_carousel::-webkit-scrollbar {
+  display: none;
+}
