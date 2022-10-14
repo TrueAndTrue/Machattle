@@ -25,7 +25,7 @@ function App() {
   const navigate = useNavigate();
   socket?.connect();
 
-  socket?.on("match_found", (player1uid, player2uid, roomId) => {
+  socket?.once("match_found", (player1uid, player2uid, roomId) => {
     console.log(player1uid, player2uid);
     dispatch(
       updateMatch({

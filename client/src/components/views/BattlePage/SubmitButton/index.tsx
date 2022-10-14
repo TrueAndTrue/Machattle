@@ -30,7 +30,42 @@ export function SubmitButton(props: IProps) {
   const dispatch = useDispatch();
   socket?.connect();
 
-  useEffect(() => {}, [getUpdate]);
+  useEffect(() => {
+    let timesRan = 0;
+    socket?.once("winner", (winner) => {
+      if (timesRan < 1) {
+        console.log(timesRan)
+        console.log(winner, 'in winner')
+        const enemy = findEnemy(player1, player2);
+        if (thisUser === winner) {
+          updateRank(thisUser, 20)
+          props.setTrigger(true)
+          dispatch(updateMatch({
+            player1: player1,
+            player2: player2,
+            matchFound: true,
+            winner: thisUser,
+            loser: enemy,
+            roomId: roomId
+          }));
+        } else {
+          updateRank(thisUser, -20)
+          props.setTrigger(true)
+          dispatch(updateMatch({
+            player1: player1,
+            player2: player2,
+            matchFound: true,
+            winner: enemy,
+            loser: thisUser,
+            roomId: roomId
+          }))
+        }
+        timesRan++;
+        socket.removeAllListeners('loser');
+        console.log(timesRan)
+      }
+    });
+  }, []);
 
   function codeSubmit(code: string) {
     const parseFunction = (str: string) => {
@@ -75,34 +110,8 @@ export function SubmitButton(props: IProps) {
       return uid1;
     }
   }
-
-  socket?.on("winner", (winner) => {
-    console.log('IN')
-    const enemy = findEnemy(player1, player2);
-    if (thisUser === winner) {
-      updateRank(thisUser, 20)
-      props.setTrigger(true)
-      dispatch(updateMatch({
-        player1: player1,
-        player2: player2,
-        matchFound: true,
-        winner: thisUser,
-        loser: enemy,
-        roomId: roomId
-      }));
-    } else {
-      updateRank(thisUser, -20)
-      props.setTrigger(true)
-      dispatch(updateMatch({
-        player1: player1,
-        player2: player2,
-        matchFound: true,
-        winner: enemy,
-        loser: thisUser,
-        roomId: roomId
-      }))
-    }
-  });
+  
+  console.log('testing')
 
   return (
     <div className={styles.submit_button_container}>

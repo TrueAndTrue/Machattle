@@ -7,6 +7,7 @@ interface IProps {
   setTrigger: Function
 }
 
+
 export function InstructionsContainer(props: IProps) {
   return (
     <div className={styles.instructions_container}>
