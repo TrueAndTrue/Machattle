@@ -17,7 +17,6 @@ let language = new Compartment(),
 
 export function CodingArena() {
   const dispatch = useDispatch();
-
   return (
     <div className={styles.coding_arena_container}>
       <CodeMirror
@@ -30,10 +29,9 @@ export function CodingArena() {
           arenaTheme,
         ]}
         onChange={(value: string) => {
-          console.log(value, "in onChange");
           dispatch(updateCurrentAnswer(value));
           // setCode(value)
-        }}
+        }} 
       />
     </div>
   );
