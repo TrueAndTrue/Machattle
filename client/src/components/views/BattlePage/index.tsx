@@ -24,7 +24,7 @@ const initialQuestion: IQuestion = {
 
 export function BattlePage() {
   const dispatch = useDispatch();
-  const { player1, player2 } = useSelector((state: any) => state.match);
+  const { player1, player2, roomId } = useSelector((state: any) => state.match);
   const thisUser = useSelector((state: any) => state.currentUser.uid);
   const [thisUsername, setThisUsername] = useState("");
   const [trigger, setTrigger] = useState(false);
@@ -47,7 +47,9 @@ export function BattlePage() {
   }, []);
 
   async function getQuestion() {
-    const newQuestion = await getRandomExercise(2);
+    let salt :number;
+    roomId ? salt = parseInt(roomId) : salt = Math.floor((Math.random()*10000))
+    const newQuestion = await getRandomExercise(2,salt);
     dispatch(updateQuestion(newQuestion));
   }
 

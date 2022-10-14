@@ -35,10 +35,12 @@ export const addExercise = async (req: Request, res: Response) => {
 
 export const getRandomExercise = async (req: Request, res: Response) => {
   try {
-    const { difficulty } = req.params;
+    const { info } = req.params;
+    const [difficulty,salt] = info.split('$')
     const questions = await Question.findAll({ where: { difficulty } });
     const numQuestions = questions.length;
-    const questionIndex = Math.floor(Math.random() * numQuestions);
+    const questionIndex = parseInt(salt)% numQuestions;
+    console.log(questionIndex)
     res.status(200).send({ error: false, res: questions[questionIndex] });
   } catch {
     res.status(500).send({ error: true, res: "Error Getting Random Exercise" });
