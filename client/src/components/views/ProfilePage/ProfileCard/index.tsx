@@ -20,7 +20,7 @@ export function ProfileCard () {
 
   const imgLocations: string[] = [];
   for(let i =1; i<=6;i++){
-    imgLocations.push(`../../../../../public/ranks/${i}.png`)
+    imgLocations.push(`ranks/${i}.png`)
   }
 
   const [rankImage, setRankImage] = useState('');
