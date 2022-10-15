@@ -20,7 +20,7 @@ export function ProfileCard () {
 
   const imgLocations: string[] = [];
   for(let i =1; i<=6;i++){
-    imgLocations.push(`ranks/${i}.png`)
+    imgLocations.push(`../../../../../public/ranks/${i}.png`)
   }
 
   const [rankImage, setRankImage] = useState('');
@@ -56,7 +56,7 @@ export function ProfileCard () {
 
   }, [currentUser])
 
-  useEffect(() =>{ 
+  useEffect(() =>{
     console.log(rankImage)
   }, [rankImage])
 
@@ -68,7 +68,7 @@ export function ProfileCard () {
   const isUserProfile = currentUser.uid == otherProfile.uid
 
   const updateProfile = () => {
-    
+
     setUpdate(!update);
   }
 
@@ -83,7 +83,7 @@ export function ProfileCard () {
     setFriend(false)
     dispatch(removeUserFriends(otherProfile))
   }
-  
+
   return (
     <div className={styles.profile_card_container}>
       <div className={styles.profile_info}>
