@@ -29,9 +29,18 @@
 
 #pfp {
   height: 80%;
-  min-width: 23%;
+  min-width: 15%;
   background-size: contain;
   background-repeat: no-repeat;
   align-items: center;
   justify-content: center;
+}
+
+.rank {
+  color: white;
+}
+
+.rank_img {
+  width: 70px;
+  margin-bottom: 6px;
 }
