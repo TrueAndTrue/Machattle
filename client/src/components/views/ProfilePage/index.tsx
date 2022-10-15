@@ -20,6 +20,7 @@ export const UserContext = createContext<IContext>({user :initialUser});
 export function ProfilePage () {
   const { username } = useParams()
   const [user, setUser] = useState<IUser>(initialUser)
+  
 
   useEffect(() => {
     getUser();

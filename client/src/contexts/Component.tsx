@@ -56,7 +56,6 @@ const SocketContextComponent: React.FunctionComponent<
     socket.on("user_disconnected", (uid: string[]) => {
       console.log("user disconnected.");
       SocketDispatch({ type: "remove_user", payload: uid });
-      console.log("after");
     });
 
     socket.io.on("reconnect", (attempt) => {

@@ -33,11 +33,6 @@ export const SocketReducer = (
   state: ISocketContextState,
   action: ISocketContextActions
 ) => {
-  console.log(
-    `Message Received - Action: ${action.type} - Payload: ${action.payload}`
-  );
-  console.log(state.users);
-  console.log(state.inQueue);
 
   switch (action.type) {
     case "update_socket":
