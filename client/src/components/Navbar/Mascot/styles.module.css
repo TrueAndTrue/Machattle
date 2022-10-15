@@ -1,8 +1,12 @@
 .mascot_container {
   display: flex;
-  width: 73vw;
+  width: 75vw;
   height: 80%;
   align-items: center;
+}
+
+.robot_mascot {
+
 }
 
 .app_title {

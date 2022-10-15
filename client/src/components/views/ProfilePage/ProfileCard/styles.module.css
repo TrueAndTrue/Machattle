@@ -23,10 +23,8 @@
 #profile_img {
   display: flex;
   justify-content: center;
-  min-width: 128px;
-  max-width: 100%;
-  min-height: 128px;
-  max-height: 100%;
+  width: 128px;
+  height: 128px;
   object-fit: scale-down;
   background-size:contain;
   align-self: center;
