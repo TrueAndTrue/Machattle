@@ -18,6 +18,48 @@ export function ProfileCard () {
   console.log(isFriend)
   const dispatch = useDispatch();
 
+  const imgLocations: string[] = [];
+  for(let i =1; i<=6;i++){
+    imgLocations.push(`ranks/${i}.png`)
+  }
+
+  const [rankImage, setRankImage] = useState('');
+
+  useEffect(() => {
+    if (currentUser.rank) {
+      console.log(currentUser.rank,'current.rank')
+      const rankStr = currentUser.rank[0].split(' ')[0];
+      console.log(rankStr, 'RANKSTR')
+      console.log(imgLocations)
+
+      if (rankStr === 'Bronze') {
+        setRankImage(imgLocations[0])
+      }
+      else if (rankStr === 'Silver') {
+        setRankImage(imgLocations[1])
+      }
+      else if (rankStr === 'Gold') {
+        console.log('ran')
+        console.log(imgLocations[2])
+        setRankImage(imgLocations[2])
+      }
+      else if (rankStr === 'Platinum') {
+        setRankImage(imgLocations[3])
+      }
+      else if (rankStr === 'Diamond') {
+        setRankImage(imgLocations[4])
+      }
+      else if (rankStr === 'Pallidium') {
+        setRankImage(imgLocations[5])
+      }
+    }
+
+  }, [currentUser])
+
+  useEffect(() =>{ 
+    console.log(rankImage)
+  }, [rankImage])
+
   useEffect(() => {
     const initialFriend = currentUser.friends.filter((friend :IUser)  => friend.uid === otherProfile.uid).length >0
     setFriend(initialFriend)
@@ -61,7 +103,7 @@ export function ProfileCard () {
         <div className={styles.profile_rank}>
           <h2 className={styles.ranked_text}>Your Rank:</h2>
           <h1 className={styles.ranked_text}>{(otherProfile.rank) || 'Unranked'}</h1>
-          <img className={styles.ranked_logo} src={silver} alt="silver rank icon" />
+          <img className={styles.ranked_logo} src={rankImage} alt="rank icon" />
         </div>
       </div>
     </div>
