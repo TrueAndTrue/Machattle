@@ -24,8 +24,9 @@
 #profile_img {
   display: flex;
   justify-content: center;
-  width: 128px;
-  height: 128px;
+  margin-top: 64px;
+  width: 64px;
+  height: 64px;
   object-fit: scale-down;
   background-size:contain;
   align-self: center;
