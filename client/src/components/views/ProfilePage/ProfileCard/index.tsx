@@ -10,6 +10,8 @@ import { IUser } from '../../../../types';
 import { addFriend, removeFriend } from '../../../../services/userServices';
 import styles from './styles.module.css';
 
+const imgLocations: string[] = [];
+
 export function ProfileCard () {
   const currentUser = useSelector((state: any) => state.currentUser);
   const otherProfile = useContext(UserContext).user;
@@ -18,8 +20,7 @@ export function ProfileCard () {
   console.log(isFriend)
   const dispatch = useDispatch();
 
-  const imgLocations: string[] = [];
-  for(let i =1; i<=6;i++){
+  for(let i = 1; i <= 6; i++){
     imgLocations.push(`ranks/${i}.png`)
   }
 
