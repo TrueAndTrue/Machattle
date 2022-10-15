@@ -9,7 +9,7 @@ const ranks = ['Bronze 4', 'Bronze 3', 'Bronze 2', 'Bronze 1', 'Silver 4', 'Silv
 export const getTopUsers = async (req: Request, res: Response) => {
   try {
     const users = await User.findAll({
-      attributes: ["username", "rating", "image"],
+      attributes: ["username", "rating", "image", "rank"],
       order: [["rating", "DESC"]],
       limit: 10,
     });

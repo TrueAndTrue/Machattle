@@ -66,7 +66,7 @@ export function BattlePage() {
       {trigger && <Popup />}
       <ShootingStar />
       <div className={styles.battle_title}>
-        {roomId && <div><p>{thisUsername} (me)</p> <p> VS </p> <p> {opponentUsername} </p></div>}
+        {roomId && <div><p>{thisUsername} (me) VS {opponentUsername} </p></div>}
       </div>
       <div className={styles.battle_page}>
         <InstructionsContainer setTrigger={setTrigger}/>
