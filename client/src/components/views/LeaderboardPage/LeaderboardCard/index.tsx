@@ -19,25 +19,27 @@ export function LeaderboardCard ({user, position} :IProps) {
   const [rankImg, setRankImg] = useState('');
 
   useEffect(() => {
-    const rankStr = user.rank[0].split(' ')[0];
-    
-    if (rankStr === 'Bronze') {
-      setRankImg(imgLocations[0])
-    }
-    else if (rankStr === 'Silver') {
-      setRankImg(imgLocations[1])
-    }
-    else if (rankStr === 'Gold') {
-      setRankImg(imgLocations[2])
-    }
-    else if (rankStr === 'Platinum') {
-      setRankImg(imgLocations[3])
-    }
-    else if (rankStr === 'Diamond') {
-      setRankImg(imgLocations[4])
-    }
-    else if (rankStr === 'Pallidium') {
-      setRankImg(imgLocations[5])
+    if (user) {
+      const rankStr = user.rank[0].split(' ')[0];
+      
+      if (rankStr === 'Bronze') {
+        setRankImg(imgLocations[0])
+      }
+      else if (rankStr === 'Silver') {
+        setRankImg(imgLocations[1])
+      }
+      else if (rankStr === 'Gold') {
+        setRankImg(imgLocations[2])
+      }
+      else if (rankStr === 'Platinum') {
+        setRankImg(imgLocations[3])
+      }
+      else if (rankStr === 'Diamond') {
+        setRankImg(imgLocations[4])
+      }
+      else if (rankStr === 'Pallidium') {
+        setRankImg(imgLocations[5])
+      }
     }
 
   }, [user])
