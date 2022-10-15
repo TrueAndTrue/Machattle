@@ -12,7 +12,7 @@ interface IProps {
 export function LeaderboardCard ({user, position} :IProps) {
 
   const imgLocations: string[] = [];
-  for(let i =1; i<=6;i++){
+  for(let i = 1; i <= 6; i++){
     imgLocations.push(`ranks/${i}.png`)
   }
 
@@ -21,7 +21,7 @@ export function LeaderboardCard ({user, position} :IProps) {
   useEffect(() => {
     if (user) {
       const rankStr = user.rank[0].split(' ')[0];
-      
+
       if (rankStr === 'Bronze') {
         setRankImg(imgLocations[0])
       }
