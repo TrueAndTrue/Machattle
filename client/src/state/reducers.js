@@ -4,7 +4,7 @@ import { currentBoard } from "./leaderBoardReducer";
 
 const { UPDATE_LOGGED } = require("./actions/status");
 
-const { UPDATE_USER } = require("./actions/user");
+const { UPDATE_USER, ADD_FRIEND , REMOVE_FRIEND } = require("./actions/user");
 
 const { UPDATE_MATCH } = require("./actions/match");
 
@@ -59,8 +59,18 @@ const currentUser = (
 ) => {
   switch (action.type) {
     case UPDATE_USER: {
-      const { uid, rank, username, rating, image } = action.user;
-      return { ...currentUser, uid, rank, username, rating, image };
+      const { uid, rank, username, rating, image, friends } = action.user;
+      return { ...currentUser, uid, rank, username, rating, image , friends};
+    } case ADD_FRIEND : {
+      const { user } = currentUser;
+      const friend = action.friend;
+      const friends = [...user.friends, friend]
+      return {...currentUser, friends}
+    } case REMOVE_FRIEND : {
+      const { user } = currentUser;
+      const friendID = action.friend.uid;
+      const newFriends = user.friends.filter(friend=>friend.uid != friendID)
+      return {currentUser, friends:newFriends}
     }
     default:
       return currentUser;

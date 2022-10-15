@@ -114,7 +114,7 @@ export const addUser = async (req: Request, res: Response) => {
 export const getUserByUsername = async(req:Request, res :Response) =>{
   try{
     const { username } = req.params;
-    const user = await User.findOne({ where: { username },include : {model :User , as : 'friends' } });
+    const user = await User.findOne({ where: { username }, include : {model :User , as : 'friends' } });
     if (user) {
       res.status(200).send({ error : false , res: user });
     } else {
@@ -128,7 +128,7 @@ export const getUserByUsername = async(req:Request, res :Response) =>{
 export const getUserById = async(req:Request, res :Response) =>{
   try{
     const { uid } = req.params
-    const user = await User.findOne({where: { uid } })
+    const user = await User.findOne({where: { uid }, include : {model :User , as : 'friends' } })
     if (user) {
       res.status(200).send({error :false, res :user})
     } else {

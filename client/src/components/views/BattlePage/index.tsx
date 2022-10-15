@@ -23,7 +23,6 @@ const initialQuestion: IQuestion = {
   parameters: []
 };
 
-
 export function BattlePage() {
   const dispatch = useDispatch();
   const { player1, player2, roomId } = useSelector((state: any) => state.match);
