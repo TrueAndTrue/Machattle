@@ -5,10 +5,17 @@ import Button from "@mui/material/Button";
 import { addUserFriends, removeUserFriends, ADD_FRIEND, REMOVE_FRIEND } from '../../../../state/actions/user';
 import { UserContext } from '..';
 import { ProfileUpdateForm } from '../ProfileUpdateForm';
-import silver from '../../../../assets/Silver.png';
 import { IUser } from '../../../../types';
 import { addFriend, removeFriend } from '../../../../services/userServices';
 import styles from './styles.module.css';
+
+//shield imports due to compilation issues
+import Bronze from '../../../../assets/ranks/1.png';
+import Silver from '../../../../assets/ranks/2.png';
+import Gold from '../../../../assets/ranks/3.png';
+import Platinum from '../../../../assets/ranks/4.png';
+import Diamond from '../../../../assets/ranks/5.png';
+import Palladium from '../../../../assets/ranks/6.png';
 
 const imgLocations: string[] = [];
 
@@ -16,8 +23,6 @@ export function ProfileCard () {
   const currentUser = useSelector((state: any) => state.currentUser);
   const otherProfile = useContext(UserContext).user;
   const [update, setUpdate] = useState(false)
-  const [isFriend, setFriend] = useState(false)
-  console.log(isFriend)
   const dispatch = useDispatch();
 
   for(let i = 1; i <= 6; i++){
@@ -34,24 +39,24 @@ export function ProfileCard () {
       console.log(imgLocations)
 
       if (rankStr === 'Bronze') {
-        setRankImage(imgLocations[0])
+        setRankImage(Bronze)
       }
       else if (rankStr === 'Silver') {
-        setRankImage(imgLocations[1])
+        setRankImage(Silver)
       }
       else if (rankStr === 'Gold') {
         console.log('ran')
         console.log(imgLocations[2])
-        setRankImage(imgLocations[2])
+        setRankImage(Gold)
       }
       else if (rankStr === 'Platinum') {
-        setRankImage(imgLocations[3])
+        setRankImage(Platinum)
       }
       else if (rankStr === 'Diamond') {
-        setRankImage(imgLocations[4])
+        setRankImage(Diamond)
       }
       else if (rankStr === 'Pallidium') {
-        setRankImage(imgLocations[5])
+        setRankImage(Palladium)
       }
     }
 
@@ -62,27 +67,23 @@ export function ProfileCard () {
   }, [rankImage])
 
   useEffect(() => {
-    const initialFriend = currentUser.friends.filter((friend :IUser)  => friend.uid === otherProfile.uid).length >0
-    setFriend(initialFriend)
   },[update])
 
   const isUserProfile = currentUser.uid == otherProfile.uid
-
+  const isFriend = currentUser.friends.filter((friend :IUser)  => friend.uid === otherProfile.uid).length >0
+   
   const updateProfile = () => {
-
     setUpdate(!update);
   }
 
   const addFriendToUser = async () => {
     await addFriend(currentUser.uid, otherProfile.uid);
-    setFriend(true)
-    dispatch(addUserFriends(otherProfile))
+    dispatch(addUserFriends(currentUser, otherProfile))
   }
 
   const removeUserFriend = async () => {
-    await removeFriend(currentUser.uid, otherProfile.uid);
-    setFriend(false)
-    dispatch(removeUserFriends(otherProfile))
+    await removeFriend(currentUser.uid, otherProfile.uid)
+    dispatch(removeUserFriends(currentUser, otherProfile))
   }
 
   return (

@@ -56,9 +56,9 @@
 }
 
 .ranked_logo {
-  display: flex;
+  /* display: flex; */
   width: 70px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .avatar_container {
