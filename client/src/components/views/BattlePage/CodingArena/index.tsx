@@ -2,7 +2,7 @@ import styles from "./styles.module.css";
 
 //code mirror modules
 import CodeMirror from "@uiw/react-codemirror";
-import { EditorState, Compartment } from "@codemirror/state";
+import { EditorState, EditorStateConfig, Compartment } from "@codemirror/state";
 import { EditorView, keymap } from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { defaultKeymap } from "@codemirror/commands";
@@ -21,8 +21,11 @@ export function CodingArena() {
     <div className={styles.coding_arena_container}>
       <CodeMirror
         value={useSelector((state: any) => state.currentQuestion.currentAnswer)}
+        basicSetup={
+          {foldGutter: false}
+        }
         extensions={[
-          basicSetup,
+          // basicSetup,
           language.of(javascript()),
           keymap.of(defaultKeymap),
           tabSize.of(EditorState.tabSize.of(2)),
@@ -31,7 +34,7 @@ export function CodingArena() {
         onChange={(value: string) => {
           dispatch(updateCurrentAnswer(value));
           // setCode(value)
-        }} 
+        }}
       />
     </div>
   );
