@@ -48,9 +48,16 @@
   font-weight: 800;
 }
 
+.prog {
+  border: 2px solid white;
+  width: 50%;
+  margin-bottom: 4%;
+}
+
 .profile_rank {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 33%;
   color: #393e46;
@@ -65,7 +72,6 @@
 .ranked_logo {
   /* display: flex; */
   width: 110px;
-  margin-top: 10px;
 }
 
 .avatar_container {
@@ -99,5 +105,7 @@
 }
 
 .ranked_text {
-  margin-top: 30px;
+  margin-top: 1%;
+  font-size: x-large;
+  font-weight: 600;
 }

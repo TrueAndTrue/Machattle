@@ -18,6 +18,7 @@ import Gold from '../../../../assets/ranks/3.png';
 import Platinum from '../../../../assets/ranks/4.png';
 import Diamond from '../../../../assets/ranks/5.png';
 import Palladium from '../../../../assets/ranks/6.png';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const imgLocations: string[] = [];
 
@@ -105,7 +106,7 @@ export function ProfileCard () {
         <div className={styles.profile_username}>
           <h2 className={styles.user_text}>{(otherProfile.username) || 'Username'}</h2>
           <h2 className={styles.friend_text}>Friends Online: {otherProfile.friends?.length}</h2>
-          <Button className={styles.match} onClick={matchInvite}>Invite Match</Button>
+          {!isUserProfile && <Button className={styles.match} onClick={matchInvite}>Invite Match</Button>}
         </div>
         <div className={styles.avatar_container}>
           <div id={styles.profile_img} style={{ backgroundImage: `url(${otherProfile.image})` }} />
@@ -117,9 +118,11 @@ export function ProfileCard () {
           {update && <ProfileUpdateForm updateProfile = {updateProfile}/>}
         </div>
         <div className={styles.profile_rank}>
-          {/* <h2 className={styles.ranked_text}>Your Rank:</h2> */}
-          <h1 className={styles.ranked_text}>{(otherProfile.rank) || 'Unranked'}</h1>
+          {/* <h2 className={styles.ranked_text}>Rank:</h2> */}
           <img className={styles.ranked_logo} src={rankImage} alt="rank icon" />
+          <p className={styles.ranked_text}>{(otherProfile.rank[0]) || 'Unranked'}</p>
+          <p className={styles.ranked_text}>{(otherProfile.rank[1]) + "MP" || 'Unranked'}</p>
+          <LinearProgress sx={{backgroundColor: 'black'}} className={styles.prog} variant="determinate" value={parseInt(otherProfile.rank[1])} />
         </div>
       </div>
     </div>
