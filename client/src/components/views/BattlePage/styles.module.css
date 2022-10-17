@@ -10,6 +10,8 @@
 
 .battle_page {
   display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
 
 .battle_title {
