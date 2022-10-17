@@ -85,6 +85,16 @@ export function DropdownMenu() {
             </ListItemButton>
           </Link>
         </ListItem>
+        <ListItem key={"Messages"} disablePadding>
+          <Link to={"/Messages"} className={styles.link_text}>
+            <ListItemButton>
+              <ListItemIcon>
+                <MilitaryTech />
+              </ListItemIcon>
+              <ListItemText primary={"Messages"} />
+            </ListItemButton>
+          </Link>
+        </ListItem>
       </List>
     </Box>
   );

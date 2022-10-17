@@ -19,14 +19,31 @@ export const sendMessage = async (req: Request, res: Response) => {
 
 export const getAllUserMail = async (req :Request, res : Response) => {
   try{
-    const { username } = req.params;
-    const user = User.findOne({where : {username}})
+    const { uid } = req.params;
+    const user = User.findOne({where : {uid}})
     if(!user) return res.status(404).send("User Does Not Exist")
 
-    const sentMessages = await Message.findAll({where :{senderUsername : username } })
-    const recievedMessages = await Message.findAll({where :{receiverUsername : username } })
+    const sentMessages = await Message.findAll({
+      where : { senderUid : uid },
+      attributes:['title', 'id']
+    })
+    const recievedMessages = await Message.findAll({
+      where :{ receiverUid : uid },
+      attributes:['title', 'id', 'read'] 
+    });
+    
     const messages = {sentMessages, recievedMessages}
     return res.status(200).send({error :false, res : messages})
+  } catch (e) {
+    res.status(500).send({error :true, res:"Error Getting User Mail"})
+  }
+}
+
+export const getMailbyId = async (req :Request, res : Response) => {
+  try{
+    const { id } = req.params;
+    const message =  await Message.findByPk(id)
+    return res.status(200).send({error :false, res : message})
   } catch (e) {
     res.status(500).send({error :true, res:"Error Getting User Mail"})
   }

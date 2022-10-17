@@ -24,6 +24,7 @@ Message.init(
     },
     title: {
       type: DataTypes.STRING,
+      defaultValue: "(no title)"
     },
     content: {
       type: DataTypes.TEXT,
@@ -33,11 +34,11 @@ Message.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    senderUsername: {
+    senderUid: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    receiverUsername: {
+    receiverUid: {
       type: DataTypes.STRING,
       allowNull: false,
     }

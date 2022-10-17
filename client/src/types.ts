@@ -30,3 +30,13 @@ export interface IUser extends ILeaderBoardUser{
   friends :IUser[];
   challenges : IChallenge[]
 }
+
+export interface IMessage {
+  id :number;
+  title : string;
+  content : string;
+  read:boolean
+  senderUid : string;
+  receiverUid : string;
+  createdAt : Date
+}

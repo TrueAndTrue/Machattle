@@ -48,6 +48,6 @@ export interface IMessage {
   title? : string;
   content : string;
   read:boolean
-  senderUsername : ForeignKey<string>;
-  receiverUsername : ForeignKey<string>;
+  senderUid : ForeignKey<string>;
+  receiverUid : ForeignKey<string>;
 }
