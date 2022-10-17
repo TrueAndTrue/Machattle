@@ -25,8 +25,6 @@ export function ProfileCard () {
   const currentUser = useSelector((state: any) => state.currentUser);
   const otherProfile = useContext(UserContext).user;
   const [update, setUpdate] = useState(false)
-  const [isFriend, setFriend] = useState(false)
-  console.log(isFriend)
   const { socket } = useContext(SocketContext).SocketState;
   const dispatch = useDispatch();
   const navigate = useNavigate();
