@@ -103,7 +103,7 @@ export function ProfileCard () {
           {update && <ProfileUpdateForm updateProfile = {updateProfile}/>}
         </div>
         <div className={styles.profile_rank}>
-          <h2 className={styles.ranked_text}>Your Rank:</h2>
+          {/* <h2 className={styles.ranked_text}>Your Rank:</h2> */}
           <h1 className={styles.ranked_text}>{(otherProfile.rank) || 'Unranked'}</h1>
           <img className={styles.ranked_logo} src={rankImage} alt="rank icon" />
         </div>
