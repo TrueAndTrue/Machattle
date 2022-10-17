@@ -47,3 +47,12 @@ export interface IChallenge {
   loserUsername: ForeignKey<string>;
   questionId: ForeignKey<number>;
 }
+
+export interface IMessage {
+  id :number;
+  title? : string;
+  content : string;
+  read:boolean
+  senderUsername : ForeignKey<string>;
+  receiverUsername : ForeignKey<string>;
+}

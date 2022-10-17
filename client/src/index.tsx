@@ -13,6 +13,9 @@ import { ProfilePage } from "./components/views/ProfilePage";
 import { QueuePage } from "./components/views/QueuePage";
 import { LandingPage } from "./components/views/LandingPage";
 import { Provider as ReduxProvider } from "react-redux";
+import { Messages } from './components/views/Messages'
+import { MessageBody } from "./components/views/Messages/MessageBody";
+import { MessageForm } from "./components/views/Messages/MessageForm";
 import store from "./state/store";
 import { PopUp } from "./components/views/PopUp";
 
@@ -43,6 +46,8 @@ root.render(
                 <Route path="/battle" element={<BattlePage />} />
                 <Route path="/queue" element={<QueuePage />} />
                 <Route path="/leaderboard" element={<LeaderboardPage />} />
+                <Route path="/messages" element={<Messages />} />
+                <Route path="/messages/:id" element={<MessageBody />} />
               </Routes>
             </section>
           </ThemeProvider>

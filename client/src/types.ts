@@ -34,4 +34,15 @@ export interface IUser extends ILeaderBoardUser{
 export interface IRoom {
   uid: string;
   roomId: string;
+
+}
+
+export interface IMessage {
+  id ?:number;
+  title : string;
+  content : string;
+  read?:boolean
+  senderUsername : string;
+  receiverUsername : string;
+  createdAt? : Date
 }
