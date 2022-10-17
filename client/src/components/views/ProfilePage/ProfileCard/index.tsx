@@ -10,12 +10,12 @@ import { addFriend, removeFriend } from '../../../../services/userServices';
 import styles from './styles.module.css';
 
 //shield imports due to compilation issues
-import Bronze from '../../../../../public/ranks/1.png';
-import Silver from '../../../../../public/ranks/2.png';
-import Gold from '../../../../../public/ranks/3.png';
-import Platinum from '../../../../../public/ranks/4.png';
-import Diamond from '../../../../../public/ranks/5.png';
-import Palladium from '../../../../../public/ranks/6.png';
+import Bronze from '../../../../assets/ranks/1.png';
+import Silver from '../../../../assets/ranks/2.png';
+import Gold from '../../../../assets/ranks/3.png';
+import Platinum from '../../../../assets/ranks/4.png';
+import Diamond from '../../../../assets/ranks/5.png';
+import Palladium from '../../../../assets/ranks/6.png';
 
 const imgLocations: string[] = [];
 
