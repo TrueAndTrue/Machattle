@@ -62,6 +62,7 @@ export function SubmitButton(props: IProps) {
   }, []);
 
   function codeSubmit(code: string) {
+    //add an error catch here if the code submitted is invalid?
     const parseFunction = (str: string) => {
       return Function('"use strict";return (' + str + ")")();
     };
@@ -108,7 +109,7 @@ export function SubmitButton(props: IProps) {
 
   return (
     <div className={styles.submit_button_container}>
-      <Button onClick={() => codeSubmit(codeSubmission)}>
+      <Button className={styles.submit_button} onClick={() => codeSubmit(codeSubmission)}>
         SUBMIT SOLUTION
       </Button>
       <div className={styles.tests_result_container}>

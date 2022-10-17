@@ -3,15 +3,31 @@
   flex-direction: column;
   background-color: #232931;
   color: #4ecca3;
-  width: 80%;
+  width: 35vw;
+  height: 40vh;
   margin-top: 18px;
   border-radius: 25px;
   border-style: inset;
   border-width: 10px;
-  justify-content: center;
+  /* justify-content: center; */
+  overflow-y: scroll;
+}
+
+.submit_button {
+  display: flex;
+  margin-top: 15px;
+  background-color: #4ecca3;
+  color: #232931;
 }
 
 .tests_result_container {
   display: flex;
   margin-left: 10px;
+  white-space: pre-line;
+  margin-top: 15px;
+  flex-direction: column;
+}
+
+.submit_button_container::-webkit-scrollbar {
+  display: none;
 }
