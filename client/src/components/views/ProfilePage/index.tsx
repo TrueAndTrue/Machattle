@@ -20,7 +20,7 @@ export const UserContext = createContext<IContext>({user :initialUser});
 export function ProfilePage () {
   const { username } = useParams()
   const [user, setUser] = useState<IUser>(initialUser)
-  
+
 
   useEffect(() => {
     getUser();
@@ -41,7 +41,7 @@ export function ProfilePage () {
         <ProfileInfoContainer />
         <div className={styles.profile_btm_left}>
           <FriendsList />
-          <MatchHistory />
+          {/* <MatchHistory /> */}
         </div>
       </div>
       <RecentEventsFeed />
