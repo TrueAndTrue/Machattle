@@ -1,3 +1,21 @@
-.battle-page-container {
+.battle_page_container {
   display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  height: 90vh;
+  width: 100%;
+  align-items: center;
+  overflow: hidden;
+}
+
+.battle_page {
+  display: flex;
+}
+
+.battle_title {
+  display: flex;
+  width: 100%;
+  font-size: xx-large;
+  color: white;
+  justify-content: space-around;
 }

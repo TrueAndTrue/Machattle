@@ -1,3 +1,46 @@
-.leaderboard-card-container {
+.leaderboard_card_container {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.card_text {
+  display: flex;
+  color: #eeeeee;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#user_card {
+  display: flex;
+  height: 7vh;
+  width: 70%;
+  justify-content: space-around;
+  border-radius: 25px;
+  border-color: #eeeeee;
+  border-style: inset;
+  border-width: 6px;
+  margin: 4px;
+  background-color: #393e46;
+  align-items: center;
+}
+
+#pfp {
+  height: 80%;
+  min-width: 15%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-items: center;
+  justify-content: center;
+}
+
+.rank {
+  color: white;
+}
+
+.rank_img {
+  width: 70px;
+  margin-bottom: 6px;
 }

@@ -1,3 +1,6 @@
-.select-match-container {
+.select_match_container {
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 75vw;
 }

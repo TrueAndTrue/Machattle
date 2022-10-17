@@ -1,3 +1,4 @@
-.match-button-container {
+.match_button_container {
   display: flex;
+  background-color: #232931;
 }

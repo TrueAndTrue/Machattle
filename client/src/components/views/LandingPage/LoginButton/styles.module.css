@@ -1,3 +1,7 @@
-.login-button-container {
+.login_button_container {
   display: flex;
+}
+
+.login_button {
+  font-size: x-large;
 }

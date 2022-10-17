@@ -1,3 +1,11 @@
-.recent-events-feed-container {
+.recent_events_feed_container {
   display: flex;
+  flex-direction: column;
+  width: 25vw;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.recent_events_feed_container::-webkit-scrollbar {
+  display: none;
 }
