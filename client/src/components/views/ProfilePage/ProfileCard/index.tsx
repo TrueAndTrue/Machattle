@@ -16,8 +16,6 @@ export function ProfileCard () {
   const currentUser = useSelector((state: any) => state.currentUser);
   const otherProfile = useContext(UserContext).user;
   const [update, setUpdate] = useState(false)
-  const [isFriend, setFriend] = useState(false)
-  console.log(isFriend)
   const dispatch = useDispatch();
 
   for(let i = 1; i <= 6; i++){
@@ -62,27 +60,23 @@ export function ProfileCard () {
   }, [rankImage])
 
   useEffect(() => {
-    const initialFriend = currentUser.friends.filter((friend :IUser)  => friend.uid === otherProfile.uid).length >0
-    setFriend(initialFriend)
   },[update])
 
   const isUserProfile = currentUser.uid == otherProfile.uid
-
+  const isFriend = currentUser.friends.filter((friend :IUser)  => friend.uid === otherProfile.uid).length >0
+   
   const updateProfile = () => {
-
     setUpdate(!update);
   }
 
   const addFriendToUser = async () => {
     await addFriend(currentUser.uid, otherProfile.uid);
-    setFriend(true)
-    dispatch(addUserFriends(otherProfile))
+    dispatch(addUserFriends(currentUser, otherProfile))
   }
 
   const removeUserFriend = async () => {
-    await removeFriend(currentUser.uid, otherProfile.uid);
-    setFriend(false)
-    dispatch(removeUserFriends(otherProfile))
+    await removeFriend(currentUser.uid, otherProfile.uid)
+    dispatch(removeUserFriends(currentUser, otherProfile))
   }
 
   return (

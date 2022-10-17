@@ -62,15 +62,13 @@ const currentUser = (
       const { uid, rank, username, rating, image, friends } = action.user;
       return { ...currentUser, uid, rank, username, rating, image , friends};
     } case ADD_FRIEND : {
-      const { user } = currentUser;
-      const friend = action.friend;
+      const {user, friend} = action
       const friends = [...user.friends, friend]
-      return {...currentUser, friends}
+      return {...user, friends}
     } case REMOVE_FRIEND : {
-      const { user } = currentUser;
-      const friendID = action.friend.uid;
-      const newFriends = user.friends.filter(friend=>friend.uid != friendID)
-      return {currentUser, friends:newFriends}
+      const {user, friend} = action
+      const newFriends = user.friends.filter(stillFriend=>stillFriend.uid != friend.uid)
+      return {...user, friends:[...newFriends]}
     }
     default:
       return currentUser;

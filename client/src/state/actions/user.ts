@@ -9,12 +9,14 @@ export const updateUser = (user: IUser) => ({
   user,
 });
 
-export const addUserFriends = (friend :IUser) => ({
+export const addUserFriends = (user :IUser, friend :IUser) => ({
   type : ADD_FRIEND,
+  user, 
   friend
 });
 
-export const removeUserFriends = (friend :IUser) => ({
+export const removeUserFriends = (user :IUser,friend :IUser) => ({
   type : REMOVE_FRIEND,
+  user,
   friend
 });
