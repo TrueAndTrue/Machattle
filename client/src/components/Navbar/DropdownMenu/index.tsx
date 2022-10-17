@@ -9,6 +9,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import DraftsIcon from '@mui/icons-material/Drafts';
 
 import { IUser } from "../../../types";
 import styles from "./styles.module.css";
@@ -85,11 +86,11 @@ export function DropdownMenu() {
             </ListItemButton>
           </Link>
         </ListItem>
-        <ListItem key={"Messages"} disablePadding>
-          <Link to={"/Messages"} className={styles.link_text}>
+        <ListItem key={"messages"} disablePadding>
+          <Link to={"/messages"} className={styles.link_text}>
             <ListItemButton>
               <ListItemIcon>
-                <MilitaryTech />
+                <DraftsIcon />
               </ListItemIcon>
               <ListItemText primary={"Messages"} />
             </ListItemButton>

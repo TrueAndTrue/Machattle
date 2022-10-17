@@ -32,11 +32,11 @@ export interface IUser extends ILeaderBoardUser{
 }
 
 export interface IMessage {
-  id :number;
+  id ?:number;
   title : string;
   content : string;
-  read:boolean
-  senderUid : string;
-  receiverUid : string;
-  createdAt : Date
+  read?:boolean
+  senderUsername : string;
+  receiverUsername : string;
+  createdAt? : Date
 }

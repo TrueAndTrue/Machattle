@@ -32,13 +32,13 @@ Message.init(
     },
     read :{
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      defaultValue: false,
     },
-    senderUid: {
+    senderUsername: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    receiverUid: {
+    receiverUsername: {
       type: DataTypes.STRING,
       allowNull: false,
     }

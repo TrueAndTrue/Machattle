@@ -6,9 +6,9 @@ process.env.NODE_ENV == "production"
   : (BASE_URL = "http://localhost:3030/api");
 
 
-export const getAllUserMail = async (uid :string)  => {
+export const getAllUserMail = async (username :string)  => {
   try {
-    const response = await fetch(`${BASE_URL}/messages/${uid}`, {
+    const response = await fetch(`${BASE_URL}/messages/all/${username}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -21,9 +21,9 @@ export const getAllUserMail = async (uid :string)  => {
   }
 }
 
-export const getMailById = async (id: number) => {
+export const getMailById = async (uid: number) => {
   try {
-    const response = await fetch(`${BASE_URL}/messages/${id}`, {
+    const response = await fetch(`${BASE_URL}/messages/${uid}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -35,15 +35,15 @@ export const getMailById = async (id: number) => {
   }
 };
 
-export const sendMessage = async (senderUsername : string, receiverUsername :string) => {
+export const sendMessage = async (message :IMessage) => {
+  console.log(message)
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message })
+  }
   try {
-    const response = await fetch(`${BASE_URL}/messages/send`, {
-      headers: {
-        method: "POST",
-        "Content-Type": "application/json",
-        body : JSON.stringify({senderUsername, receiverUsername})
-      },
-    });
+    const response = await fetch(`${BASE_URL}/messages/send`, requestOptions);
     const data = await response.json();
     return data.res 
   } catch (e) {

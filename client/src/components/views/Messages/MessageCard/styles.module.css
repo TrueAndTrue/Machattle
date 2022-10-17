@@ -1,0 +1,14 @@
+.message_card{
+  display :flex;
+  justify-content: space-evenly;
+  background-color: #232931;
+  text-decoration: none;
+  color :white;
+  border-bottom: 1px solid white;
+}
+
+
+#message_card > * {
+  width:27%
+}
+

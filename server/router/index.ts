@@ -10,6 +10,6 @@ const rootRouter = Router();
 rootRouter.use("/users", userRoutes);
 rootRouter.use("/challenges", challengeRoutes);
 rootRouter.use("/exercises", exerciseRoutes);
-rootRouter.use("/messages", exerciseRoutes);
+rootRouter.use("/messages", messageRoutes);
 
 export { rootRouter };
