@@ -35,6 +35,11 @@ export interface IQueue {
   roomId: string;
 }
 
+export interface IRoom {
+  uid: string;
+  roomId: string;
+}
+
 export interface IChallenge {
   id: number;
   tie: boolean;

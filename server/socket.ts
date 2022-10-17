@@ -1,6 +1,7 @@
 import { Server as HTTPServer } from "http";
 import { Socket, Server } from "socket.io";
 import { Inqueue } from "./models/Inqueue";
+import { Room } from './models/Room';
 
 export class ServerSocket {
   public ranks: string[];
@@ -54,7 +55,6 @@ export class ServerSocket {
           console.log('yourself')
         }
         else {
-          console.log('got in the else', uid)
           let userIndex = 0;
           let opponentIndex = 0;
           this.ranks.find((currRank, i) => {
@@ -87,10 +87,6 @@ export class ServerSocket {
       }
     }
 
-
-
-    console.info("Message Received from " + socket.id);
-
     socket.on("send_uid", (uid: string) => {
       if (uid) {
         this.uid = uid;
@@ -100,15 +96,23 @@ export class ServerSocket {
 
     socket.on(
       "handshake",
-      (callback: (uid: string, users: string[]) => void) => {
-        console.info("Handshake received from " + socket.id);
+      async (callback: (uid: string, users: string[]) => void) => {
         const reconnected = Object.values(this.users).includes(socket.id);
 
         if (reconnected) {
           console.log("this user has reconnected");
 
+          const room = JSON.stringify(Math.floor(Math.random() * 10000));
+
+          //const rooms = await Room.findAll()
+          
+          await Room.destroy({ where: { uid: this.uid }})
+
+          await Room.create({ uid: this.uid, roomId: room})
+
+          socket.join(room)
+
           const uid = this.uid
-          console.log(uid, 'inside handshaek')
           const users = Object.values(this.users);
 
           if (uid) {
@@ -119,7 +123,6 @@ export class ServerSocket {
         }
 
         const uid = this.uid
-        console.log(uid, 'also in hadnskae')
         this.users[uid] = socket.id;
         const users = Object.values(this.users);
 
@@ -134,10 +137,21 @@ export class ServerSocket {
       }
     );
 
+    socket.on("friendly_accepted", (roomId: string) => {
+      this.io.to(roomId).emit("accepted")
+    })
+
+    socket.on("friendly_declined", (roomId: string) => {
+      this.io.to(roomId).emit("declined")
+    })
+
+    socket.on("friendly", async (uid: string, uid2: string, roomId: string) => {
+      socket.join(roomId);
+      this.io.to(roomId).emit("friendly_match", uid, uid2, roomId);
+    })
+
     socket.on("player_won", async (winnerUid: string, roomId: string) => {
-      console.log(winnerUid, roomId, "IN PLAYER WON");
       this.io.to(roomId).emit("winner", winnerUid);
-      console.log('after emit')
       socket.leave(roomId);
     });
 
@@ -151,7 +165,6 @@ export class ServerSocket {
       console.log("queued user.");
       const queueUsers = await Inqueue.findAll();
       const queueUids = queueUsers.map((queued) => queued.uid);
-      console.log(queueUids)
       if (queueUids.includes(uid)) {
         return;
       }
@@ -185,6 +198,8 @@ export class ServerSocket {
 
     socket.on("disconnect", async () => {
       console.info("Disconnect received from " + socket.id);
+
+      await Room.destroy({ where: { uid: this.uid }})
 
       const uid = this.uid;
       console.log(uid, 'IN DISCONNECT');

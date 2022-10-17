@@ -63,7 +63,7 @@ export function BattlePage() {
 
   return (
     <div className={styles.battle_page_container}>
-      {trigger && <Popup />}
+      {trigger && <Popup isRanked={true} enemyUser=""/>}
       <ShootingStar />
       <div className={styles.battle_title}>
         {roomId && <div><p>{thisUsername} (me) VS {opponentUsername} </p></div>}
