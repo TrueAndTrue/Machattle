@@ -3,10 +3,9 @@ import { currentQuestion } from "./questionReducer";
 import { currentBoard } from "./leaderBoardReducer";
 
 const { UPDATE_LOGGED } = require("./actions/status");
-
 const { UPDATE_USER, ADD_FRIEND , REMOVE_FRIEND } = require("./actions/user");
-
 const { UPDATE_MATCH } = require("./actions/match");
+const { UPDATE_TESTS } = require("./actions/questionTests");
 
 const match = (
   match = {

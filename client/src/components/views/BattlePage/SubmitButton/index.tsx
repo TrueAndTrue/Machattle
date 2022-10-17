@@ -11,7 +11,7 @@ import { updateRank } from "../../../../services/userServices";
 
 let testsFailed = 0;
 let testsPassed = 0;
-let failError = "";
+let failError: [string] = [''];
 
 interface IProps {
   setTrigger: Function
@@ -75,14 +75,14 @@ export function SubmitButton(props: IProps) {
         if (JSON.stringify(testFunction(...args)) == tuple[1]) {
           testsPassed = testsPassed + 1;
         } else {
-          failError = `Expected result of ${args} to be ${tuple[1]}.`;
+          failError.push(`Expected result of ${args} to be ${tuple[1]}, not ${JSON.stringify(testFunction(...args))}.`);
           testsFailed = testsFailed + 1;
         }
       } else {
         if (JSON.stringify(testFunction(args)) == tuple[1]) {
           testsPassed = testsPassed + 1;
         } else {
-          failError = `Expected result of ${args} to be ${tuple[1]}.`;
+          failError.push(`Expected result of ${args} to be ${tuple[1]}, not ${JSON.stringify(testFunction(args))}.`);
           testsFailed = testsFailed + 1;
         }
       }
