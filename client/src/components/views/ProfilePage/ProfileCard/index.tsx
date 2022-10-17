@@ -5,10 +5,17 @@ import Button from "@mui/material/Button";
 import { addUserFriends, removeUserFriends, ADD_FRIEND, REMOVE_FRIEND } from '../../../../state/actions/user';
 import { UserContext } from '..';
 import { ProfileUpdateForm } from '../ProfileUpdateForm';
-import silver from '../../../../assets/Silver.png';
 import { IUser } from '../../../../types';
 import { addFriend, removeFriend } from '../../../../services/userServices';
 import styles from './styles.module.css';
+
+//shield imports due to compilation issues
+import Bronze from '../../../../../public/ranks/1.png';
+import Silver from '../../../../../public/ranks/2.png';
+import Gold from '../../../../../public/ranks/3.png';
+import Platinum from '../../../../../public/ranks/4.png';
+import Diamond from '../../../../../public/ranks/5.png';
+import Palladium from '../../../../../public/ranks/6.png';
 
 const imgLocations: string[] = [];
 
@@ -34,24 +41,24 @@ export function ProfileCard () {
       console.log(imgLocations)
 
       if (rankStr === 'Bronze') {
-        setRankImage(imgLocations[0])
+        setRankImage(Bronze)
       }
       else if (rankStr === 'Silver') {
-        setRankImage(imgLocations[1])
+        setRankImage(Silver)
       }
       else if (rankStr === 'Gold') {
         console.log('ran')
         console.log(imgLocations[2])
-        setRankImage(imgLocations[2])
+        setRankImage(Gold)
       }
       else if (rankStr === 'Platinum') {
-        setRankImage(imgLocations[3])
+        setRankImage(Platinum)
       }
       else if (rankStr === 'Diamond') {
-        setRankImage(imgLocations[4])
+        setRankImage(Diamond)
       }
       else if (rankStr === 'Pallidium') {
-        setRankImage(imgLocations[5])
+        setRankImage(Palladium)
       }
     }
 
@@ -104,7 +111,7 @@ export function ProfileCard () {
         <div className={styles.profile_rank}>
           <h2 className={styles.ranked_text}>Your Rank:</h2>
           <h1 className={styles.ranked_text}>{(otherProfile.rank) || 'Unranked'}</h1>
-          <img className={styles.ranked_logo} src={process.env.PUBLIC_URL + rankImage} alt="rank icon" />
+          <img className={styles.ranked_logo} src={rankImage} alt="rank icon" />
         </div>
       </div>
     </div>
