@@ -134,13 +134,19 @@ export const getUserChallenges = async (username: string) => {
   }
 };
 
+export const getRoom = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/room`)
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const getTopUsers = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/users/leaderBoard`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(`${BASE_URL}/users/leaderBoard`);
     const data = await response.json();
     return data.res;
   } catch (e) {

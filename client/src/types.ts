@@ -30,3 +30,8 @@ export interface IUser extends ILeaderBoardUser{
   friends :IUser[];
   challenges : IChallenge[]
 }
+
+export interface IRoom {
+  uid: string;
+  roomId: string;
+}

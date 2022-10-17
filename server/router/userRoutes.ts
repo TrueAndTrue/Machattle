@@ -9,6 +9,7 @@ import {
   getUserExercises,
   getUserChallenges,
   getTopUsers,
+  getRoom,
   updateRank,
   updateImg,
   getUserFriends,
@@ -18,6 +19,7 @@ import {
 const router = Router();
 
 router.get("/", getAllUsers);
+router.get("/room", getRoom);
 router.get("/leaderBoard", getTopUsers);
 router.get("/username=:username", getUserByUsername);
 router.get("/:uid", getUserById);

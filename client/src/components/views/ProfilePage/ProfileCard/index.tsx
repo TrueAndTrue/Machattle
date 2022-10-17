@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect, useContext } from 'react';
 import Button from "@mui/material/Button";
+import { useNavigate } from 'react-router-dom';
+import SocketContext from "../../../../contexts/Context";
 
 import { addUserFriends, removeUserFriends, ADD_FRIEND, REMOVE_FRIEND } from '../../../../state/actions/user';
 import { UserContext } from '..';
 import { ProfileUpdateForm } from '../ProfileUpdateForm';
-import silver from '../../../../assets/Silver.png';
-import { IUser } from '../../../../types';
-import { addFriend, removeFriend } from '../../../../services/userServices';
+import { IUser, IRoom } from '../../../../types';
+import { addFriend, removeFriend, getRoom } from '../../../../services/userServices';
 import styles from './styles.module.css';
 
 const imgLocations: string[] = [];
@@ -18,7 +19,10 @@ export function ProfileCard () {
   const [update, setUpdate] = useState(false)
   const [isFriend, setFriend] = useState(false)
   console.log(isFriend)
+  const { socket } = useContext(SocketContext).SocketState;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  socket?.connect();
 
   for(let i = 1; i <= 6; i++){
     imgLocations.push(`ranks/${i}.png`)
@@ -30,8 +34,6 @@ export function ProfileCard () {
     if (currentUser.rank) {
       console.log(currentUser.rank,'current.rank')
       const rankStr = currentUser.rank[0].split(' ')[0];
-      console.log(rankStr, 'RANKSTR')
-      console.log(imgLocations)
 
       if (rankStr === 'Bronze') {
         setRankImage(imgLocations[0])
@@ -73,6 +75,16 @@ export function ProfileCard () {
     setUpdate(!update);
   }
 
+  const matchInvite = async () => {
+    const rooms = await getRoom();
+    console.log(rooms.res, 'rooms');
+    rooms.res.forEach((room: IRoom) => {
+      if (room.uid === otherProfile.uid) {
+        socket?.emit("friendly", currentUser.uid, room.uid, room.roomId);
+      }
+    })
+  }
+
   const addFriendToUser = async () => {
     await addFriend(currentUser.uid, otherProfile.uid);
     setFriend(true)
@@ -91,6 +103,7 @@ export function ProfileCard () {
         <div className={styles.profile_username}>
           <h2 className={styles.user_text}>{(otherProfile.username) || 'Username'}</h2>
           <h2 className={styles.friend_text}>Friends Online: {otherProfile.friends?.length}</h2>
+          <Button className={styles.match} onClick={matchInvite}>Invite Match</Button>
         </div>
         <div className={styles.avatar_container}>
           <div id={styles.profile_img} style={{ backgroundImage: `url(${otherProfile.image})` }} />
