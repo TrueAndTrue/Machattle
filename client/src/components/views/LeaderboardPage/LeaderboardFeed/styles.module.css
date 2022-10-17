@@ -12,4 +12,9 @@
   width: 40vw;
   max-height: 82vh;
   align-items: center;
+  overflow-y: scroll;
+}
+
+.leaderboard_feed_container::-webkit-scrollbar {
+  display: none;
 }

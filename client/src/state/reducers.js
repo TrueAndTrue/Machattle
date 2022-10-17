@@ -3,10 +3,9 @@ import { currentQuestion } from "./questionReducer";
 import { currentBoard } from "./leaderBoardReducer";
 
 const { UPDATE_LOGGED } = require("./actions/status");
-
 const { UPDATE_USER, ADD_FRIEND , REMOVE_FRIEND } = require("./actions/user");
-
 const { UPDATE_MATCH } = require("./actions/match");
+const { UPDATE_TESTS } = require("./actions/questionTests");
 
 const match = (
   match = {
@@ -62,15 +61,13 @@ const currentUser = (
       const { uid, rank, username, rating, image, friends } = action.user;
       return { ...currentUser, uid, rank, username, rating, image , friends};
     } case ADD_FRIEND : {
-      const { user } = currentUser;
-      const friend = action.friend;
+      const {user, friend} = action
       const friends = [...user.friends, friend]
-      return {...currentUser, friends}
+      return {...user, friends}
     } case REMOVE_FRIEND : {
-      const { user } = currentUser;
-      const friendID = action.friend.uid;
-      const newFriends = user.friends.filter(friend=>friend.uid != friendID)
-      return {currentUser, friends:newFriends}
+      const {user, friend} = action
+      const newFriends = user.friends.filter(stillFriend=>stillFriend.uid != friend.uid)
+      return {...user, friends:[...newFriends]}
     }
     default:
       return currentUser;

@@ -11,6 +11,14 @@ import { IUser, IRoom } from '../../../../types';
 import { addFriend, removeFriend, getRoom } from '../../../../services/userServices';
 import styles from './styles.module.css';
 
+//shield imports due to compilation issues
+import Bronze from '../../../../assets/ranks/1.png';
+import Silver from '../../../../assets/ranks/2.png';
+import Gold from '../../../../assets/ranks/3.png';
+import Platinum from '../../../../assets/ranks/4.png';
+import Diamond from '../../../../assets/ranks/5.png';
+import Palladium from '../../../../assets/ranks/6.png';
+
 const imgLocations: string[] = [];
 
 export function ProfileCard () {
@@ -36,24 +44,24 @@ export function ProfileCard () {
       const rankStr = currentUser.rank[0].split(' ')[0];
 
       if (rankStr === 'Bronze') {
-        setRankImage(imgLocations[0])
+        setRankImage(Bronze)
       }
       else if (rankStr === 'Silver') {
-        setRankImage(imgLocations[1])
+        setRankImage(Silver)
       }
       else if (rankStr === 'Gold') {
         console.log('ran')
         console.log(imgLocations[2])
-        setRankImage(imgLocations[2])
+        setRankImage(Gold)
       }
       else if (rankStr === 'Platinum') {
-        setRankImage(imgLocations[3])
+        setRankImage(Platinum)
       }
       else if (rankStr === 'Diamond') {
-        setRankImage(imgLocations[4])
+        setRankImage(Diamond)
       }
       else if (rankStr === 'Pallidium') {
-        setRankImage(imgLocations[5])
+        setRankImage(Palladium)
       }
     }
 
@@ -64,14 +72,12 @@ export function ProfileCard () {
   }, [rankImage])
 
   useEffect(() => {
-    const initialFriend = currentUser.friends.filter((friend :IUser)  => friend.uid === otherProfile.uid).length >0
-    setFriend(initialFriend)
   },[update])
 
   const isUserProfile = currentUser.uid == otherProfile.uid
-
+  const isFriend = currentUser.friends.filter((friend :IUser)  => friend.uid === otherProfile.uid).length >0
+   
   const updateProfile = () => {
-
     setUpdate(!update);
   }
 
@@ -87,14 +93,12 @@ export function ProfileCard () {
 
   const addFriendToUser = async () => {
     await addFriend(currentUser.uid, otherProfile.uid);
-    setFriend(true)
-    dispatch(addUserFriends(otherProfile))
+    dispatch(addUserFriends(currentUser, otherProfile))
   }
 
   const removeUserFriend = async () => {
-    await removeFriend(currentUser.uid, otherProfile.uid);
-    setFriend(false)
-    dispatch(removeUserFriends(otherProfile))
+    await removeFriend(currentUser.uid, otherProfile.uid)
+    dispatch(removeUserFriends(currentUser, otherProfile))
   }
 
   return (
@@ -115,9 +119,9 @@ export function ProfileCard () {
           {update && <ProfileUpdateForm updateProfile = {updateProfile}/>}
         </div>
         <div className={styles.profile_rank}>
-          <h2 className={styles.ranked_text}>Your Rank:</h2>
+          {/* <h2 className={styles.ranked_text}>Your Rank:</h2> */}
           <h1 className={styles.ranked_text}>{(otherProfile.rank) || 'Unranked'}</h1>
-          <img className={styles.ranked_logo} src={process.env.PUBLIC_URL + rankImage} alt="rank icon" />
+          <img className={styles.ranked_logo} src={rankImage} alt="rank icon" />
         </div>
       </div>
     </div>

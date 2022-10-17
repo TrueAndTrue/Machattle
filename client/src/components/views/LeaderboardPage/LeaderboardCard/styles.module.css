@@ -11,18 +11,30 @@
   color: #eeeeee;
   font-size: 20px;
   font-weight: 600;
+  width: 120px;
+  overflow: hidden;
+  margin-left: 15px;
+}
+
+.rank_text {
+  display: flex;
+  color: #eeeeee;
+  font-size: 20px;
+  width: 20px;
+  margin-left: 15px;
+  font-weight: 600;
 }
 
 #user_card {
   display: flex;
-  height: 7vh;
-  width: 70%;
-  justify-content: space-around;
+  height: 8vh;
+  width: 80%;
+  /* justify-content: space-around; */
   border-radius: 25px;
   border-color: #eeeeee;
   border-style: inset;
   border-width: 6px;
-  margin: 4px;
+  margin-top: 20px;
   background-color: #393e46;
   align-items: center;
 }
@@ -30,6 +42,8 @@
 #pfp {
   height: 80%;
   min-width: 15%;
+  width: 51px;
+  margin-left: 15px;
   background-size: contain;
   background-repeat: no-repeat;
   align-items: center;
@@ -38,6 +52,8 @@
 
 .rank {
   color: white;
+  width: 100px;
+  margin-left: 15px;
 }
 
 .rank_img {
