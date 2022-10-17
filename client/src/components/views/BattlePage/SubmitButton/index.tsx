@@ -116,7 +116,7 @@ export function SubmitButton(props: IProps) {
         {testsPassed === testArray.length ? (
           <p>All tests passed!</p>
         ) : (
-          <p>{failError}</p>
+          <p>{failError.join('\n')}</p>
         )}
       </div>
     </div>
