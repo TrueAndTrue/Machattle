@@ -7,8 +7,9 @@ import { useDispatch } from "react-redux";
 import SocketContext from '../../../../contexts/Context';
 
 interface IProps {
-  isRanked: Boolean;
-  enemyUser: string
+  isRanked: boolean;
+  enemyUser: string;
+  isPractice : boolean;
 }
 
 export function Popup(props: IProps) {
@@ -43,7 +44,8 @@ export function Popup(props: IProps) {
 
   return (
     <div className={styles.popup_container}>
-     {props.isRanked ? <div className={styles.popup}>
+      {props.isPractice ? 
+     (<div> {props.isRanked ? <div className={styles.popup}>
         {isWinner && <h1>Congrats! You Won!</h1>}
         {isLoser && <h1>Aw :/ Maybe Next Time!</h1>}
         <div>
@@ -59,7 +61,9 @@ export function Popup(props: IProps) {
       <Button className={styles.popup_btn} onClick={() => clickHandler(true)}>Accept</Button>
       <Button className={styles.popup_btn} onClick={() => clickHandler(false)}>Decline</Button>
     </div>
-      }
+      }</div>) : <div className={styles.popup}>
+        <h1>Congrats! You Solved It!</h1>
+        <Button className={styles.popup_btn} onClick={() => navigate('/home')}>Return Home</Button></div> }
 
     </div>
   );

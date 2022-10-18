@@ -93,6 +93,8 @@ export function SubmitButton(props: IProps) {
       console.log('player has won')
       console.log(socket)
       socket?.emit("player_won", thisUser, roomId);
+      props.setTrigger(true)
+
     }
 
     setUpdate(getUpdate + "rerender");
