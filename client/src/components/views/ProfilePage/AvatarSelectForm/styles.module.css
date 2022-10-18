@@ -7,8 +7,12 @@
   width:330px;
   height:210px;
   position: absolute;
-  top: 57%;
-  left: 2%;
+  top: 45%;
+  left: 37%;
+  border-radius: 25px;
+  border-color: #eeeeee;
+  border-style: inset;
+  border-width: 10px;
 }
 
 .avatar_button{
