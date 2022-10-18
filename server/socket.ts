@@ -99,13 +99,13 @@ export class ServerSocket {
       async (callback: (uid: string, users: string[]) => void) => {
         const reconnected = Object.values(this.users).includes(socket.id);
 
-        const room = JSON.stringify(Math.floor(Math.random() * 10000));
+        // const room = JSON.stringify(Math.floor(Math.random() * 10000));
         
-        console.log(this.uid, 'BEFORE ROOM CREATE', room)
+        // console.log(this.uid, 'BEFORE ROOM CREATE', room)
 
-        await Room.create({ uid: this.uid, roomId: room})
+        // await Room.create({ uid: this.uid, roomId: room})
 
-        socket.join(room)
+        // socket.join(room)
 
 
         if (reconnected) {
@@ -142,18 +142,18 @@ export class ServerSocket {
       }
     );
 
-    socket.on("friendly_accepted", (roomId: string) => {
-      this.io.to(roomId).emit("accepted")
-    })
+    // socket.on("friendly_accepted", (roomId: string) => {
+    //   this.io.to(roomId).emit("accepted")
+    // })
 
-    socket.on("friendly_declined", (roomId: string) => {
-      this.io.to(roomId).emit("declined")
-    })
+    // socket.on("friendly_declined", (roomId: string) => {
+    //   this.io.to(roomId).emit("declined")
+    // })
 
-    socket.on("friendly", async (uid: string, uid2: string, roomId: string) => {
-      socket.join(roomId);
-      this.io.to(roomId).emit("friendly_match", uid, uid2, roomId);
-    })
+    // socket.on("friendly", async (uid: string, uid2: string, roomId: string) => {
+    //   socket.join(roomId);
+    //   this.io.to(roomId).emit("friendly_match", uid, uid2, roomId);
+    // })
 
     socket.on("player_won", async (winnerUid: string, roomId: string) => {
       this.io.to(roomId).emit("winner", winnerUid);
@@ -206,7 +206,7 @@ export class ServerSocket {
 
       console.log(this.uid, "IN DISCONNECT ROOMS")
 
-      await Room.destroy({ where: { uid: this.uid }})
+      // await Room.destroy({ where: { uid: this.uid }})
 
       const uid = this.uid;
       console.log(uid, 'IN DISCONNECT');

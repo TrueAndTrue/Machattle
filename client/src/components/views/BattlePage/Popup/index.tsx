@@ -33,14 +33,14 @@ export function Popup(props: IProps) {
 
   }, [winner]);
 
-  const clickHandler = (choice: Boolean) => {
-    if (choice) {
-      socket?.emit('friendly_accepted', roomId);
-    }
-    else {
-      socket?.emit('friendly_declined', roomId);
-    }
-  }
+  // const clickHandler = (choice: Boolean) => {
+  //   if (choice) {
+  //     socket?.emit('friendly_accepted', roomId);
+  //   }
+  //   else {
+  //     socket?.emit('friendly_declined', roomId);
+  //   }
+  // }
   console.log(props.isPractice, 'in popup')
   return (
     <div className={styles.popup_container}>
@@ -58,8 +58,6 @@ export function Popup(props: IProps) {
         <h1>You have been invited to a battle by {props.enemyUser}!</h1>
       <div>
       </div>
-      <Button className={styles.popup_btn} onClick={() => clickHandler(true)}>Accept</Button>
-      <Button className={styles.popup_btn} onClick={() => clickHandler(false)}>Decline</Button>
     </div>
       }</div>) : <div className={styles.popup}>
         <h1>Congrats! You Solved It!</h1>
