@@ -15,7 +15,7 @@ import { WrittingContext } from "..";
 import styles from './styles.module.css';
 
 export const OptionsBar = ()  => {
-  const {isWritting, setWritting} = useContext(WrittingContext);
+  const { isWritting, setWritting, setViewing } = useContext(WrittingContext);
 
   const onClick = () => {
     setWritting(!isWritting)
@@ -30,15 +30,17 @@ export const OptionsBar = ()  => {
             <ListItemText primary="New Message" />
           </ListItemButton>
       </ListItem>
-          <ListItemButton>
+      <Link to={"/messages"} className={styles.link_text}>
+          <ListItemButton onClick = {() => setViewing(false)}>
             <ListItemIcon>
               <SendIcon />
             </ListItemIcon>
-          <ListItemText primary="Sent mail" />
+            <ListItemText primary="Sent mail" />
           </ListItemButton>
+      </Link>
           <ListItem disablePadding key={"messages"}>
             <Link to={"/messages"} className={styles.link_text}>
-              <ListItemButton>
+              <ListItemButton onClick = {() => setViewing(true)}>
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
@@ -49,15 +51,6 @@ export const OptionsBar = ()  => {
         </List>
       </nav>
       <Divider />
-      <nav aria-label="secondary mailbox folders">
-        <List>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText primary="Trash" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </nav>
     </Box>
   );
 }

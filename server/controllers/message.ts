@@ -27,11 +27,15 @@ export const getAllUserMail = async (req :Request, res : Response) => {
     if(!user) return res.status(404).send("User Does Not Exist")
     const sentMessages = await Message.findAll({
       where : { senderUsername : username },
-      attributes:['title', 'id']
+      attributes :['title', 'id', 'read', 'senderUsername', 'createdAt', 'receiverUsername'] ,
+      limit: 15,
+      order: [["updatedAt", "ASC"]],
     })
     const recievedMessages = await Message.findAll({
       where :{ receiverUsername : username },
-      attributes:['title', 'id', 'read', 'senderUsername', 'createdAt'] 
+      attributes:['title', 'id', 'read', 'senderUsername', 'createdAt', 'receiverUsername'] ,
+      limit: 15,
+      order: [["updatedAt", "ASC"]],
     });
     
     const messages = {sentMessages, recievedMessages}
@@ -48,5 +52,28 @@ export const getMailbyId = async (req :Request, res : Response) => {
     return res.status(200).send({error :false, res : message})
   } catch (e) {
     res.status(500).send({error :true, res:"Error Getting User Mail"})
+  }
+}
+
+export const setAsRead = async(req :Request, res :Response) => {
+  try{
+    const {id} = req.body
+    const message = await Message.update(
+      { read : true },
+      { where: {id} }
+    )
+    res.status(201).send({error :false, res : "Set Message As Read"})
+  } catch (e) {
+    res.status(500).send({error :true , res :"Error Setting Mail As Read"})
+  }
+}
+
+export const deleteMessage = async (req: Request, res :Response) => {
+  try{
+    const { id } = req.body;
+    const response = Message.destroy({where : { id} })
+    return res.status(204).send({error:false, res:"Message Successfully deleted"})
+  } catch {
+    res.status(500).send({error :false, res :"Error Deleting Message"})
   }
 }

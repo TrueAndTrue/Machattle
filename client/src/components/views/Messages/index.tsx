@@ -12,17 +12,22 @@ import styles from './styles.module.css';
 type IContext = {
   isWritting: boolean,
   setWritting: React.Dispatch<React.SetStateAction<boolean>>
+  viewing: boolean,
+  setViewing: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const initalState = {
  isWritting :false,
- setWritting: () => {}
+ setWritting: () => {},
+ viewing :true,
+ setViewing: () => {}
 }
 
 export const WrittingContext = createContext<IContext>(initalState)
 
 export const Messages = () => {
   const { username } = useSelector((state: any) => state.currentUser);
+  const [viewing ,setViewing] = useState(true)
   const [sentMail, setSentMail] = useState<IMessage[]>([]);
   const [receivedMail, setRecievedMail] = useState<IMessage[]>([]);
   const [isWritting, setWritting] = useState(false)
@@ -42,9 +47,9 @@ export const Messages = () => {
 
   return (
     <div id = {styles.message_view_container}>
-       <WrittingContext.Provider value ={{isWritting, setWritting }}>
+      <WrittingContext.Provider value ={{isWritting, setWritting, viewing, setViewing}}>
       <OptionsBar />
-      <MailBox mail ={receivedMail} />
+      <MailBox mail ={ viewing ? receivedMail : sentMail} />
       {isWritting && <div id = {styles.form}> <MessageForm/> </div>} 
       </WrittingContext.Provider>
     </div>
