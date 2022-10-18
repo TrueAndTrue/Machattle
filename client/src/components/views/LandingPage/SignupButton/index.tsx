@@ -15,7 +15,7 @@ export function SignupButton() {
           onClick={() => loginWithPopup()}
         >
           {" "}
-          Sign Up{" "}
+          ENTER{" "}
         </Button>
       </div>
     </ThemeProvider>
