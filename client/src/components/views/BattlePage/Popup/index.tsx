@@ -41,7 +41,7 @@ export function Popup(props: IProps) {
       socket?.emit('friendly_declined', roomId);
     }
   }
-
+  console.log(props.isPractice)
   return (
     <div className={styles.popup_container}>
       {!props.isPractice ? 
