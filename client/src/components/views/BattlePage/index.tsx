@@ -70,7 +70,7 @@ export function BattlePage() {
         {roomId && <div><p>{thisUsername} (me) VS {opponentUsername} </p></div>}
       </div>
       <div className={styles.battle_page}>
-        <InstructionsContainer setTrigger={setTrigger} isPractice={isPractice}/>
+        <InstructionsContainer setTrigger={setTrigger} isPractice={!roomId}/>
         <CodingArena />
       </div>
     </div>
