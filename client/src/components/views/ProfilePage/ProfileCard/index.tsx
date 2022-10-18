@@ -38,9 +38,9 @@ export function ProfileCard () {
   const [rankImage, setRankImage] = useState('');
 
   useEffect(() => {
-    if (currentUser.rank) {
-      console.log(currentUser.rank,'current.rank')
-      const rankStr = currentUser.rank[0].split(' ')[0];
+    if (otherProfile.rank) {
+      console.log(otherProfile.rank,'current.rank')
+      const rankStr = otherProfile.rank[0].split(' ')[0];
 
       if (rankStr === 'Bronze') {
         setRankImage(Bronze)
@@ -75,7 +75,7 @@ export function ProfileCard () {
 
   const isUserProfile = currentUser.uid == otherProfile.uid
   const isFriend = currentUser.friends.filter((friend :IUser)  => friend.uid === otherProfile.uid).length >0
-   
+
   const updateProfile = () => {
     setUpdate(!update);
   }
