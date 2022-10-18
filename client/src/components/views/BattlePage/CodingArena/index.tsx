@@ -49,6 +49,7 @@ const arenaTheme = EditorView.theme(
       width: "50vw",
       color: "#eeeeee",
       backgroundColor: "#393e46",
+      zIndex: "0",
     },
     ".cm-content": {
       caretColor: "#393e46",

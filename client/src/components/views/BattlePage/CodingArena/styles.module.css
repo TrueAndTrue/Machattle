@@ -8,6 +8,7 @@
   border-color: #eeeeee;
   border-style: inset;
   border-width: 10px;
+  z-index: 4;
 }
 
 .cm-editor {

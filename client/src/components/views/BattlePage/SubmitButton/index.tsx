@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 import { useContext } from "react";
 import SocketContext from "../../../../contexts/Context";
 
@@ -109,9 +109,9 @@ export function SubmitButton(props: IProps) {
 
   return (
     <div className={styles.submit_button_container}>
-      <Button className={styles.submit_button} onClick={() => codeSubmit(codeSubmission)}>
+      <button className={styles.submit_button} onClick={() => codeSubmit(codeSubmission)}>
         SUBMIT SOLUTION
-      </Button>
+      </button>
       <div className={styles.tests_result_container}>
         <p>{testArray.length} total tests</p>
         {testsPassed === testArray.length ? (
