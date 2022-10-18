@@ -112,7 +112,7 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
       <div className="navbar-outer-container">
         <NavBar />
-        {trigger && <Popup isRanked={false} enemyUser={enemyUsername}/>}
+        {trigger && <Popup isRanked={false} enemyUser={enemyUsername} isPractice ={false}/>}
       </div>
       </PersistGate>
     </ReduxProvider>

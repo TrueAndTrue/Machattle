@@ -36,8 +36,6 @@ export function LandingPage () {
         <img src={silver} alt="silver rank logo" />
         <img src={master} alt="master rank logo" />
       </div>
-      {/* <SignupButton />
-      <div className={styles.landing_page_text}>or</div> */}
       <LoginButton />
     </div>
   );

@@ -21,3 +21,16 @@
   color: white;
   justify-content: space-around;
 }
+
+.floating_border {
+  position: absolute;
+  margin-top: 20px;
+  left: 45.5%;
+  width: 50vw;
+  height: 75vh;
+  border-radius: 25px;
+  border-color: #eeeeee;
+  border-style: inset;
+  border-width: 10px;
+  z-index: 8;
+}

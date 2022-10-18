@@ -15,6 +15,7 @@ let failError: [string] = [''];
 
 interface IProps {
   setTrigger: Function
+  isPractice :boolean
 }
 
 export function SubmitButton(props: IProps) {
@@ -93,6 +94,7 @@ export function SubmitButton(props: IProps) {
       console.log('player has won')
       console.log(socket)
       socket?.emit("player_won", thisUser, roomId);
+      props.isPractice && props.setTrigger(true)
     }
 
     setUpdate(getUpdate + "rerender");

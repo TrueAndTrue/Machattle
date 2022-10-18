@@ -61,15 +61,18 @@ export function BattlePage() {
     console.log('trig!')
   }, [trigger])
 
+  console.log(!roomId, 'in index')
+  console.log(roomId)
   return (
     <div className={styles.battle_page_container}>
-      {trigger && <Popup isRanked={true} enemyUser=""/>}
+      {trigger && roomId &&  <Popup isRanked={true} enemyUser="" isPractice ={false}/>}
+      {trigger && !roomId &&  <Popup isRanked={true} enemyUser="" isPractice ={!roomId}/>}
       <ShootingStar />
       <div className={styles.battle_title}>
         {roomId && <div><p>{thisUsername} (me) VS {opponentUsername} </p></div>}
       </div>
       <div className={styles.battle_page}>
-        <InstructionsContainer setTrigger={setTrigger}/>
+        <InstructionsContainer setTrigger={setTrigger} isPractice={!roomId}/>
         <CodingArena />
       </div>
     </div>

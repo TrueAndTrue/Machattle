@@ -29,13 +29,13 @@ export const getAllUserMail = async (req :Request, res : Response) => {
       where : { senderUsername : username },
       attributes :['title', 'id', 'read', 'senderUsername', 'createdAt', 'receiverUsername'] ,
       limit: 15,
-      order: [["updatedAt", "ASC"]],
+      order: [["createdAt", "DESC"]],
     })
     const recievedMessages = await Message.findAll({
       where :{ receiverUsername : username },
       attributes:['title', 'id', 'read', 'senderUsername', 'createdAt', 'receiverUsername'] ,
       limit: 15,
-      order: [["updatedAt", "ASC"]],
+      order: [["createdAt", "DESC"]],
     });
     
     const messages = {sentMessages, recievedMessages}
