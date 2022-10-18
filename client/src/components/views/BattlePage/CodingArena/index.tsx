@@ -22,8 +22,9 @@ export function CodingArena() {
       <CodeMirror
         value={useSelector((state: any) => state.currentQuestion.currentAnswer)}
         basicSetup={
-          {foldGutter: false}
+          {foldGutter: false,}
         }
+        theme="dark"
         extensions={[
           // basicSetup,
           language.of(javascript()),
@@ -46,12 +47,13 @@ const arenaTheme = EditorView.theme(
     "&": {
       height: "75vh",
       width: "50vw",
-      color: "#393e46",
-      backgroundColor: "#eeeeee",
-      borderRadius: "5px",
+      color: "#eeeeee",
+      backgroundColor: "#393e46",
     },
     ".cm-content": {
       caretColor: "#393e46",
+      backgroundColor: "#232931",
+      borderRadius: "0 10px 10px 0",
     },
     ".cm-scroller": { overflow: "auto" },
     "&.cm-focused .cm-cursor": {
@@ -64,7 +66,7 @@ const arenaTheme = EditorView.theme(
     ".cm-gutters": {
       backgroundColor: "#4ecca3",
       color: "#eeeeee",
-      borderRadius: "5px",
+      borderRadius: "10px 0 0 10px",
       border: "none",
     },
   },

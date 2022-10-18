@@ -1,9 +1,13 @@
 .coding_arena_container {
   display: flex;
-  width: 55vw;
-  height: 90%;
-  padding-top: 20px;
+  width: 50vw;
+  height: 75vh;
+  margin-top: 20px;
   justify-content: center;
+  border-radius: 25px;
+  border-color: #eeeeee;
+  border-style: inset;
+  border-width: 10px;
 }
 
 .cm-editor {
