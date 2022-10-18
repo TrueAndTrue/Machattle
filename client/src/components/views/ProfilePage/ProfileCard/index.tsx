@@ -64,7 +64,7 @@ export function ProfileCard () {
       }
     }
 
-  }, [currentUser])
+  }, [currentUser, otherProfile])
 
   useEffect(() =>{
     console.log(rankImage)
