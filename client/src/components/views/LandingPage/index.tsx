@@ -37,8 +37,8 @@ export function LandingPage () {
         <img src={master} alt="master rank logo" />
       </div>
       <SignupButton />
-      <div className={styles.landing_page_text}>or</div>
-      <LoginButton />
+      {/* <div className={styles.landing_page_text}>or</div>
+      <LoginButton /> */}
     </div>
   );
 }
