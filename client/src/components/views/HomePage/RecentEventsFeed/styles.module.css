@@ -9,3 +9,14 @@
 .recent_events_feed_container::-webkit-scrollbar {
   display: none;
 }
+
+@media (max-width: 600px) {
+  .recent_events_feed_container {
+    height: 25vh;
+    margin-top: 10%;
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    overflow-x: scroll;
+  }
+}
