@@ -15,7 +15,7 @@ export function LoginButton() {
           onClick={() => loginWithPopup()}
         >
           {" "}
-          Login{" "}
+          ENTER{" "}
         </Button>
       </div>
     </ThemeProvider>

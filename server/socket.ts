@@ -10,12 +10,12 @@ export class ServerSocket {
 
   public users: { [uid: string]: string };
 
-  public uid: string
+  public uid: string[]
 
   constructor(server: HTTPServer) {
     ServerSocket.instance = this;
     this.users = {};
-    this.uid = '';
+    this.uid = ['', ''];
     this.ranks = ['Bronze 4', 'Bronze 3', 'Bronze 2', 'Bronze 1', 'Silver 4', 'Silver 3', 'Silver 2', 'Silver 1', 'Gold 4', 'Gold 3', 'Gold 2', 'Gold 1', 'Platinum 4', 'Platinum 3', 'Platinum 2', 'Platinum 1', 'Diamond 4', 'Diamond 3', 'Diamond 2', 'Diamond 1', 'Palladium 4', 'Palladium 3', 'Palladium 2', 'Palladium 1'];
     this.io = new Server(server, {
       serveClient: false,
@@ -89,7 +89,7 @@ export class ServerSocket {
 
     socket.on("send_uid", (uid: string) => {
       if (uid) {
-        this.uid = uid;
+        this.uid = [uid, socket.id];
         console.log(this.uid, 'THIS.UID')
       }
     })
@@ -99,35 +99,40 @@ export class ServerSocket {
       async (callback: (uid: string, users: string[]) => void) => {
         const reconnected = Object.values(this.users).includes(socket.id);
 
+        // const room = JSON.stringify(Math.floor(Math.random() * 10000));
+        
+        // console.log(this.uid, 'BEFORE ROOM CREATE', room)
+
+        // await Room.create({ uid: this.uid, roomId: room})
+
+        // socket.join(room)
+
+
         if (reconnected) {
           console.log("this user has reconnected");
-
-          const room = JSON.stringify(Math.floor(Math.random() * 10000));
+          
 
           //const rooms = await Room.findAll()
           
-          await Room.destroy({ where: { uid: this.uid }})
+          // await Room.destroy({ where: { uid: this.uid }})
 
-          await Room.create({ uid: this.uid, roomId: room})
-
-          socket.join(room)
 
           const uid = this.uid
           const users = Object.values(this.users);
 
           if (uid) {
             console.log("Sending callback for reconnect ...");
-            callback(uid, users);
+            callback(uid[0], users);
             return;
           }
         }
 
         const uid = this.uid
-        this.users[uid] = socket.id;
+        this.users[uid[0]] = socket.id;
         const users = Object.values(this.users);
 
         console.log("Sending callback for handshake");
-        callback(uid, users);
+        callback(uid[0], users);
 
         this.SendMessage(
           "user_connected",
@@ -137,18 +142,18 @@ export class ServerSocket {
       }
     );
 
-    socket.on("friendly_accepted", (roomId: string) => {
-      this.io.to(roomId).emit("accepted")
-    })
+    // socket.on("friendly_accepted", (roomId: string) => {
+    //   this.io.to(roomId).emit("accepted")
+    // })
 
-    socket.on("friendly_declined", (roomId: string) => {
-      this.io.to(roomId).emit("declined")
-    })
+    // socket.on("friendly_declined", (roomId: string) => {
+    //   this.io.to(roomId).emit("declined")
+    // })
 
-    socket.on("friendly", async (uid: string, uid2: string, roomId: string) => {
-      socket.join(roomId);
-      this.io.to(roomId).emit("friendly_match", uid, uid2, roomId);
-    })
+    // socket.on("friendly", async (uid: string, uid2: string, roomId: string) => {
+    //   socket.join(roomId);
+    //   this.io.to(roomId).emit("friendly_match", uid, uid2, roomId);
+    // })
 
     socket.on("player_won", async (winnerUid: string, roomId: string) => {
       this.io.to(roomId).emit("winner", winnerUid);
@@ -199,14 +204,16 @@ export class ServerSocket {
     socket.on("disconnect", async () => {
       console.info("Disconnect received from " + socket.id);
 
-      await Room.destroy({ where: { uid: this.uid }})
+      console.log(this.uid, "IN DISCONNECT ROOMS")
+
+      // await Room.destroy({ where: { uid: this.uid }})
 
       const uid = this.uid;
       console.log(uid, 'IN DISCONNECT');
 
       if (uid) {
         await Inqueue.destroy({ where: { uid: uid }});
-        delete this.users[uid];
+        delete this.users[uid[0]];
         const users = Object.values(this.users);
         this.SendMessage("user_disconnected", users, uid);
       }

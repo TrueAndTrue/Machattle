@@ -12,7 +12,7 @@ class Room extends Model<IRoom, RoomCreationAttributes> {
 Room.init(
   {
     uid: {
-      type: DataTypes.STRING,
+      type: new DataTypes.ARRAY(DataTypes.STRING),
       primaryKey: true,
     },
     roomId: {

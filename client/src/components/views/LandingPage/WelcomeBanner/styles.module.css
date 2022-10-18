@@ -4,3 +4,13 @@
   align-items: center;
   color: white;
 }
+
+@media (max-width: 600px) {
+  .welcome_banner_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    width: 80%;
+  }
+}

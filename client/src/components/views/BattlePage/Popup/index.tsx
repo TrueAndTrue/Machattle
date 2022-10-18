@@ -72,8 +72,6 @@ export function Popup(props: IProps) {
         <h1>You have been invited to a battle by {props.enemyUser}!</h1>
       <div>
       </div>
-      <Button className={styles.popup_btn} onClick={() => clickHandler(true)}>Accept</Button>
-      <Button className={styles.popup_btn} onClick={() => clickHandler(false)}>Decline</Button>
     </div>
       }</div>) : <div className={styles.popup}>
         <h1>Congrats! You Solved It!</h1>

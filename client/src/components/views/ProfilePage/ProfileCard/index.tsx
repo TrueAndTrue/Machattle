@@ -80,15 +80,15 @@ export function ProfileCard () {
     setUpdate(!update);
   }
 
-  const matchInvite = async () => {
-    const rooms = await getRoom();
-    console.log(rooms.res, 'rooms');
-    rooms.res.forEach((room: IRoom) => {
-      if (room.uid === otherProfile.uid) {
-        socket?.emit("friendly", currentUser.uid, room.uid, room.roomId);
-      }
-    })
-  }
+  // const matchInvite = async () => {
+  //   const rooms = await getRoom();
+  //   console.log(rooms.res, 'rooms');
+  //   rooms.res.forEach((room: IRoom) => {
+  //     if (room.uid === otherProfile.uid) {
+  //       socket?.emit("friendly", currentUser.uid, room.uid, room.roomId);
+  //     }
+  //   })
+  // }
 
   const addFriendToUser = async () => {
     await addFriend(currentUser.uid, otherProfile.uid);
@@ -113,7 +113,7 @@ export function ProfileCard () {
             {isUserProfile && <Button id ={styles.update_profile} onClick={updateProfile}>Change Avatar</Button>}
             {!isUserProfile &&  !isFriend  &&  <Button id ={styles.add_friend} onClick ={addFriendToUser}>Add Friend</Button>}
             {!isUserProfile &&  isFriend  &&  <Button id ={styles.add_friend} onClick = {removeUserFriend}>Remove Friend</Button> }
-            {!isUserProfile && <Button className={styles.match} onClick={matchInvite}>Invite Match</Button>}
+            {/* {!isUserProfile && <Button className={styles.match} onClick={matchInvite}>Invite Match</Button>} */}
           </div>
           {update && <ProfileUpdateForm updateProfile = {updateProfile}/>}
         </div>

@@ -45,7 +45,7 @@ export function CodingArena() {
 const arenaTheme = EditorView.theme(
   {
     "&": {
-      height: "75vh",
+      height: "72vh",
       width: "50vw",
       color: "#eeeeee",
       backgroundColor: "#393e46",

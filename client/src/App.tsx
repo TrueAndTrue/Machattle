@@ -31,33 +31,33 @@ function App() {
   const navigate = useNavigate();
   socket?.connect();
 
-  useEffect(() => {
-    if (currentUid) {
-      socket?.on("friendly_match", async (player1uid, player2uid, roomId) => {
-        const enemy = await getUserById(player1uid);
-        setEnemyUserName(enemy.res.username)
-        dispatch(
-          updateMatch({
-            player1: player1uid,
-            player2: player2uid,
-            matchFound: false,
-            winner: "",
-            loser: "",
-            roomId,
-          })
-        );
-        console.log(user?.sub !== player1uid)
-        console.log(user?.sub, player1uid);
-        if (currentUid !== player1uid) {
-          setTrigger(true);
-        }
-        else {
-          console.log('we are the sender')
-        }
-      })
-    }
-    console.log(currentUid)
-  }, [currentUid])
+  // useEffect(() => {
+  //   if (currentUid) {
+  //     socket?.on("friendly_match", async (player1uid, player2uid, roomId) => {
+  //       const enemy = await getUserById(player1uid);
+  //       setEnemyUserName(enemy.res.username)
+  //       dispatch(
+  //         updateMatch({
+  //           player1: player1uid,
+  //           player2: player2uid,
+  //           matchFound: false,
+  //           winner: "",
+  //           loser: "",
+  //           roomId,
+  //         })
+  //       );
+  //       console.log(user?.sub !== player1uid)
+  //       console.log(user?.sub, player1uid);
+  //       if (currentUid !== player1uid) {
+  //         setTrigger(true);
+  //       }
+  //       else {
+  //         console.log('we are the sender')
+  //       }
+  //     })
+  //   }
+  //   console.log(currentUid)
+  // }, [currentUid])
 
   useEffect(() => {
     socket?.on("match_found", (player1uid, player2uid, roomId) => {

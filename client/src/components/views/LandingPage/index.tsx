@@ -3,8 +3,8 @@ import { LoginButton } from './LoginButton';
 import { SignupButton } from './SignupButton';
 import { WelcomeBanner } from './WelcomeBanner';
 import styles from './styles.module.css';
-import silver from '../../../assets/Silver.png';
-import master from '../../../assets/Master.png'
+import silver from './2.png';
+import master from './6.png'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -36,9 +36,7 @@ export function LandingPage () {
         <img src={silver} alt="silver rank logo" />
         <img src={master} alt="master rank logo" />
       </div>
-      <SignupButton />
-      {/* <div className={styles.landing_page_text}>or</div>
-      <LoginButton /> */}
+      <LoginButton />
     </div>
   );
 }
