@@ -4,6 +4,7 @@ import { useEffect, useState, useContext  } from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { updateMatch } from '../../../../state/actions/match'
 import SocketContext from '../../../../contexts/Context';
 
 interface IProps {
@@ -18,6 +19,7 @@ export function Popup(props: IProps) {
   const thisUser = useSelector((state: any) => state.currentUser.uid)
   const [ isWinner, setIsWinner ] = useState(false);
   const [ isLoser, setIsLoser ] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { socket } = useContext(SocketContext).SocketState;
   socket?.connect();
@@ -41,7 +43,19 @@ export function Popup(props: IProps) {
       socket?.emit('friendly_declined', roomId);
     }
   }
-  console.log(props.isPractice, 'in popup')
+
+  const gameOverClick = () => {
+    navigate('/home') 
+    dispatch(updateMatch({
+      player1: "",
+      player2: "",
+      matchFound: false,
+      winner: "",
+      loser: "",
+      roomId: ""
+    }))
+  }
+
   return (
     <div className={styles.popup_container}>
       {!props.isPractice ? 
@@ -52,7 +66,7 @@ export function Popup(props: IProps) {
           {isWinner && <h2>Your rank increased by 20lp!</h2>}
           {isLoser && <h2>Your rank decreased by 20lp!</h2>}
         </div>
-        <Button className={styles.popup_btn} onClick={() => navigate('/home')}>Return Home</Button>
+        <Button className={styles.popup_btn} onClick = {gameOverClick}>Return Home</Button>
       </div> : 
       <div className={styles.popup}>
         <h1>You have been invited to a battle by {props.enemyUser}!</h1>
@@ -63,7 +77,7 @@ export function Popup(props: IProps) {
     </div>
       }</div>) : <div className={styles.popup}>
         <h1>Congrats! You Solved It!</h1>
-        <Button className={styles.popup_btn} onClick={() => navigate('/home')}>Return Home</Button></div> }
+        <Button className={styles.popup_btn} onClick={gameOverClick}>Return Home</Button></div> }
 
     </div>
   );
