@@ -10,3 +10,15 @@
 .pfp {
   height: 50%;
 }
+
+@media (max-width: 600px) {
+  .navbar_container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 10vh;
+    width: 100vw;
+    background-color: #232931;
+    color: white;
+  }
+}
