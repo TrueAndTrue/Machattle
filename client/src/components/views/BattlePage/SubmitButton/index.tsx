@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useContext } from "react";
 import SocketContext from "../../../../contexts/Context";
 
+import {createChallenge} from '../../../../services/challengeServices'
+
 //code transpilation!?
 import { useEffect, useState } from "react";
 import { updateMatch } from "../../../../state/actions/match";
@@ -94,7 +96,7 @@ export function SubmitButton(props: IProps) {
       console.log('player has won')
       console.log(socket)
       socket?.emit("player_won", thisUser, roomId);
-      props.isPractice && props.setTrigger(true)
+      if(props.isPractice) props.setTrigger(true)
     }
 
     setUpdate(getUpdate + "rerender");

@@ -78,7 +78,6 @@ export function Popup(props: IProps) {
       }</div>) : <div className={styles.popup}>
         <h1>Congrats! You Solved It!</h1>
         <Button className={styles.popup_btn} onClick={gameOverClick}>Return Home</Button></div> }
-
     </div>
   );
 }
