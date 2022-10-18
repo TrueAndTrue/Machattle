@@ -35,14 +35,14 @@ export function Popup(props: IProps) {
 
   }, [winner]);
 
-  const clickHandler = (choice: Boolean) => {
-    if (choice) {
-      socket?.emit('friendly_accepted', roomId);
-    }
-    else {
-      socket?.emit('friendly_declined', roomId);
-    }
-  }
+  // const clickHandler = (choice: Boolean) => {
+  //   if (choice) {
+  //     socket?.emit('friendly_accepted', roomId);
+  //   }
+  //   else {
+  //     socket?.emit('friendly_declined', roomId);
+  //   }
+  // }
 
   const gameOverClick = () => {
     navigate('/home') 

@@ -4,6 +4,7 @@ import { Popup } from "./Popup/index";
 
 import { updateCurrentAnswer } from "../../../state/actions/question";
 import { updateQuestion } from '../../../state/actions/question';
+import { updateMatch } from '../../../state/actions/match'
 import { getRandomExercise } from '../../../services/exerciseServices';
 import { IQuestion } from '../../../types'
 import { CodingArena } from './CodingArena/index';
@@ -61,11 +62,22 @@ export function BattlePage() {
     console.log('trig!')
   }, [trigger])
 
+  const emptyMatch = () => {
+    dispatch(updateMatch({
+      player1: "",
+      player2: "",
+      matchFound: false,
+      winner: "",
+      loser: "",
+      roomId: ""
+    }))
+  }
+
   console.log(!roomId, 'in index')
   console.log(roomId)
   return (
     <div className={styles.battle_page_container}>
-      {trigger && roomId &&  <Popup isRanked={true} enemyUser="" isPractice ={false}/>}
+      {trigger && roomId &&  <Popup isRanked={true} enemyUser="" isPractice ={false}/> }
       {trigger && !roomId &&  <Popup isRanked={true} enemyUser="" isPractice ={!roomId}/>}
       <ShootingStar />
       <div className={styles.battle_title}>
