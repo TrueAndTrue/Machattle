@@ -10,13 +10,25 @@
   background-color: #232931;
 }
 
-#message_form > * > * {
-  width:95%;
+input, textarea  {
+  width:85%;
   border-top: hidden;
   border-right: hidden;
   border-left: hidden;
   background-color: #232931;
   color :white
+}
+
+
+
+button{
+  width: 20px;;
+  height:20px;
+  margin-left: 0px;
+  background-color: #232931;
+  color: white;
+  z-index:7;
+  text-align: center;
 }
 
 label{

@@ -89,12 +89,16 @@
 }
 
 #update_profile {
+  height:35px;
+  width:127px;
   align-self: flex-start;
   display: flex;
   background-color: #393e46;
 }
 
 #add_friend{
+  height:35px;
+  width:127px;
   align-self: flex-start;
   display: flex;
   background-color: #393e46;

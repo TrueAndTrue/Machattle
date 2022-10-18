@@ -1,18 +1,26 @@
-import { useState, FormEvent } from 'react'
+import { useState, useContext, FormEvent } from 'react'
 import { useSelector } from 'react-redux'
 import { sendMessage } from '../../../../services/mailService'
 
 import styles from './styles.module.css'
+
+import { WrittingContext } from "..";
 
 export const MessageForm = () => {
   const { username } = useSelector((state: any) => state.currentUser);
   const [recipient, setRecipient] = useState('')
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const {isWritting, setWritting} = useContext(WrittingContext);
+
+  const onClick = () => {
+    setWritting(!isWritting)
+  } 
 
   const onSubmit = async (e : FormEvent<HTMLFormElement>) =>  {
     const newMessage = {title,content, receiverUsername : recipient, senderUsername : username}
     await sendMessage(newMessage)
+    setWritting(!isWritting)
   }
 
   interface TargetWithReset extends EventTarget{
@@ -27,10 +35,12 @@ export const MessageForm = () => {
     eventTarget.reset()
     onSubmit(e);
   }}>
-    <label>
+    <div id = {styles.first_row}><label>
       To
       <input type="text" name="recipient" onChange={(e) => setRecipient(e.target.value)} />
+      <button>X</button>
     </label>
+    </div>
     <label>
       Title
       <input type="text" name="title" onChange={(e) => setTitle(e.target.value)} />

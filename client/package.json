@@ -37,6 +37,7 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "^5.0.1",
     "redux": "^4.2.0",
+    "redux-persist": "^6.0.0",
     "socket.io-client": "^4.5.2",
     "typescript-plugin-css-modules": "^3.4.0"
   },

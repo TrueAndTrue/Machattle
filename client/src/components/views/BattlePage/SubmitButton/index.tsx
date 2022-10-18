@@ -108,7 +108,7 @@ export function SubmitButton(props: IProps) {
 
   return (
     <div className={styles.submit_button_container}>
-      <Button onClick={() => codeSubmit(codeSubmission)}>
+      <Button id = {styles.submit_button}onClick={() => codeSubmit(codeSubmission)}>
         SUBMIT SOLUTION
       </Button>
       <div className={styles.tests_result_container}>
