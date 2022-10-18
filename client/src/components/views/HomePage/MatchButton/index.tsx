@@ -43,8 +43,7 @@ export const MatchButton = ({ data, mode }: IProps) => {
     <div className={styles.match_button_container}>
       <h1>{matchFound && "MATCH FOUND!"}</h1>
       <Button className={styles.match_button} onClick={onClick}>
-        {" "}
-        {data}{" "}
+        {data}
       </Button>
     </div>
   );

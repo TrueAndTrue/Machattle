@@ -16,7 +16,8 @@ import { Provider as ReduxProvider } from "react-redux";
 import { Messages } from './components/views/Messages'
 import { MessageBody } from "./components/views/Messages/MessageBody";
 import { MessageForm } from "./components/views/Messages/MessageForm";
-import store from "./state/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store} from "./state/store";
 import { PopUp } from "./components/views/PopUp";
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN || "";
@@ -27,6 +28,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
+  <PersistGate loading={null} persistor={persistor}>
   <ReduxProvider store={store}>
     <SocketContextComponent>
       <BrowserRouter>
@@ -55,4 +57,5 @@ root.render(
       </BrowserRouter>
     </SocketContextComponent>
   </ReduxProvider>
+  </PersistGate>
 );

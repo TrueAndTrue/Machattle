@@ -4,8 +4,9 @@ import { useEffect, useContext, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 //redux imports
+import { PersistGate } from "redux-persist/integration/react";
 import { useSelector, Provider as ReduxProvider } from "react-redux";
-import store from "./state/store";
+import { persistor, store} from "./state/store";
 import { useDispatch } from "react-redux";
 import { updateUser } from "./state/actions/user";
 import { updateLogged } from "./state/actions/status";
@@ -108,10 +109,12 @@ function App() {
 
   return (
     <ReduxProvider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
       <div className="navbar-outer-container">
         <NavBar />
         {trigger && <Popup isRanked={false} enemyUser={enemyUsername}/>}
       </div>
+      </PersistGate>
     </ReduxProvider>
   );
 }
