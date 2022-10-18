@@ -5,9 +5,35 @@
   text-decoration: none;
   color :white;
   border-bottom: 1px solid white;
+  text-align: center;
 }
 
 #message_card > * {
-  width:27%
+  width:30%
 }
 
+p{
+  width:200px;
+  text-align: left
+}
+
+.unread {
+  height: 5px;
+  width: 5px;
+  background-color: rgb(255, 0, 0);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right:5px;
+  margin-left: 5px;;
+
+  align-self: center;
+}
+
+#read_style {
+  width:15px;
+}
+
+#align_indicator{
+  display: flex;
+  width:215px;
+}

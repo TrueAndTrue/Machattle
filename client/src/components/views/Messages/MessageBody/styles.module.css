@@ -1,9 +1,11 @@
 #message_body_container{
   display: flex;
-  width:100%
+  width:100%;
+  background-color: #232931;
 }
 
 #message_content{
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-top: 1px;;
@@ -12,7 +14,16 @@
   border-color: black;
   z-index: 5;
   padding:10px;
-  width :60%
+  width :60%;
+  left:10%;
+  height:85%;
+  background-color: white
+}
+
+
+#first_header {
+  display: flex;
+  justify-content: space-between;
 }
 
 #second_header{
@@ -28,4 +39,18 @@
 #reply{
   background-color: #232931;
   align-self: flex-end;
+}
+
+#delete{
+  color:red
+}
+
+button{
+  background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  width:50px;
 }

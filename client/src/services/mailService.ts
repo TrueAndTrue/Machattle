@@ -36,7 +36,6 @@ export const getMailById = async (uid: number) => {
 };
 
 export const sendMessage = async (message :IMessage) => {
-  console.log(message)
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -50,3 +49,21 @@ export const sendMessage = async (message :IMessage) => {
     console.log(e);
   }
 };
+
+export const setMessageAsRead = async (id:number) => {
+  const requestOptions = {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id })
+  }
+  const response = await fetch(`${BASE_URL}/messages/read`, requestOptions)
+}
+
+export const deleteMessage = async (id:number) => {
+  const requestOptions = {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id })
+  }
+  const response = await fetch(`${BASE_URL}/messages/delete`, requestOptions)
+}
