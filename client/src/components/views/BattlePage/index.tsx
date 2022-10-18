@@ -60,11 +60,11 @@ export function BattlePage() {
   useEffect(() => {
     console.log('trig!')
   }, [trigger])
-
+  console.log(!roomId)
   return (
     <div className={styles.battle_page_container}>
-      {trigger && roomId &&  <Popup isRanked={true} enemyUser="" isPractice ={!roomId}/>}
-      {trigger && !roomId &&  <Popup isRanked={false} enemyUser="" isPractice ={!!roomId}/>}
+      {trigger && roomId &&  <Popup isRanked={true} enemyUser="" isPractice ={!!roomId}/>}
+      {trigger && !roomId &&  <Popup isRanked={true} enemyUser="" isPractice ={!roomId}/>}
       <ShootingStar />
       <div className={styles.battle_title}>
         {roomId && <div><p>{thisUsername} (me) VS {opponentUsername} </p></div>}

@@ -44,7 +44,7 @@ export function Popup(props: IProps) {
 
   return (
     <div className={styles.popup_container}>
-      {props.isPractice ? 
+      {!props.isPractice ? 
      (<div> {props.isRanked ? <div className={styles.popup}>
         {isWinner && <h1>Congrats! You Won!</h1>}
         {isLoser && <h1>Aw :/ Maybe Next Time!</h1>}
