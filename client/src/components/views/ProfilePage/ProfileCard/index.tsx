@@ -106,19 +106,18 @@ export function ProfileCard () {
         <div className={styles.profile_username}>
           <h2 className={styles.user_text}>{(otherProfile.username) || 'Username'}</h2>
           <h2 className={styles.friend_text}>Friends Online: {otherProfile.friends?.length}</h2>
-          {!isUserProfile && <Button className={styles.match} onClick={matchInvite}>Invite Match</Button>}
         </div>
         <div className={styles.avatar_container}>
           <div id={styles.profile_img} style={{ backgroundImage: `url(${otherProfile.image})` }} />
           <div id = {styles.button_container}>
             {isUserProfile && <Button id ={styles.update_profile} onClick={updateProfile}>Change Avatar</Button>}
             {!isUserProfile &&  !isFriend  &&  <Button id ={styles.add_friend} onClick ={addFriendToUser}>Add Friend</Button>}
-            {!isUserProfile &&  isFriend  &&  <Button id ={styles.add_friend} onClick = {removeUserFriend}>Remove Friend</Button>}
+            {!isUserProfile &&  isFriend  &&  <Button id ={styles.add_friend} onClick = {removeUserFriend}>Remove Friend</Button> }
+            {!isUserProfile && <Button className={styles.match} onClick={matchInvite}>Invite Match</Button>}
           </div>
           {update && <ProfileUpdateForm updateProfile = {updateProfile}/>}
         </div>
         <div className={styles.profile_rank}>
-          {/* <h2 className={styles.ranked_text}>Rank:</h2> */}
           <img className={styles.ranked_logo} src={rankImage} alt="rank icon" />
           <p className={styles.ranked_text}>{(otherProfile.rank[0]) || 'Unranked'}</p>
           <p className={styles.ranked_text}>{(otherProfile.rank[1]) + "MP" || 'Unranked'}</p>
