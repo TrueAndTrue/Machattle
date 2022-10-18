@@ -6,7 +6,11 @@ import styles from './styles.module.css'
 
 import { WrittingContext } from "..";
 
-export const MessageForm = () => {
+interface IProps {
+  reply :Function
+}
+
+export const MessageForm = ({reply} : IProps) => {
   const { username } = useSelector((state: any) => state.currentUser);
   const [recipient, setRecipient] = useState('')
   const [title, setTitle] = useState('')
@@ -15,19 +19,21 @@ export const MessageForm = () => {
 
   const onClick = () => {
     setWritting(!isWritting)
+    reply()
   } 
 
   const onSubmit = async (e : FormEvent<HTMLFormElement>) =>  {
     const newMessage = {title,content, receiverUsername : recipient, senderUsername : username}
     await sendMessage(newMessage)
     setWritting(!isWritting)
+    reply()
   }
 
   interface TargetWithReset extends EventTarget{
     reset : Function
   }
 
-  return (<form
+  return (<div id = {styles.form_container}><form
   id ={styles.message_form}
   onSubmit={(e) => {
     e.preventDefault();
@@ -37,16 +43,25 @@ export const MessageForm = () => {
   }}>
     <div id = {styles.first_row}><label>
       To
-      <input type="text" name="recipient" onChange={(e) => setRecipient(e.target.value)} />
+      <input 
+        type="text"
+        id = {styles.to}
+        name="recipient"
+        autoComplete="off"
+        onChange={(e) => setRecipient(e.target.value)} />
     </label>
     </div>
     <label>
       Title
-      <input type="text" name="title" onChange={(e) => setTitle(e.target.value)} />
+      <input type="text"
+        name="title"
+        id ={styles.title}
+        autoComplete="off"
+        onChange={(e) => setTitle(e.target.value)} />
     </label>
     <textarea id = {styles.text} onChange={(e) => setContent(e.target.value)}>
     </textarea>
-    <input type="submit" value="Submit" />
-  </form>)
-
+    <input type="submit" value="Send" id ={styles.submit}/>
+  </form><button id = {styles.delete} onClick={onClick}>X</button></div>)
+  
 }
