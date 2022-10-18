@@ -36,7 +36,7 @@ export interface IQueue {
 }
 
 export interface IRoom {
-  uid: string;
+  uid: string[];
   roomId: string;
 }
 
