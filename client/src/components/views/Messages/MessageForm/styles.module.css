@@ -23,12 +23,44 @@ label{
   color: white;
 }
 
-textarea:focus, input:focus{
+#text:focus, input:focus{
   outline: none;
 }
 
 #text{
   height: 300px;
   background-color: #232931;
+  color:white;
+  padding-top: 20px;;
+  padding-left:10px;
+}
+
+#form_container{
+  display: flex;
+}
+
+#delete{
+  height:20px;
+  background-color: #232931;
   color:white
+}
+
+#to{
+  padding: 5px;
+  padding-left: 7px;;
+  height:20px;
+  font-size: 14px;;
+}
+
+#title{
+  padding: 5px;
+  padding-left: 7px;;
+  height:20px;
+  font-size: 14px;;
+}
+
+#submit{
+  align-self:flex-end;
+  width:50px;
+  padding:5px;
 }

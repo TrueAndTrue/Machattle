@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from "react-router-dom"
 import { Button } from '@mui/material'
 import moment from 'moment'
@@ -10,15 +10,13 @@ import { MessageForm } from '../MessageForm'
 
 import styles from './styles.module.css'
 
-import { WrittingContext } from "..";
-
 const initialMessage :IMessage= {id: -1, title :"",content:"", senderUsername:"", receiverUsername:"",createdAt: new Date(), read:false }
 
 export const MessageBody = () => {
   const { id } = useParams();
   const navigate = useNavigate()
   const [mail, setMail] = useState<IMessage>(initialMessage)
-  const { isWritting, setWritting } = useContext(WrittingContext)
+  const [isWritting, setWritting] = useState(false)
   
   const {title, content, senderUsername, createdAt} = mail  
 
@@ -53,7 +51,7 @@ export const MessageBody = () => {
       </div>
       <div id = {styles.second_header}><h4> from {senderUsername}</h4><h4>sent {timeAgo}</h4></div>
       <div id = {styles.content}>{content}</div>
-      {isWritting && <MessageForm /> || <Button id = {styles.reply} onClick ={reply}>Reply</Button>}
+      {isWritting && <div id ={styles.form} ><MessageForm reply ={reply} /> </div>|| <Button id = {styles.reply} onClick ={reply}>Reply</Button>}
     </div>
   </div>)
 }

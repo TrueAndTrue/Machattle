@@ -50,7 +50,7 @@ export const Messages = () => {
       <WrittingContext.Provider value ={{isWritting, setWritting, viewing, setViewing}}>
       <OptionsBar />
       <MailBox mail ={ viewing ? receivedMail : sentMail} />
-      {isWritting && <div id = {styles.form}> <MessageForm/> </div>} 
+      {isWritting && <div id = {styles.form}> <MessageForm reply={()=>{}}/> </div>} 
       </WrittingContext.Provider>
     </div>
   )
