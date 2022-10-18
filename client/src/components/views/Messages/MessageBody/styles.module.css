@@ -42,10 +42,7 @@
 }
 
 #delete{
-  color:red
-}
-
-button{
+  color:red;
   background: none;
 	color: inherit;
 	border: none;
@@ -53,4 +50,5 @@ button{
 	cursor: pointer;
 	outline: inherit;
   width:50px;
+
 }

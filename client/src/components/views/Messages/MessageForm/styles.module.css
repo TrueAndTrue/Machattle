@@ -19,18 +19,6 @@ input, textarea  {
   color :white
 }
 
-
-
-button{
-  width: 20px;;
-  height:20px;
-  margin-left: 0px;
-  background-color: #232931;
-  color: white;
-  z-index:7;
-  text-align: center;
-}
-
 label{
   color: white;
 }

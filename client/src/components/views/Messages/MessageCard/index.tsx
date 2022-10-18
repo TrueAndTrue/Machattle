@@ -32,8 +32,8 @@ export const MessageCard = ({ message } :IProps) => {
         <div className = {readStyle} id ={styles.read_indicator} />
         {viewing ? <p>Sent By {senderUsername} </p> : <p>Sent To {receiverUsername}</p> } 
       </div>
-      <p> {title} </p>
-      <p> {timeAgo} </p>
+      <p className ={styles.details}> {title} </p>
+      <p className = {styles.details}> {timeAgo} </p>
     </Link>
   )
 }

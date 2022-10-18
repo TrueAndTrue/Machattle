@@ -40,7 +40,7 @@ export const MessageBody = () => {
   } 
 
   const removeMessage = async () => {
-    if(id) await deleteMessage(parseInt(id))
+    if(id) await deleteMessage(parseInt(id)) 
     navigate(-1)
   }
 

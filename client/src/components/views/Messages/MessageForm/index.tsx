@@ -38,7 +38,6 @@ export const MessageForm = () => {
     <div id = {styles.first_row}><label>
       To
       <input type="text" name="recipient" onChange={(e) => setRecipient(e.target.value)} />
-      <button>X</button>
     </label>
     </div>
     <label>
