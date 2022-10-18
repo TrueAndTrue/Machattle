@@ -5,12 +5,16 @@
   /* justify-content: space-evenly; */
   background-color: #4ecca3;
   width: 35vw;
-  height: 40vh;
+  height: 32vh;
   border-radius: 25px;
   border-color: #eeeeee;
   border-style: inset;
   border-width: 10px;
   margin-top: 18px;
+  overflow-y: scroll;
+}
+.instructions_card_container::-webkit-scrollbar {
+  display: none;
 }
 
 .instructions_text {

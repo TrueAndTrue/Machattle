@@ -111,17 +111,17 @@ export function SubmitButton(props: IProps) {
 
   return (
     <div className={styles.submit_button_container}>
-      <button className={styles.submit_button} onClick={() => codeSubmit(codeSubmission)}>
-        SUBMIT SOLUTION
-      </button>
       <div className={styles.tests_result_container}>
-        <p>{testArray.length} total tests</p>
+        <p className={styles.tests_text}>{testArray.length} total tests</p>
         {testsPassed === testArray.length ? (
-          <p>All tests passed!</p>
+          <p className={styles.tests_text}>All tests passed!</p>
         ) : (
           <p>{failError.join('\n')}</p>
         )}
       </div>
+      <button className={styles.submit_button} onClick={() => codeSubmit(codeSubmission)}>
+        SUBMIT SOLUTION
+      </button>
     </div>
   );
 }
