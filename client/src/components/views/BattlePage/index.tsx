@@ -63,6 +63,7 @@ export function BattlePage() {
 
   return (
     <div className={styles.battle_page_container}>
+      {/* <div className={styles.floating_border} /> */}
       {trigger && <Popup isRanked={true} enemyUser=""/>}
       <ShootingStar />
       <div className={styles.battle_title}>
