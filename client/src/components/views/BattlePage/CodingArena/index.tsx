@@ -4,7 +4,6 @@ import styles from "./styles.module.css";
 import CodeMirror from "@uiw/react-codemirror";
 import { EditorState, EditorStateConfig, Compartment } from "@codemirror/state";
 import { EditorView, keymap } from "@codemirror/view";
-import { basicSetup } from "codemirror";
 import { defaultKeymap } from "@codemirror/commands";
 import { javascript } from "@codemirror/lang-javascript";
 
@@ -21,9 +20,7 @@ export function CodingArena() {
     <div className={styles.coding_arena_container}>
       <CodeMirror
         value={useSelector((state: any) => state.currentQuestion.currentAnswer)}
-        basicSetup={
-          {foldGutter: false,}
-        }
+        basicSetup={{ foldGutter: false }}
         extensions={[
           // basicSetup,
           language.of(javascript()),

@@ -1,14 +1,13 @@
-import moment from 'moment'
-
-import { IChallenge } from '../../../../types';
-import styles from './styles.module.css';
+import moment from "moment";
+import { IChallenge } from "../../../../types";
+import styles from "./styles.module.css";
 
 interface IProps {
-  match : IChallenge 
+  match: IChallenge;
 }
 
-export const MatchCard = ({match} :IProps) =>{
-  const timeAgo = moment(match.updatedAt).fromNow()
+export const MatchCard = ({ match }: IProps) => {
+  const timeAgo = moment(match.updatedAt).fromNow();
   return (
     <div className={styles.match_card_container}>
       <p className={styles.winner_text}>{match.winnerUsername}</p>
@@ -16,5 +15,5 @@ export const MatchCard = ({match} :IProps) =>{
       <p className={styles.loser_text}>{match.loserUsername}</p>
       <p className={styles.timer_text}>{timeAgo}</p>
     </div>
-  )
-}
+  );
+};
