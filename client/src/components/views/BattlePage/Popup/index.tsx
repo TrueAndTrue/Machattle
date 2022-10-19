@@ -55,8 +55,8 @@ export function Popup(props: IProps) {
               {isWinner && <h1>Congrats! You Won!</h1>}
               {isLoser && <h1>Aw :/ Maybe Next Time!</h1>}
               <div>
-                {isWinner && <h2>Your rank increased by 20lp!</h2>}
-                {isLoser && <h2>Your rank decreased by 20lp!</h2>}
+                {isWinner && <h2>Your rank increased by 20MP!</h2>}
+                {isLoser && <h2>Your rank decreased by 20MP!</h2>}
               </div>
               <Button className={styles.popup_btn} onClick={gameOverClick}>
                 Return Home
@@ -72,6 +72,7 @@ export function Popup(props: IProps) {
       ) : (
         <div className={styles.popup}>
           <h1>Congrats! You Solved It!</h1>
+          <h1>1/199 Problems Solved!</h1>
           <Button className={styles.popup_btn} onClick={gameOverClick}>
             Return Home
           </Button>
