@@ -19,6 +19,7 @@ interface Qaction {
 }
 
 const initialQuestion = {
+  id:0,
   difficulty: "",
   question: "",
   editorPrompt: "",

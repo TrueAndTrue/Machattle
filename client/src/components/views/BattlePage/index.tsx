@@ -52,7 +52,7 @@ export function BattlePage() {
     console.log(roomId)
     roomId ? salt = parseInt(roomId) : salt = Math.floor((Math.random()*10000))
     const newQuestion = await getRandomExercise(2,salt);
-    console.log(newQuestion)
+    console.log(newQuestion.id)
     dispatch(updateQuestion(newQuestion));
     let initialCode = `function ${newQuestion.functionName}(${newQuestion.parameters[0]}) {\n\n}`
     dispatch(updateCurrentAnswer(initialCode))
@@ -73,8 +73,6 @@ export function BattlePage() {
     }))
   }
 
-  console.log(!roomId, 'in index')
-  console.log(roomId)
   return (
     <div className={styles.battle_page_container}>
       {trigger && roomId &&  <Popup isRanked={true} enemyUser="" isPractice ={false}/> }

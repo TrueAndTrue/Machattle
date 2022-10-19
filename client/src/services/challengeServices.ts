@@ -34,12 +34,12 @@ export const getRecentChallenges = async () => {
 };
 
 ///meant to be called AFTER challenge is completed, when a winner and loser is declared
-// challenge = {tie :boolean; winnerId:string; loserId:string; questionId :number}
-export const createChallenge = async (challenge: IChallenge) => {
+export const createChallenge = async (winId :string, loseId :String, questionId :string) => {
+
   try {
     const response = await fetch(`${BASE_URL}/challenges/create`, {
       method: "POST",
-      body: JSON.stringify(challenge),
+      body: JSON.stringify({winId,loseId,questionId}),
       headers: {
         "Content-Type": "application/json",
       },

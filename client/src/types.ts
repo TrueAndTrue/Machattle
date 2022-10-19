@@ -4,7 +4,7 @@ export interface IChallenge {
   winnerUsername: string;
   loserUsername: string;
   questionId: number;
-  updatedAt: Date;
+  updatedAt?: Date;
 }
 
 export interface IQuestion {

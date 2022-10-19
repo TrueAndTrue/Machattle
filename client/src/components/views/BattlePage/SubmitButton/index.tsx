@@ -10,6 +10,7 @@ import {createChallenge} from '../../../../services/challengeServices'
 import { useEffect, useState } from "react";
 import { updateMatch } from "../../../../state/actions/match";
 import { updateRank } from "../../../../services/userServices";
+import { IChallenge } from "../../../../types";
 
 let testsFailed = 0;
 let testsPassed = 0;
@@ -26,7 +27,9 @@ export function SubmitButton(props: IProps) {
   );
   const testArray = useSelector((state: any) => state.currentQuestion.tests) || [];
   const thisUser = useSelector((state: any) => state.currentUser.uid) || "";
+  const questionId = useSelector((state: any) => state.currentQuestion.id)
   const [getUpdate, setUpdate] = useState("");
+
 
   const { roomId, player1, player2 } = useSelector((state: any) => state.match);
   const { socket } = useContext(SocketContext).SocketState;
@@ -40,6 +43,7 @@ export function SubmitButton(props: IProps) {
         if (thisUser === winner) {
           updateRank(thisUser, 20)
           props.setTrigger(true)
+          createChallenge(thisUser, enemy, questionId)
           dispatch(updateMatch({
             player1: player1,
             player2: player2,
@@ -51,6 +55,7 @@ export function SubmitButton(props: IProps) {
         } else {
           updateRank(thisUser, -20)
           props.setTrigger(true)
+          createChallenge(enemy, thisUser,questionId )
           dispatch(updateMatch({
             player1: player1,
             player2: player2,
@@ -96,6 +101,7 @@ export function SubmitButton(props: IProps) {
       console.log('player has won')
       console.log(socket)
       socket?.emit("player_won", thisUser, roomId);
+
       if(props.isPractice) props.setTrigger(true)
     }
 

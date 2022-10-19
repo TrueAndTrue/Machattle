@@ -3,15 +3,15 @@ import { Challenge } from "../models/Challenge";
 import { User } from "../models/User";
 
 export const createChallenge = async (req: Request, res: Response) => {
+
   try {
-    const { winnerUsername, loserUsername, questionId, tie } =
-      req.body.challenge;
-    await Challenge.create({ tie, winnerUsername, loserUsername, questionId });
-    const winner = await User.findOne({ where: { username: winnerUsername } });
-    const loser = await User.findOne({ where: { username: loserUsername } });
+    const { winId, loseId, questionId} = req.body
+    const winner = (await User.findOne({where :{uid :winId}}))!.getDataValue("username")
+    const loser = (await User.findOne({where :{uid :loseId}}))!.getDataValue("username")
+    await Challenge.create({ tie :false, winnerUsername: winner, loserUsername : loser, questionId });
     const sentChallenge = {
-      winner: winner?.getDataValue("username"),
-      loser: loser?.getDataValue("username"),
+      winner,
+      loser
     };
 
     res.status(201).send({ error: false, res: sentChallenge });
