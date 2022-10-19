@@ -1,6 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { createContext, useState, useEffect } from 'react';
 
+
+import { IChallenge } from '../../../types';
+import { getUserChallenges } from '../../../services/userServices';
 import { RecentEventsFeed } from '../HomePage/RecentEventsFeed';
 import { FriendsList } from './FriendsList';
 import { MatchHistory } from './MatchHistory';
@@ -20,11 +23,18 @@ export const UserContext = createContext<IContext>({user :initialUser});
 export function ProfilePage () {
   const { username } = useParams()
   const [user, setUser] = useState<IUser>(initialUser)
+  const [challenges, setChallenges] = useState<IChallenge[]>([])
 
 
   useEffect(() => {
     getUser();
+    getChallenges()
   }, [username])
+
+  const getChallenges = async () => {
+    const userChallenges = await getUserChallenges(username!)
+    setChallenges(userChallenges)
+  }
 
   const getUser = async () => {
     if(username) {
@@ -44,7 +54,7 @@ export function ProfilePage () {
           {/* <MatchHistory /> */}
         </div>
       </div>
-      <RecentEventsFeed />
+      <RecentEventsFeed recentEvents = {challenges}/>
     </div>
     </UserContext.Provider>
   )

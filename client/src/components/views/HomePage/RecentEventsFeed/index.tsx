@@ -4,17 +4,11 @@ import { RecentEventsCard } from "../RecentEventsCard/index";
 import { getRecentChallenges } from "../../../../services/challengeServices";
 import styles from "./styles.module.css";
 
-export function RecentEventsFeed() {
-  const [recentEvents, setRecentEvents] = useState<IChallenge[]>();
+interface IProps {
+  recentEvents : IChallenge[]
+} 
 
-  useEffect(() => {
-    getEvents();
-  }, []);
-
-  const getEvents = async () => {
-    const challenges = await getRecentChallenges();
-    setRecentEvents(challenges)
-  }
+export function RecentEventsFeed({recentEvents} : IProps) {
 
   return (
     <div className={styles.recent_events_feed_container}>

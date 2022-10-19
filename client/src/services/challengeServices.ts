@@ -50,3 +50,17 @@ export const createChallenge = async (winId :string, loseId :String, questionId 
     console.log(e);
   }
 };
+
+const getUserChallenges = async (username :string) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/${username}/challenges`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data.res;
+  } catch (e) {
+    console.log(e);
+  }
+}

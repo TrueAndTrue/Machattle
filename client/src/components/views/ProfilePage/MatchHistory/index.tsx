@@ -17,9 +17,7 @@ export function MatchHistory () {
 
   const getChallenges = async () => {
     const userChallenges = await getUserChallenges(username!)
-    console.log(username!)
     setChallenges(userChallenges)
-    console.log(challenges)
   }
 
   return (

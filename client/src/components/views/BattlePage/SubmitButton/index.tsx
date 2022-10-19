@@ -55,7 +55,6 @@ export function SubmitButton(props: IProps) {
         } else {
           updateRank(thisUser, -20)
           props.setTrigger(true)
-          createChallenge(enemy, thisUser,questionId )
           dispatch(updateMatch({
             player1: player1,
             player2: player2,
