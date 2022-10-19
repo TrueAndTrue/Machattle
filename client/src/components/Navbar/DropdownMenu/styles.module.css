@@ -12,5 +12,12 @@
 }
 
 .hamburg {
-  width: 50%;
+  width: 30%;
+  margin-right: 15%;
+}
+
+@media (max-width: 600px) {
+  .hamburg {
+    width: 50%;
+  }
 }
