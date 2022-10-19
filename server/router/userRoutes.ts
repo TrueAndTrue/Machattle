@@ -13,7 +13,8 @@ import {
   updateRank,
   updateImg,
   getUserFriends,
-  removeFriend
+  removeFriend,
+  convertUserRatings
 } from "../controllers/user";
 
 const router = Router();
@@ -28,6 +29,7 @@ router.get("/:uid/exercises", getUserExercises);
 router.get("/:username/challenges", getUserChallenges);
 
 router.put("/rank", updateRank)
+router.put("/updateRatings", convertUserRatings)
 router.put("/update/image", updateImg)
 router.put("/:uid/addFriend", addFriend);
 router.put("/:uid/removeFriend", removeFriend);
