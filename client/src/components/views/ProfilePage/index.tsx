@@ -4,7 +4,6 @@ import { IChallenge } from "../../../types";
 import { getUserChallenges } from "../../../services/userServices";
 import { RecentEventsFeed } from "../HomePage/RecentEventsFeed";
 import { FriendsList } from "./FriendsList";
-import { MatchHistory } from "./MatchHistory";
 import { ProfileInfoContainer } from "./ProfileInfoContainer";
 import { IUser } from "../../../types";
 import { getUserByUsername } from "../../../services/userServices";

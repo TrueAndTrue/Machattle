@@ -30,7 +30,7 @@ export function LeaderboardCard({ user, position }: IProps) {
         setRankImg(imgLocations[3]);
       } else if (rankStr === "Diamond") {
         setRankImg(imgLocations[4]);
-      } else if (rankStr === "Pallidium") {
+      } else if (rankStr === "Palladium") {
         setRankImg(imgLocations[5]);
       }
     }

@@ -48,6 +48,7 @@ export interface IChallenge {
   questionId: ForeignKey<number>;
 }
 
+
 export interface IMessage {
   id :number;
   title? : string;

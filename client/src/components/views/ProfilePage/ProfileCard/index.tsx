@@ -55,7 +55,7 @@ export function ProfileCard() {
         setRankImage(Platinum);
       } else if (rankStr === "Diamond") {
         setRankImage(Diamond);
-      } else if (rankStr === "Pallidium") {
+      } else if (rankStr === "Palladium") {
         setRankImage(Palladium);
       }
     }

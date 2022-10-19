@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { literal } from 'sequelize'
 import { User } from "../models/User";
 import { Question } from "../models/Question";
 import { Challenge } from "../models/Challenge";
@@ -85,7 +84,7 @@ export const updateRank = async (req: Request, res: Response) => {
   try {
     const { uid } = req.body.user;
     const { rankChange } = req.body.change;
-    console.log(rankChange)
+    console.log(uid,rankChange)
     const user = await User.findOne({where : {uid}})
     let rating = user?.getDataValue('rating')
     if(user && rating) {
@@ -231,6 +230,10 @@ export const getUserExercises = async (req: Request, res: Response) => {
   }
 };
 
+interface DatedChallenge extends Challenge{
+  createdAt :Date
+}
+
 export const getUserChallenges = async (req: Request, res: Response) => {
   try {
     const { username } = req.params;
@@ -241,8 +244,11 @@ export const getUserChallenges = async (req: Request, res: Response) => {
       where: { loserUsername: username },
     });
 
-    const completedChallenges = [...lostChallenges, ...wonChallenges ];
-    res.status(200).send({ error: false, res: completedChallenges });
+    const completedChallenges = [...lostChallenges, ...wonChallenges ] as DatedChallenge[];
+    const sortedChallenges = completedChallenges.sort((challenge1, challenge2) => {
+       return challenge2.createdAt.getTime() - challenge1.createdAt.getTime()
+      })
+    res.status(200).send({ error: false, res: sortedChallenges });
   } catch (e) {
     res.status(500).send({ error: true, res: "Error Getting User Challenges" });
   }

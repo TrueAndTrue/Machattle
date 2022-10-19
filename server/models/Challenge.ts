@@ -10,6 +10,8 @@ interface ChallengeCreationAttributes extends Optional<IChallenge, "id"> {}
 export class Challenge extends Model<IChallenge, ChallengeCreationAttributes> {
   public id!: number;
   public tie!: boolean;
+
+  public readonly createdAt! :Date
   public readonly questionId!: number;
 
   public static associations: {
@@ -40,6 +42,7 @@ Challenge.init(
     },
   },
   {
+    timestamps: true,
     tableName: "challenges",
     sequelize,
   }
