@@ -1,26 +1,32 @@
 import Button from "@mui/material/Button";
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 interface IProps {
-  onClick :Function
+  onClick: Function;
 }
 
-export function AvatarSelectForm ({onClick} :IProps) {
-  const imgLocations =[];
-  for(let i =1; i<=10;i++){
-    imgLocations.push(`pfp/${i}.gif`)
+export function AvatarSelectForm({ onClick }: IProps) {
+  const imgLocations = [];
+  for (let i = 1; i <= 10; i++) {
+    imgLocations.push(`pfp/${i}.gif`);
   }
 
   return (
     <div className={styles.avatar_select_form_container}>
       <h4>Select Profile Image</h4>
-      <div>{imgLocations.map(img =>{
-        return (
-        <Button className ={styles.avatar_button} onClick={e => onClick(e)} value ={img}>
-          <img src = {`/${img}`} className={styles.pfp}/>
-        </Button>)
-     })}
-     </div>
+      <div>
+        {imgLocations.map((img) => {
+          return (
+            <Button
+              className={styles.avatar_button}
+              onClick={(e) => onClick(e)}
+              value={img}
+            >
+              <img src={`/${img}`} alt="profile logo" className={styles.pfp} />
+            </Button>
+          );
+        })}
+      </div>
     </div>
-  )
+  );
 }

@@ -1,24 +1,21 @@
-import { useContext, useEffect,useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { IChallenge } from '../../../../types';
-import { getUserChallenges } from '../../../../services/userServices';
-import { MatchCard } from '../MatchCard';
-import { UserContext } from '..';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { IChallenge } from "../../../../types";
+import { getUserChallenges } from "../../../../services/userServices";
+import styles from "./styles.module.css";
 
-import styles from './styles.module.css';
+export function MatchHistory() {
+  const { username } = useParams();
+  const [challenges, setChallenges] = useState<IChallenge[]>([]);
 
-export function MatchHistory () {
-  const { username } = useParams()
-  const [challenges, setChallenges] = useState<IChallenge[]>([])
-
-  useEffect(()=> {
-    getChallenges()
-  },[])
+  useEffect(() => {
+    getChallenges();
+  }, []);
 
   const getChallenges = async () => {
-    const userChallenges = await getUserChallenges(username!)
-    setChallenges(userChallenges)
-  }
+    const userChallenges = await getUserChallenges(username!);
+    setChallenges(userChallenges);
+  };
 
   return (
     <div className={styles.match_history_container}>
@@ -27,5 +24,5 @@ export function MatchHistory () {
         {/* {challenges.length > 0 && challenges.map(challenge => <MatchCard match={challenge}/>)} */}
       </div>
     </div>
-  )
+  );
 }

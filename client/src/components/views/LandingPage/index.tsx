@@ -1,6 +1,5 @@
 
 import { LoginButton } from './LoginButton';
-import { SignupButton } from './SignupButton';
 import { WelcomeBanner } from './WelcomeBanner';
 import styles from './styles.module.css';
 import silver from './2.png';
@@ -8,7 +7,7 @@ import master from './6.png'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getUserById, getUserByUsername } from '../../../services/userServices';
+import { getUserById } from '../../../services/userServices';
 import { ShootingStar } from '../QueuePage/ShootingStar';
 
 export function LandingPage () {

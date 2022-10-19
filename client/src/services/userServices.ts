@@ -38,19 +38,19 @@ export const updateRank = async (uid: string, change: number) => {
       },
       body: JSON.stringify({
         user: {
-          uid
+          uid,
         },
         change: {
-          rankChange: change
-        }
-      })
-    })
+          rankChange: change,
+        },
+      }),
+    });
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 export const getUserById = async (uid: string) => {
   try {
@@ -74,14 +74,15 @@ export const getUserByUsername = async (username: string) => {
 
 export const addFriend = async (uid: string, friendUID: string) => {
   const requestOptions = {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ friendUID })
-  }
-  console.log('service')
-  console.log(uid, friendUID)
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ friendUID }),
+  };
   try {
-    const response = await fetch(`${BASE_URL}/users/${uid}/addFriend`, requestOptions);
+    const response = await fetch(
+      `${BASE_URL}/users/${uid}/addFriend`,
+      requestOptions
+    );
     const data = await response.json();
     return data;
   } catch (e) {
@@ -120,7 +121,6 @@ export const getUserExercises = async (uid: string) => {
 };
 
 export const getUserChallenges = async (username: string) => {
-  console.log(username)
   try {
     const response = await fetch(`${BASE_URL}/users/${username}/challenges`, {
       headers: {
@@ -136,13 +136,13 @@ export const getUserChallenges = async (username: string) => {
 
 export const getRoom = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/users/room`)
+    const response = await fetch(`${BASE_URL}/users/room`);
     const data = await response.json();
     return data;
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const getTopUsers = async () => {
   try {
@@ -168,31 +168,35 @@ export const getUserFriends = async (uid: string) => {
   }
 };
 
-export const updatePfp = async (uid:string, image :string) => {
+export const updatePfp = async (uid: string, image: string) => {
   const requestOptions = {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ uid, image })
-  }
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ uid, image }),
+  };
   try {
-    const response = await fetch(`${BASE_URL}/users/update/image`, requestOptions);
+    const response = await fetch(
+      `${BASE_URL}/users/update/image`,
+      requestOptions
+    );
     const data = await response.json();
     return data;
   } catch (e) {
     console.log(e);
   }
-}
+};
 
 export const removeFriend = async (uid: string, friendUID: string) => {
   const requestOptions = {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ friendUID })
-  }
-  console.log('service')
-  console.log(uid, friendUID)
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ friendUID }),
+  };
   try {
-    const response = await fetch(`${BASE_URL}/users/${uid}/removeFriend`, requestOptions);
+    const response = await fetch(
+      `${BASE_URL}/users/${uid}/removeFriend`,
+      requestOptions
+    );
     const data = await response.json();
     return data;
   } catch (e) {

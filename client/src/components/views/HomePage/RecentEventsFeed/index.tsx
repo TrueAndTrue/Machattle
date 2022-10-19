@@ -1,15 +1,12 @@
-import { useState, useEffect } from "react";
 import { IChallenge } from "../../../../types";
 import { RecentEventsCard } from "../RecentEventsCard/index";
-import { getRecentChallenges } from "../../../../services/challengeServices";
 import styles from "./styles.module.css";
 
 interface IProps {
-  recentEvents : IChallenge[]
-} 
+  recentEvents: IChallenge[];
+}
 
-export function RecentEventsFeed({recentEvents} : IProps) {
-
+export function RecentEventsFeed({ recentEvents }: IProps) {
   return (
     <div className={styles.recent_events_feed_container}>
       {recentEvents?.map((singleEvent) => (

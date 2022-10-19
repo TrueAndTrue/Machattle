@@ -17,13 +17,16 @@ export const getExerciseById = async (id: string) => {
   }
 };
 
-export const getRandomExercise = async (difficulty: number, salt :number) => {
+export const getRandomExercise = async (difficulty: number, salt: number) => {
   try {
-    const response = await fetch(`${BASE_URL}/exercises/random/${difficulty}$${salt}`, {
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `${BASE_URL}/exercises/random/${difficulty}$${salt}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-    });
+    );
     const data = await response.json();
     return data.res;
   } catch (e) {

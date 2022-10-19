@@ -1,35 +1,30 @@
 import styles from "./styles.module.css";
 import { useSelector, useDispatch } from "react-redux";
-// import { Button } from "@mui/material";
 import { useContext } from "react";
 import SocketContext from "../../../../contexts/Context";
-
-import {createChallenge} from '../../../../services/challengeServices'
-
-//code transpilation!?
+import { createChallenge } from "../../../../services/challengeServices";
 import { useEffect, useState } from "react";
 import { updateMatch } from "../../../../state/actions/match";
 import { updateRank } from "../../../../services/userServices";
-import { IChallenge } from "../../../../types";
 
 let testsFailed = 0;
 let testsPassed = 0;
-let failError: [string] = [''];
+let failError: [string] = [""];
 
 interface IProps {
-  setTrigger: Function
-  isPractice :boolean
+  setTrigger: Function;
+  isPractice: boolean;
 }
 
 export function SubmitButton(props: IProps) {
   const codeSubmission = useSelector(
     (state: any) => state.currentQuestion.currentAnswer
   );
-  const testArray = useSelector((state: any) => state.currentQuestion.tests) || [];
+  const testArray =
+    useSelector((state: any) => state.currentQuestion.tests) || [];
   const thisUser = useSelector((state: any) => state.currentUser.uid) || "";
-  const questionId = useSelector((state: any) => state.currentQuestion.id)
+  const questionId = useSelector((state: any) => state.currentQuestion.id);
   const [getUpdate, setUpdate] = useState("");
-
 
   const { roomId, player1, player2 } = useSelector((state: any) => state.match);
   const { socket } = useContext(SocketContext).SocketState;
@@ -38,38 +33,40 @@ export function SubmitButton(props: IProps) {
 
   useEffect(() => {
     socket?.on("winner", (winner) => {
-        console.log(winner, 'in winner')
-        const enemy = findEnemy(player1, player2);
-        if (thisUser === winner) {
-          updateRank(thisUser, 20)
-          props.setTrigger(true)
-          createChallenge(thisUser, enemy, questionId)
-          dispatch(updateMatch({
+      const enemy = findEnemy(player1, player2);
+      if (thisUser === winner) {
+        updateRank(thisUser, 20);
+        props.setTrigger(true);
+        createChallenge(thisUser, enemy, questionId);
+        dispatch(
+          updateMatch({
             player1: player1,
             player2: player2,
             matchFound: true,
             winner: thisUser,
             loser: enemy,
-            roomId: roomId
-          }));
-        } else {
-          updateRank(thisUser, -20)
-          props.setTrigger(true)
-          dispatch(updateMatch({
+            roomId: roomId,
+          })
+        );
+      } else {
+        updateRank(thisUser, -20);
+        props.setTrigger(true);
+        dispatch(
+          updateMatch({
             player1: player1,
             player2: player2,
             matchFound: true,
             winner: enemy,
             loser: thisUser,
-            roomId: roomId
-          }))
-        socket.removeAllListeners('winner');
+            roomId: roomId,
+          })
+        );
+        socket.removeAllListeners("winner");
       }
     });
   }, []);
 
   function codeSubmit(code: string) {
-    //add an error catch here if the code submitted is invalid?
     const parseFunction = (str: string) => {
       return Function('"use strict";return (' + str + ")")();
     };
@@ -83,25 +80,31 @@ export function SubmitButton(props: IProps) {
         if (JSON.stringify(testFunction(...args)) == tuple[1]) {
           testsPassed = testsPassed + 1;
         } else {
-          failError.push(`Expected result of ${args} to be ${tuple[1]}, not ${JSON.stringify(testFunction(...args))}.`);
+          failError.push(
+            `Expected result of ${args} to be ${tuple[1]}, not ${JSON.stringify(
+              testFunction(...args)
+            )}.`
+          );
           testsFailed = testsFailed + 1;
         }
       } else {
         if (JSON.stringify(testFunction(args)) == tuple[1]) {
           testsPassed = testsPassed + 1;
         } else {
-          failError.push(`Expected result of ${args} to be ${tuple[1]}, not ${JSON.stringify(testFunction(args))}.`);
+          failError.push(
+            `Expected result of ${args} to be ${tuple[1]}, not ${JSON.stringify(
+              testFunction(args)
+            )}.`
+          );
           testsFailed = testsFailed + 1;
         }
       }
     });
 
     if (testsPassed === testArray.length) {
-      console.log('player has won')
-      console.log(socket)
       socket?.emit("player_won", thisUser, roomId);
 
-      if(props.isPractice) props.setTrigger(true)
+      if (props.isPractice) props.setTrigger(true);
     }
 
     setUpdate(getUpdate + "rerender");
@@ -110,11 +113,10 @@ export function SubmitButton(props: IProps) {
   const findEnemy = (uid1: string, uid2: string) => {
     if (uid1 === thisUser) {
       return uid2;
-    }
-    else {
+    } else {
       return uid1;
     }
-  }
+  };
 
   return (
     <div className={styles.submit_button_container}>
@@ -123,10 +125,13 @@ export function SubmitButton(props: IProps) {
         {testsPassed === testArray.length ? (
           <p className={styles.tests_text}>All tests passed!</p>
         ) : (
-          <p>{failError.join('\n')}</p>
+          <p>{failError.join("\n")}</p>
         )}
       </div>
-      <button className={styles.submit_button} onClick={() => codeSubmit(codeSubmission)}>
+      <button
+        className={styles.submit_button}
+        onClick={() => codeSubmit(codeSubmission)}
+      >
         SUBMIT SOLUTION
       </button>
     </div>
