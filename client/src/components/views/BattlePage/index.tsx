@@ -3,26 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Popup } from "./Popup/index";
 
 import { updateCurrentAnswer } from "../../../state/actions/question";
-import { updateQuestion } from '../../../state/actions/question';
-import { updateMatch } from '../../../state/actions/match'
-import { getRandomExercise } from '../../../services/exerciseServices';
-import { IQuestion } from '../../../types'
-import { CodingArena } from './CodingArena/index';
-import { InstructionsContainer } from './InstructionsContainer/index';
-import styles from './styles.module.css';
-import { getUserById } from '../../../services/userServices';
-import { ShootingStar } from '../QueuePage/ShootingStar';
-
-const initialQuestion: IQuestion = {
-  id: -1,
-  question: "",
-  difficulty: "",
-  timeComplexity: "",
-  tests: [],
-  timeElapsed: "",
-  functionName :"",
-  parameters: []
-};
+import { updateQuestion } from "../../../state/actions/question";
+import { getRandomExercise } from "../../../services/exerciseServices";
+import { CodingArena } from "./CodingArena/index";
+import { InstructionsContainer } from "./InstructionsContainer/index";
+import styles from "./styles.module.css";
+import { getUserById } from "../../../services/userServices";
+import { ShootingStar } from "../QueuePage/ShootingStar";
 
 export function BattlePage() {
   const dispatch = useDispatch();
@@ -45,44 +32,39 @@ export function BattlePage() {
         setOpponentUsername(p1.res.username);
       }
     })();
-  },[]);
+  }, []);
 
   async function getQuestion() {
-    let salt :number;
-    console.log(roomId)
-    roomId ? salt = parseInt(roomId) : salt = Math.floor((Math.random()*10000))
-    const newQuestion = await getRandomExercise(2,salt);
-    console.log(newQuestion.id)
+    let salt: number;
+    roomId
+      ? (salt = parseInt(roomId))
+      : (salt = Math.floor(Math.random() * 10000));
+    const newQuestion = await getRandomExercise(2, salt);
     dispatch(updateQuestion(newQuestion));
-    let initialCode = `function ${newQuestion.functionName}(${newQuestion.parameters[0]}) {\n\n}`
-    dispatch(updateCurrentAnswer(initialCode))
-  }
-
-  useEffect(() => {
-    console.log('trig!')
-  }, [trigger])
-
-  const emptyMatch = () => {
-    dispatch(updateMatch({
-      player1: "",
-      player2: "",
-      matchFound: false,
-      winner: "",
-      loser: "",
-      roomId: ""
-    }))
+    let initialCode = `function ${newQuestion.functionName}(${newQuestion.parameters[0]}) {\n\n}`;
+    dispatch(updateCurrentAnswer(initialCode));
   }
 
   return (
     <div className={styles.battle_page_container}>
-      {trigger && roomId &&  <Popup isRanked={true} enemyUser="" isPractice ={false}/> }
-      {trigger && !roomId &&  <Popup isRanked={true} enemyUser="" isPractice ={!roomId}/>}
+      {trigger && roomId && (
+        <Popup isRanked={true} enemyUser="" isPractice={false} />
+      )}
+      {trigger && !roomId && (
+        <Popup isRanked={true} enemyUser="" isPractice={!roomId} />
+      )}
       <ShootingStar />
       <div className={styles.battle_title}>
-        {roomId && <div><p>{thisUsername} (me) VS {opponentUsername} </p></div>}
+        {roomId && (
+          <div>
+            <p>
+              {thisUsername} (me) VS {opponentUsername}{" "}
+            </p>
+          </div>
+        )}
       </div>
       <div className={styles.battle_page}>
-        <InstructionsContainer setTrigger={setTrigger} isPractice={!roomId}/>
+        <InstructionsContainer setTrigger={setTrigger} isPractice={!roomId} />
         <CodingArena />
       </div>
     </div>

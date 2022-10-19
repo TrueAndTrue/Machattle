@@ -3,9 +3,8 @@ import { currentQuestion } from "./questionReducer";
 import { currentBoard } from "./leaderBoardReducer";
 
 const { UPDATE_LOGGED } = require("./actions/status");
-const { UPDATE_USER, ADD_FRIEND , REMOVE_FRIEND } = require("./actions/user");
+const { UPDATE_USER, ADD_FRIEND, REMOVE_FRIEND } = require("./actions/user");
 const { UPDATE_MATCH } = require("./actions/match");
-const { UPDATE_TESTS } = require("./actions/questionTests");
 
 const match = (
   match = {
@@ -16,7 +15,7 @@ const match = (
     loser: "",
     roomId: "",
   },
-  action
+  action: any
 ) => {
   switch (action.type) {
     case UPDATE_MATCH: {
@@ -35,7 +34,7 @@ const status = (
     inQueue: false,
     inMatch: false,
   },
-  action
+  action: any
 ) => {
   switch (action.type) {
     case UPDATE_LOGGED:
@@ -54,20 +53,24 @@ const currentUser = (
     challenges: [],
     image: "",
   },
-  action
+  action: any
 ) => {
   switch (action.type) {
     case UPDATE_USER: {
       const { uid, rank, username, rating, image, friends } = action.user;
-      return { ...currentUser, uid, rank, username, rating, image , friends};
-    } case ADD_FRIEND : {
-      const {user, friend} = action
-      const friends = [...user.friends, friend]
-      return {...user, friends}
-    } case REMOVE_FRIEND : {
-      const {user, friend} = action
-      const newFriends = user.friends.filter(stillFriend=>stillFriend.uid != friend.uid)
-      return {...user, friends:[...newFriends]}
+      return { ...currentUser, uid, rank, username, rating, image, friends };
+    }
+    case ADD_FRIEND: {
+      const { user, friend } = action;
+      const friends = [...user.friends, friend];
+      return { ...user, friends };
+    }
+    case REMOVE_FRIEND: {
+      const { user, friend } = action;
+      const newFriends = user.friends.filter(
+        (stillFriend: any) => stillFriend.uid != friend.uid
+      );
+      return { ...user, friends: [...newFriends] };
     }
     default:
       return currentUser;

@@ -36,7 +36,11 @@ export const MatchCard = ({ mode }: IProps) => {
       </div>
       <p className={styles.body_text}>{matchObj.body}</p>
       <MatchButton data={matchObj.buttonText} mode={mode} />
-      <img src={matchObj.source} alt="robot logo" className={styles.robot_mascot} />
+      <img
+        src={matchObj.source}
+        alt="robot logo"
+        className={styles.robot_mascot}
+      />
     </div>
   );
 };

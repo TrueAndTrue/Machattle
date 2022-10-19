@@ -34,12 +34,15 @@ export const getRecentChallenges = async () => {
 };
 
 ///meant to be called AFTER challenge is completed, when a winner and loser is declared
-export const createChallenge = async (winId :string, loseId :String, questionId :string) => {
-
+export const createChallenge = async (
+  winId: string,
+  loseId: String,
+  questionId: string
+) => {
   try {
     const response = await fetch(`${BASE_URL}/challenges/create`, {
       method: "POST",
-      body: JSON.stringify({winId,loseId,questionId}),
+      body: JSON.stringify({ winId, loseId, questionId }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -51,7 +54,7 @@ export const createChallenge = async (winId :string, loseId :String, questionId 
   }
 };
 
-const getUserChallenges = async (username :string) => {
+const getUserChallenges = async (username: string) => {
   try {
     const response = await fetch(`${BASE_URL}/users/${username}/challenges`, {
       headers: {
@@ -63,4 +66,4 @@ const getUserChallenges = async (username :string) => {
   } catch (e) {
     console.log(e);
   }
-}
+};

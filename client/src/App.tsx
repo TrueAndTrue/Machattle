@@ -5,8 +5,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 //redux imports
 import { PersistGate } from "redux-persist/integration/react";
-import { useSelector, Provider as ReduxProvider } from "react-redux";
-import { persistor, store} from "./state/store";
+import { Provider as ReduxProvider } from "react-redux";
+import { persistor, store } from "./state/store";
 import { useDispatch } from "react-redux";
 import { updateUser } from "./state/actions/user";
 import { updateLogged } from "./state/actions/status";
@@ -21,47 +21,17 @@ import { Popup } from "./components/views/BattlePage/Popup/index";
 import { getUserById } from "./services/userServices";
 
 function App() {
-  const [ trigger, setTrigger ] = useState(false);
-  const currentUid = useSelector((state: any) => state.currentUser.uid);
-  const [ thisUid, setThisUid ] = useState('');
+  const [trigger, setTrigger] = useState(false);
+  const [thisUid, setThisUid] = useState("");
   const { socket } = useContext(SocketContext).SocketState;
-  const [ enemyUsername, setEnemyUserName ] = useState('');
+  const [enemyUsername] = useState("");
   const { user } = useAuth0();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   socket?.connect();
 
-  // useEffect(() => {
-  //   if (currentUid) {
-  //     socket?.on("friendly_match", async (player1uid, player2uid, roomId) => {
-  //       const enemy = await getUserById(player1uid);
-  //       setEnemyUserName(enemy.res.username)
-  //       dispatch(
-  //         updateMatch({
-  //           player1: player1uid,
-  //           player2: player2uid,
-  //           matchFound: false,
-  //           winner: "",
-  //           loser: "",
-  //           roomId,
-  //         })
-  //       );
-  //       console.log(user?.sub !== player1uid)
-  //       console.log(user?.sub, player1uid);
-  //       if (currentUid !== player1uid) {
-  //         setTrigger(true);
-  //       }
-  //       else {
-  //         console.log('we are the sender')
-  //       }
-  //     })
-  //   }
-  //   console.log(currentUid)
-  // }, [currentUid])
-
   useEffect(() => {
     socket?.on("match_found", (player1uid, player2uid, roomId) => {
-      console.log(player1uid, player2uid);
       dispatch(
         updateMatch({
           player1: player1uid,
@@ -77,26 +47,23 @@ function App() {
     socket?.on("accepted", () => {
       navigate("/battle");
       setTrigger(false);
-    })
+    });
     socket?.on("declined", () => {
       setTrigger(false);
-    })
-  }, [])
-
+    });
+  }, []);
 
   useEffect(() => {
     (async () => {
       try {
         if (user && user.sub && user.picture) {
           const clientUser = await getUserById(user?.sub);
-          console.log(clientUser);
           if (clientUser.error === true) {
             navigate("/username");
           } else {
             dispatch(updateLogged(true));
             dispatch(updateUser(clientUser.res));
-            console.log(clientUser.res.uid, 'uid')
-            setThisUid(clientUser.res.uid)
+            setThisUid(clientUser.res.uid);
           }
         } else {
           dispatch(updateLogged(false));
@@ -110,10 +77,16 @@ function App() {
   return (
     <ReduxProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-      <div className="navbar-outer-container">
-        <NavBar />
-        {trigger && <Popup isRanked={false} enemyUser={enemyUsername} isPractice ={false}/>}
-      </div>
+        <div className="navbar-outer-container">
+          <NavBar />
+          {trigger && (
+            <Popup
+              isRanked={false}
+              enemyUser={enemyUsername}
+              isPractice={false}
+            />
+          )}
+        </div>
       </PersistGate>
     </ReduxProvider>
   );

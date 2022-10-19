@@ -30,7 +30,7 @@ const SocketContextComponent: React.FunctionComponent<
   );
   const [loading, setLoading] = useState(true);
   const serverPort = socketUrl;
-  const userUid = useSelector((state: any) => state.currentUser.uid)
+  const userUid = useSelector((state: any) => state.currentUser.uid);
 
   const socket = useSocket(serverPort, {
     reconnectionAttempts: 5,
@@ -48,13 +48,10 @@ const SocketContextComponent: React.FunctionComponent<
 
   const StartListeners = () => {
     socket.on("user_connected", (users: string[]) => {
-      console.log("user connected. new user list received");
-      console.log(users);
       SocketDispatch({ type: "update_users", payload: users });
     });
 
     socket.on("user_disconnected", (uid: string[]) => {
-      console.log("user disconnected.");
       SocketDispatch({ type: "remove_user", payload: uid });
     });
 
@@ -69,19 +66,17 @@ const SocketContextComponent: React.FunctionComponent<
 
   useEffect(() => {
     const SendHandShake = () => {
-        socket.emit("send_uid", (userUid))
-        console.log("sending handshake to server...");
-        socket.emit("handshake", (uid: string, users: string[]) => {
-          console.log("user handshake callback message received");
-          SocketDispatch({ type: "update_uid", payload: uid });
-          SocketDispatch({ type: "update_users", payload: users });
-    
-          setLoading(false);
-        });
+      socket.emit("send_uid", userUid);
+      socket.emit("handshake", (uid: string, users: string[]) => {
+        console.log("user handshake callback message received");
+        SocketDispatch({ type: "update_uid", payload: uid });
+        SocketDispatch({ type: "update_users", payload: users });
+
+        setLoading(false);
+      });
     };
     SendHandShake();
-  }, [userUid])
-
+  }, [userUid]);
 
   if (loading) return <p>loading socket...</p>;
 

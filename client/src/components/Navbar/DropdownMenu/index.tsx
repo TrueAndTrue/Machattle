@@ -9,8 +9,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import DraftsIcon from '@mui/icons-material/Drafts';
-import hamburg from './hamburger.png';
+import DraftsIcon from "@mui/icons-material/Drafts";
+import hamburg from "./hamburger.png";
 
 import { IUser } from "../../../types";
 import styles from "./styles.module.css";

@@ -33,7 +33,6 @@ export const SocketReducer = (
   state: ISocketContextState,
   action: ISocketContextActions
 ) => {
-
   switch (action.type) {
     case "update_socket":
       return { ...state, socket: action.payload as Socket };
