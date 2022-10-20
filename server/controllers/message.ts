@@ -3,13 +3,11 @@ import { Message } from '../models/Message'
 import { User } from "../models/User";
 
 export const sendMessage = async (req: Request, res: Response) => {
-  console.log('send!')
   try {
     const { message } = req.body
-    console.log(message)
     const {senderUsername, receiverUsername} = message;
     if (!senderUsername || !receiverUsername) return res.status(404).send("No Sender specified")
-
+  
     const receiver = await User.findOne({where : {username : receiverUsername}})
     if(!receiver) return res.status(404).send({error:true, res :"recieving address not found"})
     

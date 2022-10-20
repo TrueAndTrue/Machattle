@@ -37,8 +37,8 @@ export function BattlePage() {
   async function getQuestion() {
     let salt: number;
     roomId
-      ? salt =2
-      : salt =1
+      ? salt = roomId
+      : salt = Math.floor(Math.floor(Math.random()*10000))
     
     const newQuestion = await getRandomExercise(2, salt);
     dispatch(updateQuestion(newQuestion));
