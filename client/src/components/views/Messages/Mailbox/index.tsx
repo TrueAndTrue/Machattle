@@ -8,6 +8,7 @@ interface IProps {
 }
 
 export const MailBox = ({ mail }: IProps) => {
+  
   return (
     <div id={styles.mail_container}>
       {mail ? (

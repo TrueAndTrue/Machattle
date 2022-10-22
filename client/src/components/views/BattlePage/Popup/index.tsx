@@ -1,11 +1,11 @@
-import styles from "./styles.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useContext } from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { updateMatch } from "../../../../state/actions/match";
 import SocketContext from "../../../../contexts/Context";
+
+import styles from "./styles.module.css";
 
 interface IProps {
   isRanked: boolean;

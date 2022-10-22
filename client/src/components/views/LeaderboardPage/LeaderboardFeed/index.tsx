@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { getTopUsers } from "../../../../services/userServices";
 import { updateLeaderBoard } from "../../../../state/actions/leaderBoard";

@@ -55,7 +55,6 @@ export function ProfilePage() {
           <ProfileInfoContainer />
           <div className={styles.profile_btm_left}>
             <FriendsList />
-            {/* <MatchHistory /> */}
           </div>
         </div>
         <RecentEventsFeed recentEvents={challenges} />

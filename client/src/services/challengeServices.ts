@@ -1,5 +1,3 @@
-import { IChallenge } from "../types";
-
 let BASE_URL: string;
 process.env.NODE_ENV == "production"
   ? (BASE_URL = "https://machattle.herokuapp.com/api")

@@ -1,4 +1,3 @@
-
 import { LoginButton } from './LoginButton';
 import { WelcomeBanner } from './WelcomeBanner';
 import styles from './styles.module.css';

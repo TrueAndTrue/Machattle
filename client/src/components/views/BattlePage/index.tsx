@@ -23,7 +23,6 @@ export function BattlePage() {
     (async () => {
       const p1 = await getUserById(player1);
       const p2 = await getUserById(player2);
-      console.log(p1, p2);
       if (p1.res.uid === thisUser) {
         setThisUsername(p1.res.username);
         setOpponentUsername(p2.res.username);
