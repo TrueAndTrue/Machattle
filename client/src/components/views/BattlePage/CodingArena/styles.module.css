@@ -1,3 +1,24 @@
-.coding-arena-container {
+.coding_arena_container {
   display: flex;
+  width: 50vw;
+  height: 72vh;
+  margin-top: 20px;
+  justify-content: center;
+  border-radius: 25px;
+  border-color: #eeeeee;
+  border-style: inset;
+  border-width: 10px;
+  z-index: 4;
+}
+
+.cm-editor {
+
+}
+
+.cm-content {
+
+}
+
+.cm-gutter {
+
 }

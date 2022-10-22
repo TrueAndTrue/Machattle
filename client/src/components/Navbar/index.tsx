@@ -1,10 +1,15 @@
-declare module './styles.module.css';
+import { DropdownMenu } from "./DropdownMenu/index";
+import { LogoutButton } from "./LogoutButton/index";
+import { Mascot } from "./Mascot/index";
+import styles from "./styles.module.css";
 
-export function NavBar () {
+export default function NavBar() {
 
   return (
-    <div className="navbar-container">
-
+    <div className={styles.navbar_container}>
+      <DropdownMenu />
+      <Mascot />
+      <LogoutButton />
     </div>
-  )
+  );
 }

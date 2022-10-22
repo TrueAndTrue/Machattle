@@ -1,0 +1,15 @@
+#message_view_container{
+  display: flex;
+  width:100%;
+  background-color: #232931;
+}
+
+#form{
+  padding:0px;
+  margin: 0px;;
+  position: absolute;
+  top:40%;
+  left: 50%;
+  z-index:5;
+  height: 0px;
+}

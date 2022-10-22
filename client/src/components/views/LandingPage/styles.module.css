@@ -1,3 +1,33 @@
-.landing-page-container {
+.landing_page_container {
   display: flex;
+  background-color: transparent;
+  min-height: 100%;
+  min-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.landing_page_text {
+  color: white;
+  margin: 10px;
+  font-size: x-large;
+}
+
+.landing_page_images {
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+}
+
+@media (max-width: 600px) {
+
+  .landing_page_images {
+    display: flex;
+    justify-content: space-around;
+    height: 25%;
+    width: 80%;
+  }
+  
 }

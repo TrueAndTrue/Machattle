@@ -1,10 +1,17 @@
-declare module './styles.module.css';
+import { IChallenge } from "../../../../types";
+import { RecentEventsCard } from "../RecentEventsCard/index";
+import styles from "./styles.module.css";
 
-export function RecentEventsFeed () {
+interface IProps {
+  recentEvents: IChallenge[];
+}
 
+export function RecentEventsFeed({ recentEvents }: IProps) {
   return (
-    <div className="recent-events-feed-container">
-
+    <div className={styles.recent_events_feed_container}>
+      {recentEvents?.map((singleEvent) => (
+        <RecentEventsCard data={singleEvent} />
+      ))}
     </div>
-  )
+  );
 }
