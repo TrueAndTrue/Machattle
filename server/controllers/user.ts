@@ -72,7 +72,6 @@ export const getAllUsers = async (req: Request, res: Response) => {
 
 export const getRoom = async (req: Request, res: Response) =>{
   try {
-    console.log('in room')
     const rooms = await Room.findAll();
     res.status(200).send({ error: false, res: rooms });
   } catch (error) {
@@ -84,19 +83,18 @@ export const updateRank = async (req: Request, res: Response) => {
   try {
     const { uid } = req.body.user;
     const { rankChange } = req.body.change;
-    console.log(uid,rankChange)
     const user = await User.findOne({where : {uid}})
     let rating = user?.getDataValue('rating')
-    if(user && rating) {
-      rating += Number(rankChange)
-      console.log(rating)
-      const rank = ratingToRank(rating)
-      user.set({rating, rank});
-      await user.save()
-      res.status(201).send({error :false, res : "Rank Successfully Updated"})
-    }
+    if(!user) return res.status(404).send({error : true, res : 'Error Retrieving User'})
+    if(!rating) return res.status(400).send({error : true, res : 'Error In Users Rating'})
+    
+    rating += Number(rankChange)
+    const rank = ratingToRank(rating)
+    user.set({rating, rank});
+    await user.save()
+    return res.status(201).send({error :false, res : "Rank Successfully Updated"})
   } catch (error) {
-    res.status(500).send({ error: true, res: "Error updating rank" });
+    res.status(500).send({ error: true, res: "Error Updating Rank" });
   }
 }
 
@@ -271,7 +269,6 @@ export const getUserFriends = async (req: Request, res: Response) => {
 export const updateImg = async (req:Request , res : Response) => {
   try {
     const { image, uid } = req.body;
-    console.log(image,uid)
     const user = await User.update(
       { image },
       { where: { uid} }

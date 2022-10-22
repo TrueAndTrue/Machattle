@@ -37,9 +37,6 @@ Question.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    timeElapsed: {
-      type: DataTypes.STRING,
-    },
     functionName: {
       type: DataTypes.STRING,
     },

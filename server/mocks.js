@@ -1,8 +1,0 @@
-
-const mockUser = {
-
-};
-
-const mockChallenge = {
-
-};

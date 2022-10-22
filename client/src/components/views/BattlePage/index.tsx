@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Popup } from "./Popup/index";
-
 import { updateCurrentAnswer } from "../../../state/actions/question";
 import { updateQuestion } from "../../../state/actions/question";
 import { getRandomExercise } from "../../../services/exerciseServices";

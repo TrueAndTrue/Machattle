@@ -6,7 +6,6 @@ export interface IQuestion {
   timeComplexity: string;
   tests: string[][];
   difficulty: string;
-  timeElapsed: string;
   functionName: string;
   parameters: string[];
 }
