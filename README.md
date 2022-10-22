@@ -13,3 +13,7 @@ A local version may be run from server/index.ts and executing "npm start" from t
 **Tech Stack**
 
 React, Redux, MaterialUI, CodeMirror, Auth0, Aseprite, SQL, Postgres, Node, Express, Socket.io
+
+**Contributors**
+
+Austin Westbury, Jacob Walsh, Matt Vanderpoel
