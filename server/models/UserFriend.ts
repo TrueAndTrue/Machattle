@@ -1,4 +1,4 @@
-import { Model, Optional, DataTypes, Association } from "sequelize";
+import { Model, Association } from "sequelize";
 import { sequelize } from ".";
 
 import { User } from "./User";
